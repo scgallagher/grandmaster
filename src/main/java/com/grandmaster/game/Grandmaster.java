@@ -1,0 +1,21 @@
+package com.grandmaster.game;
+
+public class Grandmaster {
+
+	public static void main(String[] args) {
+
+		Board board = new Board();
+		System.out.println(board);
+		
+		try {
+			board.move(7, 3, 6, 3);
+		}
+		catch (IllegalMoveException e) {
+			e.printStackTrace();
+		}
+		
+		System.out.println(board);
+
+	}
+
+}
