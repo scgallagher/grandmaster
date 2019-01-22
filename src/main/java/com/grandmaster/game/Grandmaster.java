@@ -15,6 +15,7 @@ public class Grandmaster {
 		}
 		
 		System.out.println(board);
+		System.out.println("\u2654");
 
 	}
 
