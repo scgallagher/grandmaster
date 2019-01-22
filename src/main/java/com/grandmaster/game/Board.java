@@ -19,7 +19,7 @@ public class Board {
 	
 	public void initialize() {
 		
-		grid[7][3] = new King("K_w", 7, 3);
+		grid[7][4] = new King("K_w", 7, 4);
 		grid[0][4] = new King("K_b", 0, 4);
 		
 	}

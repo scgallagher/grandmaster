@@ -15,7 +15,19 @@ public abstract class Piece {
 	
 	public abstract boolean isLegalMove(int newRow, int newColumn);
 	
-	public abstract void move(int newRow, int newColumn) throws IllegalMoveException;
+	public void move(int newRow, int newColumn) throws IllegalMoveException {
+
+		if (this.isLegalMove(newRow, newColumn)) {
+			
+			this.setRow(newRow);
+			this.setColumn(newColumn);
+			
+		}
+		else {
+			throw new IllegalMoveException();
+		}
+		
+	}
 	
 	public void setRow(int row) {
 		

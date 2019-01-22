@@ -8,7 +8,7 @@ public class Grandmaster {
 		System.out.println(board);
 		
 		try {
-			board.move(7, 3, 6, 3);
+			board.move(7, 4, 6, 3);
 		}
 		catch (IllegalMoveException e) {
 			e.printStackTrace();
