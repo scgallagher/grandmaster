@@ -4,11 +4,9 @@ import com.grandmaster.game.Utilities;
 
 public class Queen extends Piece {
 
-	public Queen(String id, int row, int column) {
+	public Queen(boolean isWhite, String id, int row, int column) {
 		
-		this.setId(id);
-		this.setRow(row);
-		this.setColumn(column);
+		super(isWhite, id, row, column);
 		
 	}
 	

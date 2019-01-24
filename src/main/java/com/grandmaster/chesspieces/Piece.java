@@ -8,8 +8,14 @@ public abstract class Piece {
 	private int row;
 	private int column;
 	private String id;
+	private boolean isWhite;
 	
-	public Piece() {
+	public Piece(boolean isWhite, String id, int row, int column) {
+		
+		this.setIsWhite(isWhite);
+		this.setId(id);
+		this.setRow(row);
+		this.setColumn(column);
 		
 	}
 	
@@ -87,6 +93,24 @@ public abstract class Piece {
 	public void move(Position newPosition) throws IllegalMoveException {
 		
 		this.move(newPosition.getRow(), newPosition.getColumn());
+		
+	}
+	
+	public boolean isWhite() {
+		
+		return this.isWhite;
+		
+	}
+	
+	public void setIsWhite(boolean isWhite) {
+		
+		this.isWhite = isWhite;
+		
+	}
+	
+	public boolean isAlly(Piece piece) {
+		
+		return this.isWhite() == piece.isWhite();
 		
 	}
 	

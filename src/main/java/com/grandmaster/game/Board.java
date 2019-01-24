@@ -1,5 +1,7 @@
 package com.grandmaster.game;
 
+import java.util.ArrayList;
+
 import com.grandmaster.chesspieces.King;
 import com.grandmaster.chesspieces.Piece;
 
@@ -13,26 +15,96 @@ public class Board {
 	public Board() {
 		
 		grid = new Piece[numRows][numColumns];
-		this.initialize();
 		
 	}
 	
-	public void initialize() {
+	public void initialize(Player white, Player black) {
 		
-		grid[7][4] = new King("K_w", 7, 4);
-		grid[0][4] = new King("K_b", 0, 4);
+		boolean isWhite = true;
+		
+		// Initialize white pieces
+		Piece piece = new King(isWhite, "K_w", 7, 4);
+		grid[7][4] = piece;
+		white.addPiece(piece);
+						
+		// Initialize black pieces
+		piece = new King(!isWhite, "K_b", 0, 4);
+		grid[0][4] = piece;
+		black.addPiece(piece);
 		
 	}
 	
-	public void move(int row, int column, int newRow, int newColumn) throws IllegalMoveException {
+	public void initialize(Player white, Player black, ArrayList<Piece> pieces) {
+		
+		for (Piece piece : pieces) {
+			
+			int row = piece.getRow();
+			int column = piece.getColumn();
+			boolean isWhite = piece.isWhite();
+			
+			grid[row][column] = piece;
+			if (isWhite) {
+				white.addPiece(piece);
+			}
+			else {
+				black.addPiece(piece);
+			}
+			
+		}
+		
+	}
+	
+	public void initializeAlternate(Player white, Player black) {
+		
+		boolean isWhite = true;
+		
+		// Initialize white pieces
+		Piece piece = new King(isWhite, "K_w", 7, 4);
+		grid[7][4] = piece;
+		white.addPiece(piece);
+				
+		// Initialize black pieces
+		piece = new King(!isWhite, "K_b", 6, 4);
+		grid[6][4] = piece;
+		black.addPiece(piece);
+		
+	}
+	
+	public void move(Player player, int row, int column, int newRow, int newColumn) 
+			throws IllegalMoveException, UnauthorizedMoveException {
 		
 		Piece piece = grid[row][column];
 		
 		if (piece != null) {
 			
-			piece.move(newRow, newColumn);
-			grid[newRow][newColumn] = piece;
-			grid[row][column] = null;
+			if (!player.isAuthorized(piece)) {
+				throw new UnauthorizedMoveException("Player is not authorized to move this piece");
+			}
+			
+			Piece occupant = grid[newRow][newColumn];
+			if (occupant == null) {
+				
+				// Space is not occupied, safe to move here
+				piece.move(newRow, newColumn);
+				grid[newRow][newColumn] = piece;
+				grid[row][column] = null;
+				
+			}
+			else if (piece.isAlly(occupant)) {
+				
+				// Space is occupied by ally, cannot move here
+				throw new IllegalMoveException("Space already occupied by ally");
+				
+			}
+			else {
+				
+				// Space is occupied by enemy, capture enemy and move here
+				piece.move(newRow, newColumn);
+				player.capturePiece(occupant);
+				grid[newRow][newColumn] = piece;
+				grid[row][column] = null;
+				
+			}
 			
 		}
 		
@@ -63,6 +135,12 @@ public class Board {
 		}
 		
 		return sb.toString();
+		
+	}
+	
+	public Piece getPieceAt(int row, int column) {
+		
+		return this.grid[row][column];
 		
 	}
 	
