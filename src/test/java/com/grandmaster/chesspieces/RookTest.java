@@ -89,7 +89,16 @@ public class RookTest {
 	}
 	
 	@Test (expected = IllegalMoveException.class)
-	public void testInvalidMoveDiagonalForwardLeft() throws Exception {
+	public void testInvalidMoveDiagonalForwardLeftOneSpace() throws Exception {
+		
+		Rook rook = new Rook(true, "R_w", 3, 3);
+		Position newPosition = new Position(2, 2);
+		rook.move(newPosition);
+		
+	}
+	
+	@Test (expected = IllegalMoveException.class)
+	public void testInvalidMoveDiagonalForwardLeftTwoSpaces() throws Exception {
 		
 		Rook rook = new Rook(true, "R_w", 3, 3);
 		Position newPosition = new Position(1, 1);
@@ -98,7 +107,16 @@ public class RookTest {
 	}
 	
 	@Test (expected = IllegalMoveException.class)
-	public void testInvalidMoveDiagonalForwardRight() throws Exception {
+	public void testInvalidMoveDiagonalForwardRightOneSpace() throws Exception {
+		
+		Rook rook = new Rook(true, "R_w", 3, 3);
+		Position newPosition = new Position(2, 4);
+		rook.move(newPosition);
+		
+	}
+	
+	@Test (expected = IllegalMoveException.class)
+	public void testInvalidMoveDiagonalForwardRightTwoSpaces() throws Exception {
 		
 		Rook rook = new Rook(true, "R_w", 3, 3);
 		Position newPosition = new Position(1, 5);
@@ -107,7 +125,16 @@ public class RookTest {
 	}
 	
 	@Test (expected = IllegalMoveException.class)
-	public void testInvalidMoveDiagonalDownwardLeft() throws Exception {
+	public void testInvalidMoveDiagonalDownwardLeftOneSpace() throws Exception {
+		
+		Rook rook = new Rook(true, "R_w", 3, 3);
+		Position newPosition = new Position(4, 2);
+		rook.move(newPosition);
+		
+	}
+	
+	@Test (expected = IllegalMoveException.class)
+	public void testInvalidMoveDiagonalDownwardLeftTwoSpaces() throws Exception {
 		
 		Rook rook = new Rook(true, "R_w", 3, 3);
 		Position newPosition = new Position(5, 1);
@@ -116,7 +143,16 @@ public class RookTest {
 	}
 	
 	@Test (expected = IllegalMoveException.class)
-	public void testInvalidMoveDiagonalDownwardRight() throws Exception {
+	public void testInvalidMoveDiagonalDownwardRightOneSpace() throws Exception {
+		
+		Rook rook = new Rook(true, "R_w", 3, 3);
+		Position newPosition = new Position(4, 4);
+		rook.move(newPosition);
+		
+	}
+	
+	@Test (expected = IllegalMoveException.class)
+	public void testInvalidMoveDiagonalDownwardRightTwoSpaces() throws Exception {
 		
 		Rook rook = new Rook(true, "R_w", 3, 3);
 		Position newPosition = new Position(5, 5);
