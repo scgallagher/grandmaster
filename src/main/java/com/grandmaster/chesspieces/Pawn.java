@@ -9,12 +9,12 @@ public class Pawn extends Piece {
 	private boolean firstMove;
 	private Board board;
 	
-	public Pawn(boolean isWhite, String id, int row, int column) {
-		
-		super(isWhite, id, row, column);
-		this.firstMove = true;
-		
-	}
+//	public Pawn(boolean isWhite, String id, int row, int column) {
+//		
+//		super(isWhite, id, row, column);
+//		this.firstMove = true;
+//		
+//	}
 	
 	public Pawn(boolean isWhite, String id, int row, int column, Board board) {
 		

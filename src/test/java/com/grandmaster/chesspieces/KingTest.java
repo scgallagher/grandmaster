@@ -2,9 +2,13 @@ package com.grandmaster.chesspieces;
 
 import static org.junit.Assert.*;
 
+import java.util.ArrayList;
+
 import org.junit.Test;
 
+import com.grandmaster.game.Board;
 import com.grandmaster.game.IllegalMoveException;
+import com.grandmaster.game.Player;
 
 public class KingTest {
 
@@ -229,6 +233,63 @@ public class KingTest {
 		Piece king = new King(true, "K_w", 0, 0);
 		Position newPosition = new Position(-1, -1);
 		king.move(newPosition);
+		
+	}
+	
+	@Test
+	public void testPawnThreatUpperLeft() throws Exception {
+		
+		Board board = new Board();
+		boolean isWhite = true;
+		Player white = new Player(isWhite);
+		Player black = new Player(!isWhite);
+		
+		King whiteKing = new King(true, "K_w", 3, 3);
+		Pawn blackPawn = new Pawn(!isWhite, "p_b", 2, 2, null);
+		ArrayList<Piece> pieces = new ArrayList<>();
+		pieces.add(whiteKing);
+		pieces.add(blackPawn);
+		
+		board.initialize(white, black, pieces);
+		assertEquals(true, whiteKing.pawnThreat(board));
+		
+	}
+	
+	@Test
+	public void testPawnThreatUpperRight() throws Exception {
+		
+		Board board = new Board();
+		boolean isWhite = true;
+		Player white = new Player(isWhite);
+		Player black = new Player(!isWhite);
+		
+		King whiteKing = new King(true, "K_w", 3, 3);
+		Pawn blackPawn = new Pawn(!isWhite, "p_b", 2, 4, null);
+		ArrayList<Piece> pieces = new ArrayList<>();
+		pieces.add(whiteKing);
+		pieces.add(blackPawn);
+		
+		board.initialize(white, black, pieces);
+		assertEquals(true, whiteKing.pawnThreat(board));
+		
+	}
+	
+	@Test
+	public void testPawnNoThreatAbove() throws Exception {
+		
+		Board board = new Board();
+		boolean isWhite = true;
+		Player white = new Player(isWhite);
+		Player black = new Player(!isWhite);
+		
+		King whiteKing = new King(true, "K_w", 3, 3);
+		Pawn blackPawn = new Pawn(!isWhite, "p_b", 2, 3, null);
+		ArrayList<Piece> pieces = new ArrayList<>();
+		pieces.add(whiteKing);
+		pieces.add(blackPawn);
+		
+		board.initialize(white, black, pieces);
+		assertEquals(false, whiteKing.pawnThreat(board));
 		
 	}
 	
