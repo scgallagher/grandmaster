@@ -18,6 +18,18 @@ public class Board {
 		
 	}
 	
+	public int getNumRows() {
+		
+		return this.numRows;
+		
+	}
+	
+	public int getNumColumns() {
+		
+		return this.numColumns;
+		
+	}
+	
 	public void initialize(Player white, Player black) {
 		
 		boolean isWhite = true;
