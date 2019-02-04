@@ -137,10 +137,26 @@ public class GameLogic {
 		
 	}
 	
-	public boolean isCheck(Board board, Piece defender) {
+	public static boolean isCheck(Board board, Piece defendingKing) {
 		
-		return pawnThreat(board, defender) || rookThreat(board, defender) || bishopThreat(board, defender) || 
-				knightThreat(board, defender) || queenThreat(board, defender) || kingThreat(board, defender);
+		return pawnThreat(board, defendingKing) || rookThreat(board, defendingKing) || bishopThreat(board, defendingKing) || 
+				knightThreat(board, defendingKing) || queenThreat(board, defendingKing) || kingThreat(board, defendingKing);
+		
+	}
+	
+	public static boolean isCheckmate(Board board, Piece defendingKing) {
+		
+		if (!(defendingKing instanceof King))
+			return false;
+
+		return isCheck(board, new King(defendingKing.isWhite(), "", defendingKing.getRow() - 1, defendingKing.getRow() - 1)) &&
+				isCheck(board, new King(defendingKing.isWhite(), "", defendingKing.getRow() - 1, defendingKing.getRow())) &&
+				isCheck(board, new King(defendingKing.isWhite(), "", defendingKing.getRow() - 1, defendingKing.getRow() + 1)) &&
+				isCheck(board, new King(defendingKing.isWhite(), "", defendingKing.getRow(), defendingKing.getRow() + 1)) &&
+				isCheck(board, new King(defendingKing.isWhite(), "", defendingKing.getRow() + 1, defendingKing.getRow() + 1)) &&
+				isCheck(board, new King(defendingKing.isWhite(), "", defendingKing.getRow() + 1, defendingKing.getRow())) &&
+				isCheck(board, new King(defendingKing.isWhite(), "", defendingKing.getRow() + 1, defendingKing.getRow() - 1)) &&
+				isCheck(board, new King(defendingKing.isWhite(), "", defendingKing.getRow(), defendingKing.getRow() - 1));
 		
 	}
 	

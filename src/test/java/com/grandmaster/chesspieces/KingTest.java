@@ -2,6 +2,8 @@ package com.grandmaster.chesspieces;
 
 import static org.junit.Assert.*;
 
+import java.util.ArrayList;
+
 import org.junit.Test;
 
 import com.grandmaster.game.IllegalMoveException;
@@ -229,6 +231,136 @@ public class KingTest {
 		Piece king = new King(true, "K_w", 0, 0);
 		Position newPosition = new Position(-1, -1);
 		king.move(newPosition);
+		
+	}
+	
+	@Test
+	public void testGetAvailableMovesCenter() throws Exception {
+		
+		King king = new King(true, "K_w", 3, 3);
+		ArrayList<Position> moves = king.getAvailableMoves();
+
+		assertEquals(8, moves.size());
+		assertTrue(moves.contains(new Position(2, 2)));
+		assertTrue(moves.contains(new Position(2, 3)));
+		assertTrue(moves.contains(new Position(2, 4)));
+		assertTrue(moves.contains(new Position(3, 2)));
+		assertTrue(moves.contains(new Position(3, 4)));
+		assertTrue(moves.contains(new Position(4, 2)));
+		assertTrue(moves.contains(new Position(4, 3)));
+		assertTrue(moves.contains(new Position(4, 4)));
+		
+	}
+	
+	@Test
+	public void testGetAvailableMovesUpperLeftCorner() throws Exception {
+		
+		King king = new King(true, "K_w", 0, 0);
+		ArrayList<Position> moves = king.getAvailableMoves();
+		
+		assertEquals(3, moves.size());
+		assertTrue(moves.contains(new Position(1, 0)));
+		assertTrue(moves.contains(new Position(1, 1)));
+		assertTrue(moves.contains(new Position(0, 1)));
+		
+	}
+	
+	@Test
+	public void testGetAvailableMovesUpperRightCorner() throws Exception {
+		
+		King king = new King(true, "K_w", 0, 7);
+		ArrayList<Position> moves = king.getAvailableMoves();
+		
+		assertEquals(3, moves.size());
+		assertTrue(moves.contains(new Position(0, 6)));
+		assertTrue(moves.contains(new Position(1, 6)));
+		assertTrue(moves.contains(new Position(1, 7)));
+		
+	}
+	
+	@Test
+	public void testGetAvailableMovesLowerLeftCorner() throws Exception {
+		
+		King king = new King(true, "K_w", 7, 0);
+		ArrayList<Position> moves = king.getAvailableMoves();
+		
+		assertEquals(3, moves.size());
+		assertTrue(moves.contains(new Position(6, 0)));
+		assertTrue(moves.contains(new Position(6, 1)));
+		assertTrue(moves.contains(new Position(7, 1)));
+		
+	}
+	
+	@Test
+	public void testGetAvailableMovesLowerRightCorner() throws Exception {
+		
+		King king = new King(true, "K_w", 7, 7);
+		ArrayList<Position> moves = king.getAvailableMoves();
+		
+		assertEquals(3, moves.size());
+		assertTrue(moves.contains(new Position(7, 6)));
+		assertTrue(moves.contains(new Position(6, 6)));
+		assertTrue(moves.contains(new Position(6, 7)));
+		
+	}
+	
+	@Test
+	public void testGetAvailableMovesUpperEdge() throws Exception {
+		
+		King king = new King(true, "K_w", 0, 3);
+		ArrayList<Position> moves = king.getAvailableMoves();
+		
+		assertEquals(5, moves.size());
+		assertTrue(moves.contains(new Position(0, 2)));
+		assertTrue(moves.contains(new Position(0, 4)));
+		assertTrue(moves.contains(new Position(1, 2)));
+		assertTrue(moves.contains(new Position(1, 3)));
+		assertTrue(moves.contains(new Position(1, 4)));
+		
+	}
+	
+	@Test
+	public void testGetAvailableMovesLowerEdge() throws Exception {
+		
+		King king = new King(true, "K_w", 7, 3);
+		ArrayList<Position> moves = king.getAvailableMoves();
+		
+		assertEquals(5, moves.size());
+		assertTrue(moves.contains(new Position(7, 2)));
+		assertTrue(moves.contains(new Position(7, 4)));
+		assertTrue(moves.contains(new Position(6, 2)));
+		assertTrue(moves.contains(new Position(6, 3)));
+		assertTrue(moves.contains(new Position(6, 4)));
+		
+	}
+	
+	@Test
+	public void testGetAvailableMovesLeftEdge() throws Exception {
+		
+		King king = new King(true, "K_w", 3, 0);
+		ArrayList<Position> moves = king.getAvailableMoves();
+		
+		assertEquals(5, moves.size());
+		assertTrue(moves.contains(new Position(2, 0)));
+		assertTrue(moves.contains(new Position(4, 0)));
+		assertTrue(moves.contains(new Position(2, 1)));
+		assertTrue(moves.contains(new Position(3, 1)));
+		assertTrue(moves.contains(new Position(4, 1)));
+		
+	}
+	
+	@Test
+	public void testGetAvailableMovesRightEdge() throws Exception {
+		
+		King king = new King(true, "K_w", 3, 7);
+		ArrayList<Position> moves = king.getAvailableMoves();
+		
+		assertEquals(5, moves.size());
+		assertTrue(moves.contains(new Position(2, 7)));
+		assertTrue(moves.contains(new Position(4, 7)));
+		assertTrue(moves.contains(new Position(2, 6)));
+		assertTrue(moves.contains(new Position(3, 6)));
+		assertTrue(moves.contains(new Position(4, 6)));
 		
 	}
 	

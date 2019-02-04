@@ -1150,4 +1150,48 @@ public class GameLogicTest {
 		
 	}
 	
+	@Test
+	public void testIsCheckMate() throws Exception {
+		
+		Board board = new Board();
+		boolean isWhite = true;
+		Player white = new Player(isWhite);
+		Player black = new Player(!isWhite);
+		
+		King whiteKing = new King(isWhite, "K_w", 3, 3);
+		Queen blackQueen = new Queen(!isWhite, "Q_b", 3, 1);
+		Rook blackRookOne = new Rook(!isWhite, "R_b", 2, 5);
+		Rook blackRookTwo = new Rook(!isWhite, "R_b", 4, 5);
+		King blackKing = new King(!isWhite, "K_b", 3, 5);
+		ArrayList<Piece> pieces = new ArrayList<>();
+		pieces.add(whiteKing);
+		pieces.add(blackQueen);
+		pieces.add(blackRookOne);
+		pieces.add(blackRookTwo);
+		pieces.add(blackKing);
+		
+		board.initialize(white, black, pieces);
+		assertEquals(true, GameLogic.isCheckmate(board, whiteKing));
+		
+	}
+	
+	@Test
+	public void testIsCheckMateCorner() throws Exception {
+		
+		Board board = new Board();
+		boolean isWhite = true;
+		Player white = new Player(isWhite);
+		Player black = new Player(!isWhite);
+		
+		King whiteKing = new King(isWhite, "K_w", 0, 0);
+		Queen blackQueen = new Queen(!isWhite, "Q_b", 2, 1);
+		ArrayList<Piece> pieces = new ArrayList<>();
+		pieces.add(whiteKing);
+		pieces.add(blackQueen);
+		
+		board.initialize(white, black, pieces);
+		assertEquals(true, GameLogic.isCheckmate(board, whiteKing));
+		
+	}
+	
 }
