@@ -121,9 +121,25 @@ public class King extends Piece {
 		
 	}
 	
+	public boolean kingThreat(Board board) {
+		
+		King king = new King(true, "", 0, 0);
+		
+		return this.isThreat(this.getRow() - 1, this.getColumn() - 1, board, king) ||
+				this.isThreat(this.getRow() - 1, this.getColumn(), board, king) ||
+				this.isThreat(this.getRow() - 1, this.getColumn() + 1, board, king) ||
+				this.isThreat(this.getRow(), this.getColumn() + 1, board, king) ||
+				this.isThreat(this.getRow() + 1, this.getColumn() + 1, board, king) ||
+				this.isThreat(this.getRow() + 1, this.getColumn(), board, king) ||
+				this.isThreat(this.getRow() + 1, this.getColumn() - 1, board, king) ||
+				this.isThreat(this.getRow(), this.getColumn() - 1, board, king);
+		
+	}
+	
 	public boolean isCheck(Board board) {
 		
-		return pawnThreat(board) || rookThreat(board) || bishopThreat(board) || knightThreat(board);
+		return pawnThreat(board) || rookThreat(board) || bishopThreat(board) || knightThreat(board) || 
+				queenThreat(board) || kingThreat(board);
 		
 	}
 	

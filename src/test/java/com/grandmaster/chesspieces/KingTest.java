@@ -1066,4 +1066,308 @@ public class KingTest {
 		
 	}
 	
+	@Test
+	public void testKingThreatUpperLeft() throws Exception {
+		
+		Board board = new Board();
+		boolean isWhite = true;
+		Player white = new Player(isWhite);
+		Player black = new Player(!isWhite);
+		
+		King whiteKing = new King(isWhite, "K_w", 3, 3);
+		King blackKing = new King(!isWhite, "K_b", 2, 2);
+		ArrayList<Piece> pieces = new ArrayList<>();
+		pieces.add(whiteKing);
+		pieces.add(blackKing);
+		
+		board.initialize(white, black, pieces);
+		assertEquals(true, whiteKing.kingThreat(board));
+		
+	}
+	
+	@Test
+	public void testKingThreatAbove() throws Exception {
+		
+		Board board = new Board();
+		boolean isWhite = true;
+		Player white = new Player(isWhite);
+		Player black = new Player(!isWhite);
+		
+		King whiteKing = new King(isWhite, "K_w", 3, 3);
+		King blackKing = new King(!isWhite, "K_b", 2, 3);
+		ArrayList<Piece> pieces = new ArrayList<>();
+		pieces.add(whiteKing);
+		pieces.add(blackKing);
+		
+		board.initialize(white, black, pieces);
+		assertEquals(true, whiteKing.kingThreat(board));
+		
+	}
+	
+	@Test
+	public void testKingThreatUpperRight() throws Exception {
+		
+		Board board = new Board();
+		boolean isWhite = true;
+		Player white = new Player(isWhite);
+		Player black = new Player(!isWhite);
+		
+		King whiteKing = new King(isWhite, "K_w", 3, 3);
+		King blackKing = new King(!isWhite, "K_b", 2, 4);
+		ArrayList<Piece> pieces = new ArrayList<>();
+		pieces.add(whiteKing);
+		pieces.add(blackKing);
+		
+		board.initialize(white, black, pieces);
+		assertEquals(true, whiteKing.kingThreat(board));
+		
+	}
+	
+	@Test
+	public void testKingThreatRight() throws Exception {
+		
+		Board board = new Board();
+		boolean isWhite = true;
+		Player white = new Player(isWhite);
+		Player black = new Player(!isWhite);
+		
+		King whiteKing = new King(isWhite, "K_w", 3, 3);
+		King blackKing = new King(!isWhite, "K_b", 3, 4);
+		ArrayList<Piece> pieces = new ArrayList<>();
+		pieces.add(whiteKing);
+		pieces.add(blackKing);
+		
+		board.initialize(white, black, pieces);
+		assertEquals(true, whiteKing.kingThreat(board));
+		
+	}
+	
+	@Test
+	public void testKingThreatLowerRight() throws Exception {
+		
+		Board board = new Board();
+		boolean isWhite = true;
+		Player white = new Player(isWhite);
+		Player black = new Player(!isWhite);
+		
+		King whiteKing = new King(isWhite, "K_w", 3, 3);
+		King blackKing = new King(!isWhite, "K_b", 4, 4);
+		ArrayList<Piece> pieces = new ArrayList<>();
+		pieces.add(whiteKing);
+		pieces.add(blackKing);
+		
+		board.initialize(white, black, pieces);
+		assertEquals(true, whiteKing.kingThreat(board));
+		
+	}
+	
+	@Test
+	public void testKingThreatBelow() throws Exception {
+		
+		Board board = new Board();
+		boolean isWhite = true;
+		Player white = new Player(isWhite);
+		Player black = new Player(!isWhite);
+		
+		King whiteKing = new King(isWhite, "K_w", 3, 3);
+		King blackKing = new King(!isWhite, "K_b", 4, 3);
+		ArrayList<Piece> pieces = new ArrayList<>();
+		pieces.add(whiteKing);
+		pieces.add(blackKing);
+		
+		board.initialize(white, black, pieces);
+		assertEquals(true, whiteKing.kingThreat(board));
+		
+	}
+	
+	@Test
+	public void testKingThreatLowerLeft() throws Exception {
+		
+		Board board = new Board();
+		boolean isWhite = true;
+		Player white = new Player(isWhite);
+		Player black = new Player(!isWhite);
+		
+		King whiteKing = new King(isWhite, "K_w", 3, 3);
+		King blackKing = new King(!isWhite, "K_b", 4, 2);
+		ArrayList<Piece> pieces = new ArrayList<>();
+		pieces.add(whiteKing);
+		pieces.add(blackKing);
+		
+		board.initialize(white, black, pieces);
+		assertEquals(true, whiteKing.kingThreat(board));
+		
+	}
+	
+	@Test
+	public void testKingThreatLeft() throws Exception {
+		
+		Board board = new Board();
+		boolean isWhite = true;
+		Player white = new Player(isWhite);
+		Player black = new Player(!isWhite);
+		
+		King whiteKing = new King(isWhite, "K_w", 3, 3);
+		King blackKing = new King(!isWhite, "K_b", 3, 2);
+		ArrayList<Piece> pieces = new ArrayList<>();
+		pieces.add(whiteKing);
+		pieces.add(blackKing);
+		
+		board.initialize(white, black, pieces);
+		assertEquals(true, whiteKing.kingThreat(board));
+		
+	}
+	
+	@Test
+	public void testKingNoThreatUpperLeft() throws Exception {
+		
+		Board board = new Board();
+		boolean isWhite = true;
+		Player white = new Player(isWhite);
+		Player black = new Player(!isWhite);
+		
+		King whiteKing = new King(isWhite, "K_w", 3, 3);
+		King blackKing = new King(!isWhite, "K_b", 1, 1);
+		ArrayList<Piece> pieces = new ArrayList<>();
+		pieces.add(whiteKing);
+		pieces.add(blackKing);
+		
+		board.initialize(white, black, pieces);
+		assertEquals(false, whiteKing.kingThreat(board));
+		
+	}
+	
+	@Test
+	public void testKingNoThreatAbove() throws Exception {
+		
+		Board board = new Board();
+		boolean isWhite = true;
+		Player white = new Player(isWhite);
+		Player black = new Player(!isWhite);
+		
+		King whiteKing = new King(isWhite, "K_w", 3, 3);
+		King blackKing = new King(!isWhite, "K_b", 1, 3);
+		ArrayList<Piece> pieces = new ArrayList<>();
+		pieces.add(whiteKing);
+		pieces.add(blackKing);
+		
+		board.initialize(white, black, pieces);
+		assertEquals(false, whiteKing.kingThreat(board));
+		
+	}
+	
+	@Test
+	public void testKingNoThreatUpperRight() throws Exception {
+		
+		Board board = new Board();
+		boolean isWhite = true;
+		Player white = new Player(isWhite);
+		Player black = new Player(!isWhite);
+		
+		King whiteKing = new King(isWhite, "K_w", 3, 3);
+		King blackKing = new King(!isWhite, "K_b", 5, 5);
+		ArrayList<Piece> pieces = new ArrayList<>();
+		pieces.add(whiteKing);
+		pieces.add(blackKing);
+		
+		board.initialize(white, black, pieces);
+		assertEquals(false, whiteKing.kingThreat(board));
+		
+	}
+	
+	@Test
+	public void testKingNoThreatRight() throws Exception {
+		
+		Board board = new Board();
+		boolean isWhite = true;
+		Player white = new Player(isWhite);
+		Player black = new Player(!isWhite);
+		
+		King whiteKing = new King(isWhite, "K_w", 3, 3);
+		King blackKing = new King(!isWhite, "K_b", 3, 5);
+		ArrayList<Piece> pieces = new ArrayList<>();
+		pieces.add(whiteKing);
+		pieces.add(blackKing);
+		
+		board.initialize(white, black, pieces);
+		assertEquals(false, whiteKing.kingThreat(board));
+		
+	}
+	
+	@Test
+	public void testKingNoThreatLowerRight() throws Exception {
+		
+		Board board = new Board();
+		boolean isWhite = true;
+		Player white = new Player(isWhite);
+		Player black = new Player(!isWhite);
+		
+		King whiteKing = new King(isWhite, "K_w", 3, 3);
+		King blackKing = new King(!isWhite, "K_b", 5, 5);
+		ArrayList<Piece> pieces = new ArrayList<>();
+		pieces.add(whiteKing);
+		pieces.add(blackKing);
+		
+		board.initialize(white, black, pieces);
+		assertEquals(false, whiteKing.kingThreat(board));
+		
+	}
+	
+	@Test
+	public void testNoKingThreatBelow() throws Exception {
+		
+		Board board = new Board();
+		boolean isWhite = true;
+		Player white = new Player(isWhite);
+		Player black = new Player(!isWhite);
+		
+		King whiteKing = new King(isWhite, "K_w", 3, 3);
+		King blackKing = new King(!isWhite, "K_b", 5, 3);
+		ArrayList<Piece> pieces = new ArrayList<>();
+		pieces.add(whiteKing);
+		pieces.add(blackKing);
+		
+		board.initialize(white, black, pieces);
+		assertEquals(false, whiteKing.kingThreat(board));
+		
+	}
+	
+	@Test
+	public void testKingNoThreatLowerLeft() throws Exception {
+		
+		Board board = new Board();
+		boolean isWhite = true;
+		Player white = new Player(isWhite);
+		Player black = new Player(!isWhite);
+		
+		King whiteKing = new King(isWhite, "K_w", 3, 3);
+		King blackKing = new King(!isWhite, "K_b", 5, 1);
+		ArrayList<Piece> pieces = new ArrayList<>();
+		pieces.add(whiteKing);
+		pieces.add(blackKing);
+		
+		board.initialize(white, black, pieces);
+		assertEquals(false, whiteKing.kingThreat(board));
+		
+	}
+	
+	@Test
+	public void testKingNoThreatLeft() throws Exception {
+		
+		Board board = new Board();
+		boolean isWhite = true;
+		Player white = new Player(isWhite);
+		Player black = new Player(!isWhite);
+		
+		King whiteKing = new King(isWhite, "K_w", 3, 3);
+		King blackKing = new King(!isWhite, "K_b", 3, 1);
+		ArrayList<Piece> pieces = new ArrayList<>();
+		pieces.add(whiteKing);
+		pieces.add(blackKing);
+		
+		board.initialize(white, black, pieces);
+		assertEquals(false, whiteKing.kingThreat(board));
+		
+	}
+	
 }
