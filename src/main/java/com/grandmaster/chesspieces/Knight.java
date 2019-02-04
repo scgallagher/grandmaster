@@ -1,6 +1,6 @@
 package com.grandmaster.chesspieces;
 
-import com.grandmaster.game.Utilities;
+import com.grandmaster.game.GameLogic;
 
 public class Knight extends Piece {
 
@@ -13,7 +13,7 @@ public class Knight extends Piece {
 	@Override
 	public boolean isLegalMove(int newRow, int newColumn) {
 		
-		return !Utilities.isOutOfBounds(newRow, newColumn) &&
+		return !GameLogic.isOutOfBounds(newRow, newColumn) &&
 				(
 						((newRow == this.getRow() - 2 || newRow == this.getRow() + 2) &&
 						(newColumn == this.getColumn() - 1 || newColumn == this.getColumn() + 1)) ||

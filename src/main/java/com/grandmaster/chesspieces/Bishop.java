@@ -1,6 +1,6 @@
 package com.grandmaster.chesspieces;
 
-import com.grandmaster.game.Utilities;
+import com.grandmaster.game.GameLogic;
 
 public class Bishop extends Piece {
 
@@ -18,7 +18,7 @@ public class Bishop extends Piece {
 			slope = (newColumn - this.getColumn()) / (newRow - this.getRow());
 		}
 		
-		return !Utilities.isOutOfBounds(newRow, newColumn) && Math.abs(slope) == 1.0;
+		return !GameLogic.isOutOfBounds(newRow, newColumn) && Math.abs(slope) == 1.0;
 		
 	}
 

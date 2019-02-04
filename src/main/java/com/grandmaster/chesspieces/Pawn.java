@@ -1,20 +1,13 @@
 package com.grandmaster.chesspieces;
 
 import com.grandmaster.game.Board;
+import com.grandmaster.game.GameLogic;
 import com.grandmaster.game.IllegalMoveException;
-import com.grandmaster.game.Utilities;
 
 public class Pawn extends Piece {
 
 	private boolean firstMove;
 	private Board board;
-	
-//	public Pawn(boolean isWhite, String id, int row, int column) {
-//		
-//		super(isWhite, id, row, column);
-//		this.firstMove = true;
-//		
-//	}
 	
 	public Pawn(boolean isWhite, String id, int row, int column, Board board) {
 		
@@ -31,7 +24,7 @@ public class Pawn extends Piece {
 		if (!this.isWhite())
 			rowDifference = -1;
 		
-		if (Utilities.isOutOfBounds(newRow, newColumn))
+		if (GameLogic.isOutOfBounds(newRow, newColumn))
 			return false;
 		
 		if (newColumn == this.getColumn()) {
