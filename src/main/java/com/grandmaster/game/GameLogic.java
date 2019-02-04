@@ -1,10 +1,13 @@
 package com.grandmaster.game;
 
+import java.util.ArrayList;
+
 import com.grandmaster.chesspieces.Bishop;
 import com.grandmaster.chesspieces.King;
 import com.grandmaster.chesspieces.Knight;
 import com.grandmaster.chesspieces.Pawn;
 import com.grandmaster.chesspieces.Piece;
+import com.grandmaster.chesspieces.Position;
 import com.grandmaster.chesspieces.Queen;
 import com.grandmaster.chesspieces.Rook;
 
@@ -144,19 +147,20 @@ public class GameLogic {
 		
 	}
 	
-	public static boolean isCheckmate(Board board, Piece defendingKing) {
+	public static boolean isCheckmate(Board board, King defendingKing) {
 		
 		if (!(defendingKing instanceof King))
 			return false;
+		
+		ArrayList<Position> moves = defendingKing.getAvailableMoves();
+		for (Position move : moves) {
+			
+			if (!isCheck(board, new King(defendingKing.isWhite(), "", move.getRow(), move.getColumn())))
+				return false;
+			
+		}
 
-		return isCheck(board, new King(defendingKing.isWhite(), "", defendingKing.getRow() - 1, defendingKing.getRow() - 1)) &&
-				isCheck(board, new King(defendingKing.isWhite(), "", defendingKing.getRow() - 1, defendingKing.getRow())) &&
-				isCheck(board, new King(defendingKing.isWhite(), "", defendingKing.getRow() - 1, defendingKing.getRow() + 1)) &&
-				isCheck(board, new King(defendingKing.isWhite(), "", defendingKing.getRow(), defendingKing.getRow() + 1)) &&
-				isCheck(board, new King(defendingKing.isWhite(), "", defendingKing.getRow() + 1, defendingKing.getRow() + 1)) &&
-				isCheck(board, new King(defendingKing.isWhite(), "", defendingKing.getRow() + 1, defendingKing.getRow())) &&
-				isCheck(board, new King(defendingKing.isWhite(), "", defendingKing.getRow() + 1, defendingKing.getRow() - 1)) &&
-				isCheck(board, new King(defendingKing.isWhite(), "", defendingKing.getRow(), defendingKing.getRow() - 1));
+		return true;
 		
 	}
 	
