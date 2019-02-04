@@ -15,8 +15,10 @@ public class Knight extends Piece {
 		
 		return !Utilities.isOutOfBounds(newRow, newColumn) &&
 				(
-						(newRow == this.getRow() - 2 || newRow == this.getRow() + 2) &&
-						(newColumn == this.getColumn() - 1 || newColumn == this.getColumn() + 1)
+						((newRow == this.getRow() - 2 || newRow == this.getRow() + 2) &&
+						(newColumn == this.getColumn() - 1 || newColumn == this.getColumn() + 1)) ||
+						((newRow == this.getRow() - 1 || newRow == this.getRow() + 1) &&
+								(newColumn == this.getColumn() - 2 || newColumn == this.getColumn() + 2))
 				);
 		
 	}

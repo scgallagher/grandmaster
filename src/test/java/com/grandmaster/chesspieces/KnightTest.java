@@ -9,7 +9,7 @@ import com.grandmaster.game.IllegalMoveException;
 public class KnightTest {
 
 	@Test
-	public void testValidMoveForwardLeft() throws Exception {
+	public void testValidMoveForwardLeftVertical() throws Exception {
 		
 		Knight knight = new Knight(true, "N_w", 3, 3);
 		Position newPosition = new Position(1, 2);
@@ -19,7 +19,17 @@ public class KnightTest {
 	}
 	
 	@Test
-	public void testValidMoveForwardRight() throws Exception {
+	public void testValidMoveForwardLeftHorizontal() throws Exception {
+		
+		Knight knight = new Knight(true, "N_w", 3, 3);
+		Position newPosition = new Position(2, 1);
+		knight.move(newPosition);
+		assertEquals(true, knight.getPosition().equals(newPosition));
+		
+	}
+	
+	@Test
+	public void testValidMoveForwardRightVertical() throws Exception {
 		
 		Knight knight = new Knight(true, "N_w", 3, 3);
 		Position newPosition = new Position(1, 4);
@@ -29,7 +39,17 @@ public class KnightTest {
 	}
 	
 	@Test
-	public void testValidMoveBackwardLeft() throws Exception {
+	public void testValidMoveForwardRightHorizontal() throws Exception {
+		
+		Knight knight = new Knight(true, "N_w", 3, 3);
+		Position newPosition = new Position(2, 5);
+		knight.move(newPosition);
+		assertEquals(true, knight.getPosition().equals(newPosition));
+		
+	}
+	
+	@Test
+	public void testValidMoveBackwardLeftVertical() throws Exception {
 		
 		Knight knight = new Knight(true, "N_w", 3, 3);
 		Position newPosition = new Position(5, 2);
@@ -39,10 +59,30 @@ public class KnightTest {
 	}
 	
 	@Test
-	public void testValidMoveBackwardRight() throws Exception {
+	public void testValidMoveBackwardLeftHorizontal() throws Exception {
+		
+		Knight knight = new Knight(true, "N_w", 3, 3);
+		Position newPosition = new Position(4, 1);
+		knight.move(newPosition);
+		assertEquals(true, knight.getPosition().equals(newPosition));
+		
+	}
+	
+	@Test
+	public void testValidMoveBackwardRightVertical() throws Exception {
 		
 		Knight knight = new Knight(true, "N_w", 3, 3);
 		Position newPosition = new Position(5, 4);
+		knight.move(newPosition);
+		assertEquals(true, knight.getPosition().equals(newPosition));
+		
+	}
+	
+	@Test
+	public void testValidMoveBackwardRightHorizontal() throws Exception {
+		
+		Knight knight = new Knight(true, "N_w", 3, 3);
+		Position newPosition = new Position(4, 5);
 		knight.move(newPosition);
 		assertEquals(true, knight.getPosition().equals(newPosition));
 		
