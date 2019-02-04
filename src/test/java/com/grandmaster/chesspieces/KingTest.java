@@ -244,7 +244,7 @@ public class KingTest {
 		Player white = new Player(isWhite);
 		Player black = new Player(!isWhite);
 		
-		King whiteKing = new King(true, "K_w", 3, 3);
+		King whiteKing = new King(isWhite, "K_w", 3, 3);
 		Pawn blackPawn = new Pawn(!isWhite, "p_b", 2, 2, null);
 		ArrayList<Piece> pieces = new ArrayList<>();
 		pieces.add(whiteKing);
@@ -263,7 +263,7 @@ public class KingTest {
 		Player white = new Player(isWhite);
 		Player black = new Player(!isWhite);
 		
-		King whiteKing = new King(true, "K_w", 3, 3);
+		King whiteKing = new King(isWhite, "K_w", 3, 3);
 		Pawn whitePawn = new Pawn(isWhite, "p_w", 2, 2, null);
 		ArrayList<Piece> pieces = new ArrayList<>();
 		pieces.add(whiteKing);
@@ -282,7 +282,7 @@ public class KingTest {
 		Player white = new Player(isWhite);
 		Player black = new Player(!isWhite);
 		
-		King whiteKing = new King(true, "K_w", 3, 3);
+		King whiteKing = new King(isWhite, "K_w", 3, 3);
 		Pawn blackPawn = new Pawn(!isWhite, "p_b", 2, 2, null);
 		Bishop bishop = new Bishop(!isWhite, "B_b", 7, 3);
 		ArrayList<Piece> pieces = new ArrayList<>();
@@ -302,7 +302,7 @@ public class KingTest {
 		Player white = new Player(isWhite);
 		Player black = new Player(!isWhite);
 		
-		King whiteKing = new King(true, "K_w", 3, 3);
+		King whiteKing = new King(isWhite, "K_w", 3, 3);
 		Pawn blackPawn = new Pawn(!isWhite, "p_b", 2, 2, null);
 		ArrayList<Piece> pieces = new ArrayList<>();
 		pieces.add(whiteKing);
@@ -321,7 +321,7 @@ public class KingTest {
 		Player white = new Player(isWhite);
 		Player black = new Player(!isWhite);
 		
-		King whiteKing = new King(true, "K_w", 3, 3);
+		King whiteKing = new King(isWhite, "K_w", 3, 3);
 		Pawn blackPawn = new Pawn(!isWhite, "p_b", 2, 4, null);
 		ArrayList<Piece> pieces = new ArrayList<>();
 		pieces.add(whiteKing);
@@ -340,7 +340,7 @@ public class KingTest {
 		Player white = new Player(isWhite);
 		Player black = new Player(!isWhite);
 		
-		King whiteKing = new King(true, "K_w", 3, 3);
+		King whiteKing = new King(isWhite, "K_w", 3, 3);
 		Pawn blackPawn = new Pawn(!isWhite, "p_b", 2, 3, null);
 		ArrayList<Piece> pieces = new ArrayList<>();
 		pieces.add(whiteKing);
@@ -359,7 +359,7 @@ public class KingTest {
 		Player white = new Player(isWhite);
 		Player black = new Player(!isWhite);
 		
-		King whiteKing = new King(true, "K_w", 3, 3);
+		King whiteKing = new King(isWhite, "K_w", 3, 3);
 		Pawn whitePawn = new Pawn(isWhite, "p_w", 2, 2, null);
 		ArrayList<Piece> pieces = new ArrayList<>();
 		pieces.add(whiteKing);
@@ -378,8 +378,8 @@ public class KingTest {
 		Player white = new Player(isWhite);
 		Player black = new Player(!isWhite);
 		
-		King whiteKing = new King(true, "K_w", 3, 3);
-		Rook blackRook = new Rook(!isWhite, "R_w", 1, 3);
+		King whiteKing = new King(isWhite, "K_w", 3, 3);
+		Rook blackRook = new Rook(!isWhite, "R_b", 1, 3);
 		ArrayList<Piece> pieces = new ArrayList<>();
 		pieces.add(whiteKing);
 		pieces.add(blackRook);
@@ -397,8 +397,8 @@ public class KingTest {
 		Player white = new Player(isWhite);
 		Player black = new Player(!isWhite);
 		
-		King whiteKing = new King(true, "K_w", 3, 3);
-		Rook blackRook = new Rook(!isWhite, "R_w", 5, 3);
+		King whiteKing = new King(isWhite, "K_w", 3, 3);
+		Rook blackRook = new Rook(!isWhite, "R_b", 5, 3);
 		ArrayList<Piece> pieces = new ArrayList<>();
 		pieces.add(whiteKing);
 		pieces.add(blackRook);
@@ -416,8 +416,8 @@ public class KingTest {
 		Player white = new Player(isWhite);
 		Player black = new Player(!isWhite);
 		
-		King whiteKing = new King(true, "K_w", 3, 3);
-		Rook blackRook = new Rook(!isWhite, "R_w", 3, 5);
+		King whiteKing = new King(isWhite, "K_w", 3, 3);
+		Rook blackRook = new Rook(!isWhite, "R_b", 3, 5);
 		ArrayList<Piece> pieces = new ArrayList<>();
 		pieces.add(whiteKing);
 		pieces.add(blackRook);
@@ -435,8 +435,8 @@ public class KingTest {
 		Player white = new Player(isWhite);
 		Player black = new Player(!isWhite);
 		
-		King whiteKing = new King(true, "K_w", 3, 3);
-		Rook blackRook = new Rook(!isWhite, "R_w", 3, 1);
+		King whiteKing = new King(isWhite, "K_w", 3, 3);
+		Rook blackRook = new Rook(!isWhite, "R_b", 3, 1);
 		ArrayList<Piece> pieces = new ArrayList<>();
 		pieces.add(whiteKing);
 		pieces.add(blackRook);
@@ -454,8 +454,8 @@ public class KingTest {
 		Player white = new Player(isWhite);
 		Player black = new Player(!isWhite);
 		
-		King whiteKing = new King(true, "K_w", 3, 3);
-		Rook blackRook = new Rook(!isWhite, "R_w", 4, 4);
+		King whiteKing = new King(isWhite, "K_w", 3, 3);
+		Rook blackRook = new Rook(!isWhite, "R_b", 4, 4);
 		ArrayList<Piece> pieces = new ArrayList<>();
 		pieces.add(whiteKing);
 		pieces.add(blackRook);
@@ -473,7 +473,7 @@ public class KingTest {
 		Player white = new Player(isWhite);
 		Player black = new Player(!isWhite);
 		
-		King whiteKing = new King(true, "K_w", 3, 3);
+		King whiteKing = new King(isWhite, "K_w", 3, 3);
 		Rook whiteRook = new Rook(isWhite, "R_w", 1, 3);
 		ArrayList<Piece> pieces = new ArrayList<>();
 		pieces.add(whiteKing);
@@ -492,8 +492,8 @@ public class KingTest {
 		Player white = new Player(isWhite);
 		Player black = new Player(!isWhite);
 		
-		King whiteKing = new King(true, "K_w", 3, 3);
-		Bishop blackBishop = new Bishop(!isWhite, "B_w", 1, 1);
+		King whiteKing = new King(isWhite, "K_w", 3, 3);
+		Bishop blackBishop = new Bishop(!isWhite, "B_b", 1, 1);
 		ArrayList<Piece> pieces = new ArrayList<>();
 		pieces.add(whiteKing);
 		pieces.add(blackBishop);
@@ -511,8 +511,8 @@ public class KingTest {
 		Player white = new Player(isWhite);
 		Player black = new Player(!isWhite);
 		
-		King whiteKing = new King(true, "K_w", 3, 3);
-		Bishop blackBishop = new Bishop(!isWhite, "B_w", 1, 5);
+		King whiteKing = new King(isWhite, "K_w", 3, 3);
+		Bishop blackBishop = new Bishop(!isWhite, "B_b", 1, 5);
 		ArrayList<Piece> pieces = new ArrayList<>();
 		pieces.add(whiteKing);
 		pieces.add(blackBishop);
@@ -530,8 +530,8 @@ public class KingTest {
 		Player white = new Player(isWhite);
 		Player black = new Player(!isWhite);
 		
-		King whiteKing = new King(true, "K_w", 3, 3);
-		Bishop blackBishop = new Bishop(!isWhite, "B_w", 5, 1);
+		King whiteKing = new King(isWhite, "K_w", 3, 3);
+		Bishop blackBishop = new Bishop(!isWhite, "B_b", 5, 1);
 		ArrayList<Piece> pieces = new ArrayList<>();
 		pieces.add(whiteKing);
 		pieces.add(blackBishop);
@@ -549,8 +549,8 @@ public class KingTest {
 		Player white = new Player(isWhite);
 		Player black = new Player(!isWhite);
 		
-		King whiteKing = new King(true, "K_w", 5, 5);
-		Bishop blackBishop = new Bishop(!isWhite, "B_w", 1, 1);
+		King whiteKing = new King(isWhite, "K_w", 5, 5);
+		Bishop blackBishop = new Bishop(!isWhite, "B_b", 1, 1);
 		ArrayList<Piece> pieces = new ArrayList<>();
 		pieces.add(whiteKing);
 		pieces.add(blackBishop);
@@ -568,8 +568,8 @@ public class KingTest {
 		Player white = new Player(isWhite);
 		Player black = new Player(!isWhite);
 		
-		King whiteKing = new King(true, "K_w", 3, 3);
-		Bishop blackBishop = new Bishop(!isWhite, "B_w", 1, 3);
+		King whiteKing = new King(isWhite, "K_w", 3, 3);
+		Bishop blackBishop = new Bishop(!isWhite, "B_b", 1, 3);
 		ArrayList<Piece> pieces = new ArrayList<>();
 		pieces.add(whiteKing);
 		pieces.add(blackBishop);
@@ -587,8 +587,8 @@ public class KingTest {
 		Player white = new Player(isWhite);
 		Player black = new Player(!isWhite);
 		
-		King whiteKing = new King(true, "K_w", 3, 3);
-		Bishop blackBishop = new Bishop(!isWhite, "B_w", 5, 3);
+		King whiteKing = new King(isWhite, "K_w", 3, 3);
+		Bishop blackBishop = new Bishop(!isWhite, "B_b", 5, 3);
 		ArrayList<Piece> pieces = new ArrayList<>();
 		pieces.add(whiteKing);
 		pieces.add(blackBishop);
@@ -606,8 +606,8 @@ public class KingTest {
 		Player white = new Player(isWhite);
 		Player black = new Player(!isWhite);
 		
-		King whiteKing = new King(true, "K_w", 3, 3);
-		Bishop blackBishop = new Bishop(!isWhite, "B_w", 3, 1);
+		King whiteKing = new King(isWhite, "K_w", 3, 3);
+		Bishop blackBishop = new Bishop(!isWhite, "B_b", 3, 1);
 		ArrayList<Piece> pieces = new ArrayList<>();
 		pieces.add(whiteKing);
 		pieces.add(blackBishop);
@@ -625,11 +625,30 @@ public class KingTest {
 		Player white = new Player(isWhite);
 		Player black = new Player(!isWhite);
 		
-		King whiteKing = new King(true, "K_w", 3, 3);
-		Bishop blackBishop = new Bishop(!isWhite, "B_w", 3, 5);
+		King whiteKing = new King(isWhite, "K_w", 3, 3);
+		Bishop blackBishop = new Bishop(!isWhite, "B_b", 3, 5);
 		ArrayList<Piece> pieces = new ArrayList<>();
 		pieces.add(whiteKing);
 		pieces.add(blackBishop);
+		
+		board.initialize(white, black, pieces);
+		assertEquals(false, whiteKing.bishopThreat(board));
+		
+	}
+	
+	@Test
+	public void testBishopNoThreatAlly() throws Exception {
+		
+		Board board = new Board();
+		boolean isWhite = true;
+		Player white = new Player(isWhite);
+		Player black = new Player(!isWhite);
+		
+		King whiteKing = new King(isWhite, "K_w", 3, 3);
+		Bishop whiteBishop = new Bishop(isWhite, "B_w", 1, 1);
+		ArrayList<Piece> pieces = new ArrayList<>();
+		pieces.add(whiteKing);
+		pieces.add(whiteBishop);
 		
 		board.initialize(white, black, pieces);
 		assertEquals(false, whiteKing.bishopThreat(board));
@@ -644,8 +663,8 @@ public class KingTest {
 		Player white = new Player(isWhite);
 		Player black = new Player(!isWhite);
 		
-		King whiteKing = new King(true, "K_w", 3, 3);
-		Knight blackKnight = new Knight(!isWhite, "N_w", 1, 2);
+		King whiteKing = new King(isWhite, "K_w", 3, 3);
+		Knight blackKnight = new Knight(!isWhite, "N_b", 1, 2);
 		ArrayList<Piece> pieces = new ArrayList<>();
 		
 		pieces.add(whiteKing);
@@ -664,8 +683,8 @@ public class KingTest {
 		Player white = new Player(isWhite);
 		Player black = new Player(!isWhite);
 		
-		King whiteKing = new King(true, "K_w", 3, 3);
-		Knight blackKnight = new Knight(!isWhite, "N_w", 2, 1);
+		King whiteKing = new King(isWhite, "K_w", 3, 3);
+		Knight blackKnight = new Knight(!isWhite, "N_b", 2, 1);
 		ArrayList<Piece> pieces = new ArrayList<>();
 		
 		pieces.add(whiteKing);
@@ -684,8 +703,8 @@ public class KingTest {
 		Player white = new Player(isWhite);
 		Player black = new Player(!isWhite);
 		
-		King whiteKing = new King(true, "K_w", 3, 3);
-		Knight blackKnight = new Knight(!isWhite, "N_w", 1, 4);
+		King whiteKing = new King(isWhite, "K_w", 3, 3);
+		Knight blackKnight = new Knight(!isWhite, "N_b", 1, 4);
 		ArrayList<Piece> pieces = new ArrayList<>();
 		
 		pieces.add(whiteKing);
@@ -704,8 +723,8 @@ public class KingTest {
 		Player white = new Player(isWhite);
 		Player black = new Player(!isWhite);
 		
-		King whiteKing = new King(true, "K_w", 3, 3);
-		Knight blackKnight = new Knight(!isWhite, "N_w", 2, 5);
+		King whiteKing = new King(isWhite, "K_w", 3, 3);
+		Knight blackKnight = new Knight(!isWhite, "N_b", 2, 5);
 		ArrayList<Piece> pieces = new ArrayList<>();
 		
 		pieces.add(whiteKing);
@@ -724,8 +743,8 @@ public class KingTest {
 		Player white = new Player(isWhite);
 		Player black = new Player(!isWhite);
 		
-		King whiteKing = new King(true, "K_w", 3, 3);
-		Knight blackKnight = new Knight(!isWhite, "N_w", 5, 2);
+		King whiteKing = new King(isWhite, "K_w", 3, 3);
+		Knight blackKnight = new Knight(!isWhite, "N_b", 5, 2);
 		ArrayList<Piece> pieces = new ArrayList<>();
 		
 		pieces.add(whiteKing);
@@ -744,8 +763,8 @@ public class KingTest {
 		Player white = new Player(isWhite);
 		Player black = new Player(!isWhite);
 		
-		King whiteKing = new King(true, "K_w", 3, 3);
-		Knight blackKnight = new Knight(!isWhite, "N_w", 4, 1);
+		King whiteKing = new King(isWhite, "K_w", 3, 3);
+		Knight blackKnight = new Knight(!isWhite, "N_b", 4, 1);
 		ArrayList<Piece> pieces = new ArrayList<>();
 		
 		pieces.add(whiteKing);
@@ -764,8 +783,8 @@ public class KingTest {
 		Player white = new Player(isWhite);
 		Player black = new Player(!isWhite);
 		
-		King whiteKing = new King(true, "K_w", 3, 3);
-		Knight blackKnight = new Knight(!isWhite, "N_w", 5, 4);
+		King whiteKing = new King(isWhite, "K_w", 3, 3);
+		Knight blackKnight = new Knight(!isWhite, "N_b", 5, 4);
 		ArrayList<Piece> pieces = new ArrayList<>();
 		
 		pieces.add(whiteKing);
@@ -784,8 +803,8 @@ public class KingTest {
 		Player white = new Player(isWhite);
 		Player black = new Player(!isWhite);
 		
-		King whiteKing = new King(true, "K_w", 3, 3);
-		Knight blackKnight = new Knight(!isWhite, "N_w", 4, 5);
+		King whiteKing = new King(isWhite, "K_w", 3, 3);
+		Knight blackKnight = new Knight(!isWhite, "N_b", 4, 5);
 		ArrayList<Piece> pieces = new ArrayList<>();
 		
 		pieces.add(whiteKing);
@@ -804,8 +823,8 @@ public class KingTest {
 		Player white = new Player(isWhite);
 		Player black = new Player(!isWhite);
 		
-		King whiteKing = new King(true, "K_w", 3, 3);
-		Knight blackKnight = new Knight(!isWhite, "N_w", 2, 3);
+		King whiteKing = new King(isWhite, "K_w", 3, 3);
+		Knight blackKnight = new Knight(!isWhite, "N_b", 2, 3);
 		ArrayList<Piece> pieces = new ArrayList<>();
 		
 		pieces.add(whiteKing);
@@ -824,8 +843,8 @@ public class KingTest {
 		Player white = new Player(isWhite);
 		Player black = new Player(!isWhite);
 		
-		King whiteKing = new King(true, "K_w", 3, 3);
-		Knight blackKnight = new Knight(!isWhite, "N_w", 4, 3);
+		King whiteKing = new King(isWhite, "K_w", 3, 3);
+		Knight blackKnight = new Knight(!isWhite, "N_b", 4, 3);
 		ArrayList<Piece> pieces = new ArrayList<>();
 		
 		pieces.add(whiteKing);
@@ -844,8 +863,8 @@ public class KingTest {
 		Player white = new Player(isWhite);
 		Player black = new Player(!isWhite);
 		
-		King whiteKing = new King(true, "K_w", 3, 3);
-		Knight blackKnight = new Knight(!isWhite, "N_w", 3, 4);
+		King whiteKing = new King(isWhite, "K_w", 3, 3);
+		Knight blackKnight = new Knight(!isWhite, "N_b", 3, 4);
 		ArrayList<Piece> pieces = new ArrayList<>();
 		
 		pieces.add(whiteKing);
@@ -864,8 +883,8 @@ public class KingTest {
 		Player white = new Player(isWhite);
 		Player black = new Player(!isWhite);
 		
-		King whiteKing = new King(true, "K_w", 3, 3);
-		Knight blackKnight = new Knight(!isWhite, "N_w", 3, 2);
+		King whiteKing = new King(isWhite, "K_w", 3, 3);
+		Knight blackKnight = new Knight(!isWhite, "N_b", 3, 2);
 		ArrayList<Piece> pieces = new ArrayList<>();
 		
 		pieces.add(whiteKing);
@@ -873,6 +892,177 @@ public class KingTest {
 		
 		board.initialize(white, black, pieces);
 		assertEquals(false, whiteKing.knightThreat(board));
+		
+	}
+	
+	@Test
+	public void testQueenThreatUpperLeft() throws Exception {
+		
+		Board board = new Board();
+		boolean isWhite = true;
+		Player white = new Player(isWhite);
+		Player black = new Player(!isWhite);
+		
+		King whiteKing = new King(isWhite, "K_w", 3, 3);
+		Queen blackQueen = new Queen(!isWhite, "Q_b", 1, 1);
+		ArrayList<Piece> pieces = new ArrayList<>();
+		pieces.add(whiteKing);
+		pieces.add(blackQueen);
+		
+		board.initialize(white, black, pieces);
+		assertEquals(true, whiteKing.queenThreat(board));
+		
+	}
+	
+	@Test
+	public void testQueenThreatAbove() throws Exception {
+		
+		Board board = new Board();
+		boolean isWhite = true;
+		Player white = new Player(isWhite);
+		Player black = new Player(!isWhite);
+		
+		King whiteKing = new King(isWhite, "K_w", 3, 3);
+		Queen blackQueen = new Queen(!isWhite, "Q_b", 1, 3);
+		ArrayList<Piece> pieces = new ArrayList<>();
+		pieces.add(whiteKing);
+		pieces.add(blackQueen);
+		
+		board.initialize(white, black, pieces);
+		assertEquals(true, whiteKing.queenThreat(board));
+		
+	}
+	
+	@Test
+	public void testQueenThreatUpperRight() throws Exception {
+		
+		Board board = new Board();
+		boolean isWhite = true;
+		Player white = new Player(isWhite);
+		Player black = new Player(!isWhite);
+		
+		King whiteKing = new King(isWhite, "K_w", 3, 3);
+		Queen blackQueen = new Queen(!isWhite, "Q_b", 1, 5);
+		ArrayList<Piece> pieces = new ArrayList<>();
+		pieces.add(whiteKing);
+		pieces.add(blackQueen);
+		
+		board.initialize(white, black, pieces);
+		assertEquals(true, whiteKing.queenThreat(board));
+		
+	}
+	
+	@Test
+	public void testQueenThreatRight() throws Exception {
+		
+		Board board = new Board();
+		boolean isWhite = true;
+		Player white = new Player(isWhite);
+		Player black = new Player(!isWhite);
+		
+		King whiteKing = new King(isWhite, "K_w", 3, 3);
+		Queen blackQueen = new Queen(!isWhite, "Q_b", 3, 5);
+		ArrayList<Piece> pieces = new ArrayList<>();
+		pieces.add(whiteKing);
+		pieces.add(blackQueen);
+		
+		board.initialize(white, black, pieces);
+		assertEquals(true, whiteKing.queenThreat(board));
+		
+	}
+	
+	@Test
+	public void testQueenThreatLowerRight() throws Exception {
+		
+		Board board = new Board();
+		boolean isWhite = true;
+		Player white = new Player(isWhite);
+		Player black = new Player(!isWhite);
+		
+		King whiteKing = new King(isWhite, "K_w", 3, 3);
+		Queen blackQueen = new Queen(!isWhite, "Q_b", 5, 5);
+		ArrayList<Piece> pieces = new ArrayList<>();
+		pieces.add(whiteKing);
+		pieces.add(blackQueen);
+		
+		board.initialize(white, black, pieces);
+		assertEquals(true, whiteKing.queenThreat(board));
+		
+	}
+	
+	@Test
+	public void testQueenThreatBelow() throws Exception {
+		
+		Board board = new Board();
+		boolean isWhite = true;
+		Player white = new Player(isWhite);
+		Player black = new Player(!isWhite);
+		
+		King whiteKing = new King(isWhite, "K_w", 3, 3);
+		Queen blackQueen = new Queen(!isWhite, "Q_b", 5, 3);
+		ArrayList<Piece> pieces = new ArrayList<>();
+		pieces.add(whiteKing);
+		pieces.add(blackQueen);
+		
+		board.initialize(white, black, pieces);
+		assertEquals(true, whiteKing.queenThreat(board));
+		
+	}
+	
+	@Test
+	public void testQueenThreatLowerLeft() throws Exception {
+		
+		Board board = new Board();
+		boolean isWhite = true;
+		Player white = new Player(isWhite);
+		Player black = new Player(!isWhite);
+		
+		King whiteKing = new King(isWhite, "K_w", 3, 3);
+		Queen blackQueen = new Queen(!isWhite, "Q_b", 5, 1);
+		ArrayList<Piece> pieces = new ArrayList<>();
+		pieces.add(whiteKing);
+		pieces.add(blackQueen);
+		
+		board.initialize(white, black, pieces);
+		assertEquals(true, whiteKing.queenThreat(board));
+		
+	}
+	
+	@Test
+	public void testQueenThreatLeft() throws Exception {
+		
+		Board board = new Board();
+		boolean isWhite = true;
+		Player white = new Player(isWhite);
+		Player black = new Player(!isWhite);
+		
+		King whiteKing = new King(isWhite, "K_w", 3, 3);
+		Queen blackQueen = new Queen(!isWhite, "Q_b", 3, 1);
+		ArrayList<Piece> pieces = new ArrayList<>();
+		pieces.add(whiteKing);
+		pieces.add(blackQueen);
+		
+		board.initialize(white, black, pieces);
+		assertEquals(true, whiteKing.queenThreat(board));
+		
+	}
+	
+	@Test
+	public void testQueenNoThreatAlly() throws Exception {
+		
+		Board board = new Board();
+		boolean isWhite = true;
+		Player white = new Player(isWhite);
+		Player black = new Player(!isWhite);
+		
+		King whiteKing = new King(isWhite, "K_w", 3, 3);
+		Queen whiteQueen = new Queen(isWhite, "Q_b", 1, 1);
+		ArrayList<Piece> pieces = new ArrayList<>();
+		pieces.add(whiteKing);
+		pieces.add(whiteQueen);
+		
+		board.initialize(white, black, pieces);
+		assertEquals(false, whiteKing.queenThreat(board));
 		
 	}
 	
