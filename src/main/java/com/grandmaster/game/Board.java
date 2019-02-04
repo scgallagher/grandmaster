@@ -2,8 +2,12 @@ package com.grandmaster.game;
 
 import java.util.ArrayList;
 
+import com.grandmaster.chesspieces.Bishop;
 import com.grandmaster.chesspieces.King;
+import com.grandmaster.chesspieces.Knight;
 import com.grandmaster.chesspieces.Piece;
+import com.grandmaster.chesspieces.Queen;
+import com.grandmaster.chesspieces.Rook;
 
 public class Board {
 
@@ -35,7 +39,23 @@ public class Board {
 		boolean isWhite = true;
 		
 		// Initialize white pieces
-		Piece piece = new King(isWhite, "K_w", 7, 4);
+		Piece piece = new Rook(isWhite, "R_w", 7, 0);
+		grid[7][0] = piece;
+		white.addPiece(piece);
+		
+		piece = new Knight(isWhite, "Q_w", 7, 1);
+		grid[7][1] = piece;
+		white.addPiece(piece);
+		
+		piece = new Bishop(isWhite, "Q_w", 7, 2);
+		grid[7][2] = piece;
+		white.addPiece(piece);
+		
+		piece = new Queen(isWhite, "Q_w", 7, 3);
+		grid[7][3] = piece;
+		white.addPiece(piece);
+		
+		piece = new King(isWhite, "K_w", 7, 4);
 		grid[7][4] = piece;
 		white.addPiece(piece);
 						

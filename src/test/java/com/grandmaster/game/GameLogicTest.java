@@ -265,6 +265,258 @@ public class GameLogicTest {
 	}
 	
 	@Test
+	public void testRookNoThreatBlockedByAllyBishopAbove() throws Exception {
+		
+		Board board = new Board();
+		boolean isWhite = true;
+		Player white = new Player(isWhite);
+		Player black = new Player(!isWhite);
+		
+		King whiteKing = new King(isWhite, "K_w", 3, 3);
+		Bishop whiteBishop = new Bishop(isWhite, "B_w", 2, 3);
+		Rook blackRook = new Rook(!isWhite, "R_b", 1, 3);
+		ArrayList<Piece> pieces = new ArrayList<>();
+		pieces.add(whiteKing);
+		pieces.add(whiteBishop);
+		pieces.add(blackRook);
+		
+		board.initialize(white, black, pieces);
+		assertEquals(false, GameLogic.rookThreat(board, whiteKing));
+		
+	}
+	
+	@Test
+	public void testRookNoThreatBlockedByAllyRookAbove() throws Exception {
+		
+		Board board = new Board();
+		boolean isWhite = true;
+		Player white = new Player(isWhite);
+		Player black = new Player(!isWhite);
+		
+		King whiteKing = new King(isWhite, "K_w", 3, 3);
+		Rook whiteRook = new Rook(isWhite, "R_w", 2, 3);
+		Rook blackRook = new Rook(!isWhite, "R_b", 1, 3);
+		ArrayList<Piece> pieces = new ArrayList<>();
+		pieces.add(whiteKing);
+		pieces.add(whiteRook);
+		pieces.add(blackRook);
+		
+		board.initialize(white, black, pieces);
+		assertEquals(false, GameLogic.rookThreat(board, whiteKing));
+		
+	}
+	
+	@Test
+	public void testRookNoThreatBlockedByEnemyNonRookAbove() throws Exception {
+		
+		Board board = new Board();
+		boolean isWhite = true;
+		Player white = new Player(isWhite);
+		Player black = new Player(!isWhite);
+		
+		King whiteKing = new King(isWhite, "K_w", 3, 3);
+		Queen blackQueen = new Queen(!isWhite, "Q_b", 2, 3);
+		Rook blackRook = new Rook(!isWhite, "R_b", 1, 3);
+		ArrayList<Piece> pieces = new ArrayList<>();
+		pieces.add(whiteKing);
+		pieces.add(blackQueen);
+		pieces.add(blackRook);
+		
+		board.initialize(white, black, pieces);
+		assertEquals(false, GameLogic.rookThreat(board, whiteKing));
+		
+	}
+	
+	@Test
+	public void testRookNoThreatBlockedByAllyBishopBelow() throws Exception {
+		
+		Board board = new Board();
+		boolean isWhite = true;
+		Player white = new Player(isWhite);
+		Player black = new Player(!isWhite);
+		
+		King whiteKing = new King(isWhite, "K_w", 3, 3);
+		Bishop whiteBishop = new Bishop(isWhite, "B_w", 4, 3);
+		Rook blackRook = new Rook(!isWhite, "R_b", 5, 3);
+		ArrayList<Piece> pieces = new ArrayList<>();
+		pieces.add(whiteKing);
+		pieces.add(whiteBishop);
+		pieces.add(blackRook);
+		
+		board.initialize(white, black, pieces);
+		assertEquals(false, GameLogic.rookThreat(board, whiteKing));
+		
+	}
+	
+	@Test
+	public void testRookNoThreatBlockedByAllyRookBelow() throws Exception {
+		
+		Board board = new Board();
+		boolean isWhite = true;
+		Player white = new Player(isWhite);
+		Player black = new Player(!isWhite);
+		
+		King whiteKing = new King(isWhite, "K_w", 3, 3);
+		Rook whiteRook = new Rook(isWhite, "R_w", 4, 3);
+		Rook blackRook = new Rook(!isWhite, "R_b", 5, 3);
+		ArrayList<Piece> pieces = new ArrayList<>();
+		pieces.add(whiteKing);
+		pieces.add(whiteRook);
+		pieces.add(blackRook);
+		
+		board.initialize(white, black, pieces);
+		assertEquals(false, GameLogic.rookThreat(board, whiteKing));
+		
+	}
+	
+	@Test
+	public void testRookNoThreatBlockedByEnemyNonRookBelow() throws Exception {
+		
+		Board board = new Board();
+		boolean isWhite = true;
+		Player white = new Player(isWhite);
+		Player black = new Player(!isWhite);
+		
+		King whiteKing = new King(isWhite, "K_w", 3, 3);
+		Queen blackQueen = new Queen(!isWhite, "Q_b", 4, 3);
+		Rook blackRook = new Rook(!isWhite, "R_b", 5, 3);
+		ArrayList<Piece> pieces = new ArrayList<>();
+		pieces.add(whiteKing);
+		pieces.add(blackQueen);
+		pieces.add(blackRook);
+		
+		board.initialize(white, black, pieces);
+		assertEquals(false, GameLogic.rookThreat(board, whiteKing));
+		
+	}
+	
+	@Test
+	public void testRookNoThreatBlockedByAllyBishopLeft() throws Exception {
+		
+		Board board = new Board();
+		boolean isWhite = true;
+		Player white = new Player(isWhite);
+		Player black = new Player(!isWhite);
+		
+		King whiteKing = new King(isWhite, "K_w", 3, 3);
+		Bishop whiteBishop = new Bishop(isWhite, "B_w", 3, 2);
+		Rook blackRook = new Rook(!isWhite, "R_b", 3, 1);
+		ArrayList<Piece> pieces = new ArrayList<>();
+		pieces.add(whiteKing);
+		pieces.add(whiteBishop);
+		pieces.add(blackRook);
+		
+		board.initialize(white, black, pieces);
+		assertEquals(false, GameLogic.rookThreat(board, whiteKing));
+		
+	}
+	
+	@Test
+	public void testRookNoThreatBlockedByAllyRookLeft() throws Exception {
+		
+		Board board = new Board();
+		boolean isWhite = true;
+		Player white = new Player(isWhite);
+		Player black = new Player(!isWhite);
+		
+		King whiteKing = new King(isWhite, "K_w", 3, 3);
+		Rook whiteRook = new Rook(isWhite, "R_w", 3, 2);
+		Rook blackRook = new Rook(!isWhite, "R_b", 3, 1);
+		ArrayList<Piece> pieces = new ArrayList<>();
+		pieces.add(whiteKing);
+		pieces.add(whiteRook);
+		pieces.add(blackRook);
+		
+		board.initialize(white, black, pieces);
+		assertEquals(false, GameLogic.rookThreat(board, whiteKing));
+		
+	}
+	
+	@Test
+	public void testRookNoThreatBlockedByEnemyNonRookLeft() throws Exception {
+		
+		Board board = new Board();
+		boolean isWhite = true;
+		Player white = new Player(isWhite);
+		Player black = new Player(!isWhite);
+		
+		King whiteKing = new King(isWhite, "K_w", 3, 3);
+		Queen blackQueen = new Queen(!isWhite, "Q_b", 3, 2);
+		Rook blackRook = new Rook(!isWhite, "R_b", 3, 1);
+		ArrayList<Piece> pieces = new ArrayList<>();
+		pieces.add(whiteKing);
+		pieces.add(blackQueen);
+		pieces.add(blackRook);
+		
+		board.initialize(white, black, pieces);
+		assertEquals(false, GameLogic.rookThreat(board, whiteKing));
+		
+	}
+	
+	@Test
+	public void testRookNoThreatBlockedByAllyBishopRight() throws Exception {
+		
+		Board board = new Board();
+		boolean isWhite = true;
+		Player white = new Player(isWhite);
+		Player black = new Player(!isWhite);
+		
+		King whiteKing = new King(isWhite, "K_w", 3, 3);
+		Bishop whiteBishop = new Bishop(isWhite, "B_w", 3, 4);
+		Rook blackRook = new Rook(!isWhite, "R_b", 3, 5);
+		ArrayList<Piece> pieces = new ArrayList<>();
+		pieces.add(whiteKing);
+		pieces.add(whiteBishop);
+		pieces.add(blackRook);
+		
+		board.initialize(white, black, pieces);
+		assertEquals(false, GameLogic.rookThreat(board, whiteKing));
+		
+	}
+	
+	@Test
+	public void testRookNoThreatBlockedByAllyRookRight() throws Exception {
+		
+		Board board = new Board();
+		boolean isWhite = true;
+		Player white = new Player(isWhite);
+		Player black = new Player(!isWhite);
+		
+		King whiteKing = new King(isWhite, "K_w", 3, 3);
+		Rook whiteRook = new Rook(isWhite, "R_w", 3, 4);
+		Rook blackRook = new Rook(!isWhite, "R_b", 3, 5);
+		ArrayList<Piece> pieces = new ArrayList<>();
+		pieces.add(whiteKing);
+		pieces.add(whiteRook);
+		pieces.add(blackRook);
+		
+		board.initialize(white, black, pieces);
+		assertEquals(false, GameLogic.rookThreat(board, whiteKing));
+		
+	}
+	
+	@Test
+	public void testRookNoThreatBlockedByEnemyNonRookRight() throws Exception {
+		
+		Board board = new Board();
+		boolean isWhite = true;
+		Player white = new Player(isWhite);
+		Player black = new Player(!isWhite);
+		
+		King whiteKing = new King(isWhite, "K_w", 3, 3);
+		Queen blackQueen = new Queen(!isWhite, "Q_b", 3, 4);
+		Rook blackRook = new Rook(!isWhite, "R_b", 3, 5);
+		ArrayList<Piece> pieces = new ArrayList<>();
+		pieces.add(whiteKing);
+		pieces.add(blackQueen);
+		pieces.add(blackRook);
+		
+		board.initialize(white, black, pieces);
+		assertEquals(false, GameLogic.rookThreat(board, whiteKing));
+		
+	}
+	
+	@Test
 	public void testBishopThreatUpperLeft() throws Exception {
 		
 		Board board = new Board();
@@ -429,6 +681,258 @@ public class GameLogicTest {
 		ArrayList<Piece> pieces = new ArrayList<>();
 		pieces.add(whiteKing);
 		pieces.add(whiteBishop);
+		
+		board.initialize(white, black, pieces);
+		assertEquals(false, GameLogic.bishopThreat(board, whiteKing));
+		
+	}
+	
+	@Test
+	public void testBishopNoThreatBlockedByAllyQueenUpperLeft() throws Exception {
+		
+		Board board = new Board();
+		boolean isWhite = true;
+		Player white = new Player(isWhite);
+		Player black = new Player(!isWhite);
+		
+		King whiteKing = new King(isWhite, "K_w", 3, 3);
+		Queen whiteQueen = new Queen(isWhite, "Q_w", 2, 2);
+		Bishop blackBishop = new Bishop(!isWhite, "B_b", 1, 1);
+		ArrayList<Piece> pieces = new ArrayList<>();
+		pieces.add(whiteKing);
+		pieces.add(whiteQueen);
+		pieces.add(blackBishop);
+		
+		board.initialize(white, black, pieces);
+		assertEquals(false, GameLogic.bishopThreat(board, whiteKing));
+		
+	}
+	
+	@Test
+	public void testBishopNoThreatBlockedByAllyBishopUpperLeft() throws Exception {
+		
+		Board board = new Board();
+		boolean isWhite = true;
+		Player white = new Player(isWhite);
+		Player black = new Player(!isWhite);
+		
+		King whiteKing = new King(isWhite, "K_w", 3, 3);
+		Bishop whiteBishop = new Bishop(isWhite, "B_w", 2, 2);
+		Bishop blackBishop = new Bishop(!isWhite, "B_b", 1, 1);
+		ArrayList<Piece> pieces = new ArrayList<>();
+		pieces.add(whiteKing);
+		pieces.add(whiteBishop);
+		pieces.add(blackBishop);
+		
+		board.initialize(white, black, pieces);
+		assertEquals(false, GameLogic.bishopThreat(board, whiteKing));
+		
+	}
+	
+	@Test
+	public void testBishopNoThreatBlockedByEnemyNonBishopUpperLeft() throws Exception {
+		
+		Board board = new Board();
+		boolean isWhite = true;
+		Player white = new Player(isWhite);
+		Player black = new Player(!isWhite);
+		
+		King whiteKing = new King(isWhite, "K_w", 3, 3);
+		Rook blackRook = new Rook(!isWhite, "B_b", 2, 2);
+		Bishop blackBishop = new Bishop(!isWhite, "B_b", 1, 1);
+		ArrayList<Piece> pieces = new ArrayList<>();
+		pieces.add(whiteKing);
+		pieces.add(blackRook);
+		pieces.add(blackBishop);
+		
+		board.initialize(white, black, pieces);
+		assertEquals(false, GameLogic.bishopThreat(board, whiteKing));
+		
+	}
+	
+	@Test
+	public void testBishopNoThreatBlockedByAllyQueenUpperRight() throws Exception {
+		
+		Board board = new Board();
+		boolean isWhite = true;
+		Player white = new Player(isWhite);
+		Player black = new Player(!isWhite);
+		
+		King whiteKing = new King(isWhite, "K_w", 3, 3);
+		Queen whiteQueen = new Queen(isWhite, "Q_w", 2, 4);
+		Bishop blackBishop = new Bishop(!isWhite, "B_b", 1, 5);
+		ArrayList<Piece> pieces = new ArrayList<>();
+		pieces.add(whiteKing);
+		pieces.add(whiteQueen);
+		pieces.add(blackBishop);
+		
+		board.initialize(white, black, pieces);
+		assertEquals(false, GameLogic.bishopThreat(board, whiteKing));
+		
+	}
+	
+	@Test
+	public void testBishopNoThreatBlockedByAllyBishopUpperRight() throws Exception {
+		
+		Board board = new Board();
+		boolean isWhite = true;
+		Player white = new Player(isWhite);
+		Player black = new Player(!isWhite);
+		
+		King whiteKing = new King(isWhite, "K_w", 3, 3);
+		Bishop whiteBishop = new Bishop(isWhite, "B_w", 2, 4);
+		Bishop blackBishop = new Bishop(!isWhite, "B_b", 1, 5);
+		ArrayList<Piece> pieces = new ArrayList<>();
+		pieces.add(whiteKing);
+		pieces.add(whiteBishop);
+		pieces.add(blackBishop);
+		
+		board.initialize(white, black, pieces);
+		assertEquals(false, GameLogic.bishopThreat(board, whiteKing));
+		
+	}
+	
+	@Test
+	public void testBishopNoThreatBlockedByEnemyNonBishopUpperRight() throws Exception {
+		
+		Board board = new Board();
+		boolean isWhite = true;
+		Player white = new Player(isWhite);
+		Player black = new Player(!isWhite);
+		
+		King whiteKing = new King(isWhite, "K_w", 3, 3);
+		Rook blackRook = new Rook(!isWhite, "B_b", 2, 4);
+		Bishop blackBishop = new Bishop(!isWhite, "B_b", 1, 5);
+		ArrayList<Piece> pieces = new ArrayList<>();
+		pieces.add(whiteKing);
+		pieces.add(blackRook);
+		pieces.add(blackBishop);
+		
+		board.initialize(white, black, pieces);
+		assertEquals(false, GameLogic.bishopThreat(board, whiteKing));
+		
+	}
+	
+	@Test
+	public void testBishopNoThreatBlockedByAllyQueenLowerRight() throws Exception {
+		
+		Board board = new Board();
+		boolean isWhite = true;
+		Player white = new Player(isWhite);
+		Player black = new Player(!isWhite);
+		
+		King whiteKing = new King(isWhite, "K_w", 3, 3);
+		Queen whiteQueen = new Queen(isWhite, "Q_w", 4, 4);
+		Bishop blackBishop = new Bishop(!isWhite, "B_b", 5, 5);
+		ArrayList<Piece> pieces = new ArrayList<>();
+		pieces.add(whiteKing);
+		pieces.add(whiteQueen);
+		pieces.add(blackBishop);
+		
+		board.initialize(white, black, pieces);
+		assertEquals(false, GameLogic.bishopThreat(board, whiteKing));
+		
+	}
+	
+	@Test
+	public void testBishopNoThreatBlockedByAllyBishopLowerRight() throws Exception {
+		
+		Board board = new Board();
+		boolean isWhite = true;
+		Player white = new Player(isWhite);
+		Player black = new Player(!isWhite);
+		
+		King whiteKing = new King(isWhite, "K_w", 3, 3);
+		Bishop whiteBishop = new Bishop(isWhite, "B_w", 4, 4);
+		Bishop blackBishop = new Bishop(!isWhite, "B_b", 5, 5);
+		ArrayList<Piece> pieces = new ArrayList<>();
+		pieces.add(whiteKing);
+		pieces.add(whiteBishop);
+		pieces.add(blackBishop);
+		
+		board.initialize(white, black, pieces);
+		assertEquals(false, GameLogic.bishopThreat(board, whiteKing));
+		
+	}
+	
+	@Test
+	public void testBishopNoThreatBlockedByEnemyNonBishopLowerRight() throws Exception {
+		
+		Board board = new Board();
+		boolean isWhite = true;
+		Player white = new Player(isWhite);
+		Player black = new Player(!isWhite);
+		
+		King whiteKing = new King(isWhite, "K_w", 3, 3);
+		Rook blackRook = new Rook(!isWhite, "B_b", 4, 4);
+		Bishop blackBishop = new Bishop(!isWhite, "B_b", 5, 5);
+		ArrayList<Piece> pieces = new ArrayList<>();
+		pieces.add(whiteKing);
+		pieces.add(blackRook);
+		pieces.add(blackBishop);
+		
+		board.initialize(white, black, pieces);
+		assertEquals(false, GameLogic.bishopThreat(board, whiteKing));
+		
+	}
+	
+	@Test
+	public void testBishopNoThreatBlockedByAllyQueenLowerLeft() throws Exception {
+		
+		Board board = new Board();
+		boolean isWhite = true;
+		Player white = new Player(isWhite);
+		Player black = new Player(!isWhite);
+		
+		King whiteKing = new King(isWhite, "K_w", 3, 3);
+		Queen whiteQueen = new Queen(isWhite, "Q_w", 4, 2);
+		Bishop blackBishop = new Bishop(!isWhite, "B_b", 5, 1);
+		ArrayList<Piece> pieces = new ArrayList<>();
+		pieces.add(whiteKing);
+		pieces.add(whiteQueen);
+		pieces.add(blackBishop);
+		
+		board.initialize(white, black, pieces);
+		assertEquals(false, GameLogic.bishopThreat(board, whiteKing));
+		
+	}
+	
+	@Test
+	public void testBishopNoThreatBlockedByAllyBishopLowerLeft() throws Exception {
+		
+		Board board = new Board();
+		boolean isWhite = true;
+		Player white = new Player(isWhite);
+		Player black = new Player(!isWhite);
+		
+		King whiteKing = new King(isWhite, "K_w", 3, 3);
+		Bishop whiteBishop = new Bishop(isWhite, "B_w", 4, 2);
+		Bishop blackBishop = new Bishop(!isWhite, "B_b", 5, 1);
+		ArrayList<Piece> pieces = new ArrayList<>();
+		pieces.add(whiteKing);
+		pieces.add(whiteBishop);
+		pieces.add(blackBishop);
+		
+		board.initialize(white, black, pieces);
+		assertEquals(false, GameLogic.bishopThreat(board, whiteKing));
+		
+	}
+	
+	@Test
+	public void testBishopNoThreatBlockedByEnemyNonBishopLowerLeft() throws Exception {
+		
+		Board board = new Board();
+		boolean isWhite = true;
+		Player white = new Player(isWhite);
+		Player black = new Player(!isWhite);
+		
+		King whiteKing = new King(isWhite, "K_w", 3, 3);
+		Rook blackRook = new Rook(!isWhite, "B_b", 4, 2);
+		Bishop blackBishop = new Bishop(!isWhite, "B_b", 5, 1);
+		ArrayList<Piece> pieces = new ArrayList<>();
+		pieces.add(whiteKing);
+		pieces.add(blackRook);
+		pieces.add(blackBishop);
 		
 		board.initialize(white, black, pieces);
 		assertEquals(false, GameLogic.bishopThreat(board, whiteKing));
@@ -839,6 +1343,342 @@ public class GameLogicTest {
 		Queen whiteQueen = new Queen(isWhite, "Q_b", 1, 1);
 		ArrayList<Piece> pieces = new ArrayList<>();
 		pieces.add(whiteKing);
+		pieces.add(whiteQueen);
+		
+		board.initialize(white, black, pieces);
+		assertEquals(false, GameLogic.queenThreat(board, whiteKing));
+		
+	}
+	
+	@Test
+	public void testQueenNoThreatBlockedByAllyRookAbove() throws Exception {
+		
+		Board board = new Board();
+		boolean isWhite = true;
+		Player white = new Player(isWhite);
+		Player black = new Player(!isWhite);
+		
+		King whiteKing = new King(isWhite, "K_w", 3, 3);
+		Rook whiteRook = new Rook(isWhite, "R_w", 2, 3);
+		Queen whiteQueen = new Queen(isWhite, "Q_b", 1, 3);
+		ArrayList<Piece> pieces = new ArrayList<>();
+		pieces.add(whiteKing);
+		pieces.add(whiteRook);
+		pieces.add(whiteQueen);
+		
+		board.initialize(white, black, pieces);
+		assertEquals(false, GameLogic.queenThreat(board, whiteKing));
+		
+	}
+	
+	@Test
+	public void testQueenNoThreatBlockedByEnemyAbove() throws Exception {
+		
+		Board board = new Board();
+		boolean isWhite = true;
+		Player white = new Player(isWhite);
+		Player black = new Player(!isWhite);
+		
+		King whiteKing = new King(isWhite, "K_w", 3, 3);
+		Rook blackRook = new Rook(!isWhite, "R_b", 2, 3);
+		Queen whiteQueen = new Queen(isWhite, "Q_b", 1, 3);
+		ArrayList<Piece> pieces = new ArrayList<>();
+		pieces.add(whiteKing);
+		pieces.add(blackRook);
+		pieces.add(whiteQueen);
+		
+		board.initialize(white, black, pieces);
+		assertEquals(false, GameLogic.queenThreat(board, whiteKing));
+		
+	}
+	
+	@Test
+	public void testQueenNoThreatBlockedByAllyRookBelow() throws Exception {
+		
+		Board board = new Board();
+		boolean isWhite = true;
+		Player white = new Player(isWhite);
+		Player black = new Player(!isWhite);
+		
+		King whiteKing = new King(isWhite, "K_w", 3, 3);
+		Rook whiteRook = new Rook(isWhite, "R_w", 4, 3);
+		Queen whiteQueen = new Queen(isWhite, "Q_b", 5, 3);
+		ArrayList<Piece> pieces = new ArrayList<>();
+		pieces.add(whiteKing);
+		pieces.add(whiteRook);
+		pieces.add(whiteQueen);
+		
+		board.initialize(white, black, pieces);
+		assertEquals(false, GameLogic.queenThreat(board, whiteKing));
+		
+	}
+	
+	@Test
+	public void testQueenNoThreatBlockedByEnemyBelow() throws Exception {
+		
+		Board board = new Board();
+		boolean isWhite = true;
+		Player white = new Player(isWhite);
+		Player black = new Player(!isWhite);
+		
+		King whiteKing = new King(isWhite, "K_w", 3, 3);
+		Rook blackRook = new Rook(!isWhite, "R_b", 4, 3);
+		Queen whiteQueen = new Queen(isWhite, "Q_b", 5, 3);
+		ArrayList<Piece> pieces = new ArrayList<>();
+		pieces.add(whiteKing);
+		pieces.add(blackRook);
+		pieces.add(whiteQueen);
+		
+		board.initialize(white, black, pieces);
+		assertEquals(false, GameLogic.queenThreat(board, whiteKing));
+		
+	}
+	
+	@Test
+	public void testQueenNoThreatBlockedByAllyRookLeft() throws Exception {
+		
+		Board board = new Board();
+		boolean isWhite = true;
+		Player white = new Player(isWhite);
+		Player black = new Player(!isWhite);
+		
+		King whiteKing = new King(isWhite, "K_w", 3, 3);
+		Rook whiteRook = new Rook(isWhite, "R_w", 3, 2);
+		Queen whiteQueen = new Queen(isWhite, "Q_b", 3, 1);
+		ArrayList<Piece> pieces = new ArrayList<>();
+		pieces.add(whiteKing);
+		pieces.add(whiteRook);
+		pieces.add(whiteQueen);
+		
+		board.initialize(white, black, pieces);
+		assertEquals(false, GameLogic.queenThreat(board, whiteKing));
+		
+	}
+	
+	@Test
+	public void testQueenNoThreatBlockedByEnemyLeft() throws Exception {
+		
+		Board board = new Board();
+		boolean isWhite = true;
+		Player white = new Player(isWhite);
+		Player black = new Player(!isWhite);
+		
+		King whiteKing = new King(isWhite, "K_w", 3, 3);
+		Rook blackRook = new Rook(!isWhite, "R_b", 3, 2);
+		Queen whiteQueen = new Queen(isWhite, "Q_b", 3, 1);
+		ArrayList<Piece> pieces = new ArrayList<>();
+		pieces.add(whiteKing);
+		pieces.add(blackRook);
+		pieces.add(whiteQueen);
+		
+		board.initialize(white, black, pieces);
+		assertEquals(false, GameLogic.queenThreat(board, whiteKing));
+		
+	}
+	
+	@Test
+	public void testQueenNoThreatBlockedByAllyRookRight() throws Exception {
+		
+		Board board = new Board();
+		boolean isWhite = true;
+		Player white = new Player(isWhite);
+		Player black = new Player(!isWhite);
+		
+		King whiteKing = new King(isWhite, "K_w", 3, 3);
+		Rook whiteRook = new Rook(isWhite, "R_w", 3, 4);
+		Queen whiteQueen = new Queen(isWhite, "Q_b", 3, 5);
+		ArrayList<Piece> pieces = new ArrayList<>();
+		pieces.add(whiteKing);
+		pieces.add(whiteRook);
+		pieces.add(whiteQueen);
+		
+		board.initialize(white, black, pieces);
+		assertEquals(false, GameLogic.queenThreat(board, whiteKing));
+		
+	}
+	
+	@Test
+	public void testQueenNoThreatBlockedByEnemyRight() throws Exception {
+		
+		Board board = new Board();
+		boolean isWhite = true;
+		Player white = new Player(isWhite);
+		Player black = new Player(!isWhite);
+		
+		King whiteKing = new King(isWhite, "K_w", 3, 3);
+		Rook blackRook = new Rook(!isWhite, "R_b", 3, 4);
+		Queen whiteQueen = new Queen(isWhite, "Q_b", 3, 5);
+		ArrayList<Piece> pieces = new ArrayList<>();
+		pieces.add(whiteKing);
+		pieces.add(blackRook);
+		pieces.add(whiteQueen);
+		
+		board.initialize(white, black, pieces);
+		assertEquals(false, GameLogic.queenThreat(board, whiteKing));
+		
+	}
+	
+	@Test
+	public void testQueenNoThreatBlockedByAllyBishopUpperLeft() throws Exception {
+		
+		Board board = new Board();
+		boolean isWhite = true;
+		Player white = new Player(isWhite);
+		Player black = new Player(!isWhite);
+		
+		King whiteKing = new King(isWhite, "K_w", 3, 3);
+		Bishop whiteBishop = new Bishop(isWhite, "B_w", 2, 2);
+		Queen whiteQueen = new Queen(isWhite, "Q_b", 1, 1);
+		ArrayList<Piece> pieces = new ArrayList<>();
+		pieces.add(whiteKing);
+		pieces.add(whiteBishop);
+		pieces.add(whiteQueen);
+		
+		board.initialize(white, black, pieces);
+		assertEquals(false, GameLogic.queenThreat(board, whiteKing));
+		
+	}
+	
+	@Test
+	public void testQueenNoThreatBlockedByEnemyUpperLeft() throws Exception {
+		
+		Board board = new Board();
+		boolean isWhite = true;
+		Player white = new Player(isWhite);
+		Player black = new Player(!isWhite);
+		
+		King whiteKing = new King(isWhite, "K_w", 3, 3);
+		Bishop blackBishop = new Bishop(!isWhite, "B_b", 2, 2);
+		Queen whiteQueen = new Queen(isWhite, "Q_b", 1, 1);
+		ArrayList<Piece> pieces = new ArrayList<>();
+		pieces.add(whiteKing);
+		pieces.add(blackBishop);
+		pieces.add(whiteQueen);
+		
+		board.initialize(white, black, pieces);
+		assertEquals(false, GameLogic.queenThreat(board, whiteKing));
+		
+	}
+	
+	@Test
+	public void testQueenNoThreatBlockedByAllyBishopUpperRight() throws Exception {
+		
+		Board board = new Board();
+		boolean isWhite = true;
+		Player white = new Player(isWhite);
+		Player black = new Player(!isWhite);
+		
+		King whiteKing = new King(isWhite, "K_w", 3, 3);
+		Bishop whiteBishop = new Bishop(isWhite, "B_w", 2, 4);
+		Queen whiteQueen = new Queen(isWhite, "Q_b", 1, 5);
+		ArrayList<Piece> pieces = new ArrayList<>();
+		pieces.add(whiteKing);
+		pieces.add(whiteBishop);
+		pieces.add(whiteQueen);
+		
+		board.initialize(white, black, pieces);
+		assertEquals(false, GameLogic.queenThreat(board, whiteKing));
+		
+	}
+	
+	@Test
+	public void testQueenNoThreatBlockedByEnemyUpperRight() throws Exception {
+		
+		Board board = new Board();
+		boolean isWhite = true;
+		Player white = new Player(isWhite);
+		Player black = new Player(!isWhite);
+		
+		King whiteKing = new King(isWhite, "K_w", 3, 3);
+		Bishop blackBishop = new Bishop(!isWhite, "B_b", 2, 4);
+		Queen whiteQueen = new Queen(isWhite, "Q_b", 1, 5);
+		ArrayList<Piece> pieces = new ArrayList<>();
+		pieces.add(whiteKing);
+		pieces.add(blackBishop);
+		pieces.add(whiteQueen);
+		
+		board.initialize(white, black, pieces);
+		assertEquals(false, GameLogic.queenThreat(board, whiteKing));
+		
+	}
+	
+	@Test
+	public void testQueenNoThreatBlockedByAllyBishopLowerLeft() throws Exception {
+		
+		Board board = new Board();
+		boolean isWhite = true;
+		Player white = new Player(isWhite);
+		Player black = new Player(!isWhite);
+		
+		King whiteKing = new King(isWhite, "K_w", 3, 3);
+		Bishop whiteBishop = new Bishop(isWhite, "B_w", 4, 2);
+		Queen whiteQueen = new Queen(isWhite, "Q_b", 5, 1);
+		ArrayList<Piece> pieces = new ArrayList<>();
+		pieces.add(whiteKing);
+		pieces.add(whiteBishop);
+		pieces.add(whiteQueen);
+		
+		board.initialize(white, black, pieces);
+		assertEquals(false, GameLogic.queenThreat(board, whiteKing));
+		
+	}
+	
+	@Test
+	public void testQueenNoThreatBlockedByEnemyLowerLeft() throws Exception {
+		
+		Board board = new Board();
+		boolean isWhite = true;
+		Player white = new Player(isWhite);
+		Player black = new Player(!isWhite);
+		
+		King whiteKing = new King(isWhite, "K_w", 3, 3);
+		Bishop blackBishop = new Bishop(!isWhite, "B_b", 4, 2);
+		Queen whiteQueen = new Queen(isWhite, "Q_b", 5, 1);
+		ArrayList<Piece> pieces = new ArrayList<>();
+		pieces.add(whiteKing);
+		pieces.add(blackBishop);
+		pieces.add(whiteQueen);
+		
+		board.initialize(white, black, pieces);
+		assertEquals(false, GameLogic.queenThreat(board, whiteKing));
+		
+	}
+	
+	@Test
+	public void testQueenNoThreatBlockedByAllyBishopLowerRight() throws Exception {
+		
+		Board board = new Board();
+		boolean isWhite = true;
+		Player white = new Player(isWhite);
+		Player black = new Player(!isWhite);
+		
+		King whiteKing = new King(isWhite, "K_w", 3, 3);
+		Bishop whiteBishop = new Bishop(isWhite, "B_w", 4, 4);
+		Queen whiteQueen = new Queen(isWhite, "Q_b", 5, 5);
+		ArrayList<Piece> pieces = new ArrayList<>();
+		pieces.add(whiteKing);
+		pieces.add(whiteBishop);
+		pieces.add(whiteQueen);
+		
+		board.initialize(white, black, pieces);
+		assertEquals(false, GameLogic.queenThreat(board, whiteKing));
+		
+	}
+	
+	@Test
+	public void testQueenNoThreatBlockedByEnemyLowerRight() throws Exception {
+		
+		Board board = new Board();
+		boolean isWhite = true;
+		Player white = new Player(isWhite);
+		Player black = new Player(!isWhite);
+		
+		King whiteKing = new King(isWhite, "K_w", 3, 3);
+		Bishop blackBishop = new Bishop(!isWhite, "B_b", 4, 4);
+		Queen whiteQueen = new Queen(isWhite, "Q_b", 5, 5);
+		ArrayList<Piece> pieces = new ArrayList<>();
+		pieces.add(whiteKing);
+		pieces.add(blackBishop);
 		pieces.add(whiteQueen);
 		
 		board.initialize(white, black, pieces);

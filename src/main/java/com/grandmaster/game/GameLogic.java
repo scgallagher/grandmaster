@@ -26,7 +26,7 @@ public class GameLogic {
 	
 	public static boolean isThreat(int row, int column, Board board, Piece defender, Piece comparator) {
 		
-		if (row < 0 || row > 7 || column < 0 || column > 7) {
+		if (isOutOfBounds(row, column)) {
 			return false;
 		}
 		
@@ -34,6 +34,17 @@ public class GameLogic {
 		if (piece != null && piece.getClass().isInstance(comparator) && !defender.isAlly(piece)) {
 			return true;
 		}
+		
+		return false;
+		
+	}
+	
+	public static boolean isPathBlocked(int row, int column, Board board, Piece defender, Piece comparator) {
+		
+		Piece piece = board.getPieceAt(row, column);
+		if (piece != null && 
+				(!piece.getClass().isInstance(comparator) || (piece.getClass().isInstance(comparator) && piece.isAlly(defender))))
+			return true;
 		
 		return false;
 		
@@ -53,14 +64,53 @@ public class GameLogic {
 	
 	public static boolean rookThreat(Board board, Piece defender) {
 		
-		for (int i = 0; i < board.getNumRows(); i++) {
+		return horizontalThreat(board, defender, new Rook(true, "", 0, 0));
+		
+	}
+	
+	public static boolean horizontalThreat(Board board, Piece defender, Piece comparator) {
+
+		int row = defender.getRow();
+		int column = defender.getColumn();
+		
+		while (--row >= 0) {
 			
-			Rook comparator = new Rook(true, "", 0, 0);
-			
-			if (GameLogic.isThreat(defender.getRow(), i, board, defender, comparator) ||
-					GameLogic.isThreat(i, defender.getColumn(), board, defender, comparator)) {
+			if (isPathBlocked(row, column, board, defender, comparator))
+				break;
+			else if (GameLogic.isThreat(row, column, board, defender, comparator))
 				return true;
-			}
+			
+		}
+		
+		row = defender.getRow();
+		while (++row <= 7) {
+			
+			if (isPathBlocked(row, column, board, defender, comparator))
+				break;
+			else if (GameLogic.isThreat(row, column, board, defender, comparator))
+				return true;
+			
+		}
+		
+		row = defender.getRow();
+		column = defender.getColumn();
+		while (--column >= 0) {
+
+			if (isPathBlocked(row, column, board, defender, comparator))
+				break;
+			else if (GameLogic.isThreat(row, column, board, defender, comparator))
+				return true;
+			
+		}
+		
+		row = defender.getRow();
+		column = defender.getColumn();
+		while (++column <= 7) {
+
+			if (isPathBlocked(row, column, board, defender, comparator))
+				break;
+			else if (GameLogic.isThreat(row, column, board, defender, comparator))
+				return true;
 			
 		}
 		
@@ -70,16 +120,53 @@ public class GameLogic {
 	
 	public static boolean bishopThreat(Board board, Piece defender) {
 		
-		Bishop bishop = new Bishop(true, "", 0, 0);
+		return diagonalThreat(board, defender, new Bishop(true, "", 0, 0));
 		
-		for (int i = 1; i < board.getNumRows(); i++) {
+	}
+	
+	public static boolean diagonalThreat(Board board, Piece defender, Piece comparator) {
+		
+		int row = defender.getRow();
+		int column = defender.getColumn();
+		while (--row >= 0 && --column >= 0) {
 			
-			if (GameLogic.isThreat(defender.getRow() - i, defender.getColumn() - i, board, defender, bishop) ||
-					GameLogic.isThreat(defender.getRow() - i, defender.getColumn() + i, board, defender, bishop) ||
-					GameLogic.isThreat(defender.getRow() + i, defender.getColumn() + i, board, defender, bishop) ||
-					GameLogic.isThreat(defender.getRow() + i, defender.getColumn() - i, board, defender, bishop)) {
+			if (isPathBlocked(row, column, board, defender, comparator))
+				break;
+			else if (GameLogic.isThreat(row, column, board, defender, comparator))
 				return true;
-			}
+			
+		}
+		
+		row = defender.getRow();
+		column = defender.getColumn();
+		while (--row >= 0 && ++column <= 7) {
+			
+			if (isPathBlocked(row, column, board, defender, comparator))
+				break;
+			else if (GameLogic.isThreat(row, column, board, defender, comparator))
+				return true;
+			
+		}
+		
+		row = defender.getRow();
+		column = defender.getColumn();
+		while (++row <= 7 && --column >= 0) {
+			
+			if (isPathBlocked(row, column, board, defender, comparator))
+				break;
+			else if (GameLogic.isThreat(row, column, board, defender, comparator))
+				return true;
+			
+		}
+		
+		row = defender.getRow();
+		column = defender.getColumn();
+		while (++row <= 7 && ++column <= 7) {
+			
+			if (isPathBlocked(row, column, board, defender, comparator))
+				break;
+			else if (GameLogic.isThreat(row, column, board, defender, comparator))
+				return true;
 			
 		}
 		
@@ -102,7 +189,7 @@ public class GameLogic {
 		
 	}
 	
-	public static boolean queenThreat(Board board, Piece defender) {
+	public static boolean queenThreatOld(Board board, Piece defender) {
 		
 		Queen queen = new Queen(true, "", 0, 0);
 		
@@ -122,6 +209,13 @@ public class GameLogic {
 		}
 		
 		return false;
+		
+	}
+	
+	public static boolean queenThreat(Board board, Piece defender) {
+		
+		Queen comparator = new Queen(true, "", 0, 0);
+		return diagonalThreat(board, defender, comparator) || horizontalThreat(board, defender, comparator);
 		
 	}
 	
