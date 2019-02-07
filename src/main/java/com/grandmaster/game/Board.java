@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import com.grandmaster.chesspieces.Bishop;
 import com.grandmaster.chesspieces.King;
 import com.grandmaster.chesspieces.Knight;
+import com.grandmaster.chesspieces.Pawn;
 import com.grandmaster.chesspieces.Piece;
 import com.grandmaster.chesspieces.Queen;
 import com.grandmaster.chesspieces.Rook;
@@ -34,20 +35,47 @@ public class Board {
 		
 	}
 	
+	public void addPawn(Player player, boolean isWhite, int row, int column) {
+		
+		String id = "p_";
+		if (isWhite)
+			id += "w";
+		else
+			id += "b";
+		
+		Pawn pawn = new Pawn(isWhite, id, row, column, this);
+		grid[row][column] = pawn;
+		player.addPiece(pawn);
+		
+	}
+	
+	public void initializePawns(Player white, Player black) {
+		
+		for (int i = 0; i < 8; i++) {
+			
+			addPawn(white, true, 6, i);
+			addPawn(black, false, 1, i);
+			
+		}
+		
+	}
+	
 	public void initialize(Player white, Player black) {
 		
 		boolean isWhite = true;
+		
+		initializePawns(white, black);
 		
 		// Initialize white pieces
 		Piece piece = new Rook(isWhite, "R_w", 7, 0);
 		grid[7][0] = piece;
 		white.addPiece(piece);
 		
-		piece = new Knight(isWhite, "Q_w", 7, 1);
+		piece = new Knight(isWhite, "N_w", 7, 1);
 		grid[7][1] = piece;
 		white.addPiece(piece);
 		
-		piece = new Bishop(isWhite, "Q_w", 7, 2);
+		piece = new Bishop(isWhite, "B_w", 7, 2);
 		grid[7][2] = piece;
 		white.addPiece(piece);
 		
@@ -58,11 +86,51 @@ public class Board {
 		piece = new King(isWhite, "K_w", 7, 4);
 		grid[7][4] = piece;
 		white.addPiece(piece);
+		
+		piece = new Bishop(isWhite, "B_w", 7, 5);
+		grid[7][5] = piece;
+		white.addPiece(piece);
+		
+		piece = new Knight(isWhite, "N_w", 7, 6);
+		grid[7][6] = piece;
+		white.addPiece(piece);
+		
+		piece = new Rook(isWhite, "R_w", 7, 7);
+		grid[7][7] = piece;
+		white.addPiece(piece);
 						
 		// Initialize black pieces
+		piece = new Rook(!isWhite, "R_b", 0, 0);
+		grid[0][0] = piece;
+		white.addPiece(piece);
+		
+		piece = new Knight(!isWhite, "N_b", 0, 1);
+		grid[0][1] = piece;
+		white.addPiece(piece);
+		
+		piece = new Bishop(!isWhite, "B_b", 0, 2);
+		grid[0][2] = piece;
+		white.addPiece(piece);
+		
+		piece = new Queen(!isWhite, "Q_b", 0, 3);
+		grid[0][3] = piece;
+		white.addPiece(piece);
+		
 		piece = new King(!isWhite, "K_b", 0, 4);
 		grid[0][4] = piece;
 		black.addPiece(piece);
+		
+		piece = new Bishop(!isWhite, "B_b", 0, 5);
+		grid[0][5] = piece;
+		white.addPiece(piece);
+		
+		piece = new Knight(!isWhite, "N_b", 0, 6);
+		grid[0][6] = piece;
+		white.addPiece(piece);
+		
+		piece = new Rook(!isWhite, "R_b", 0, 7);
+		grid[0][7] = piece;
+		white.addPiece(piece);
 		
 	}
 	
