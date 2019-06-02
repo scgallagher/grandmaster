@@ -1,5 +1,7 @@
 package com.grandmaster.game;
 
+import com.grandmaster.chesspieces.Position;
+
 public class Grandmaster {
 
 	public static void main(String[] args) {

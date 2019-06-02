@@ -4,11 +4,17 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
+import com.grandmaster.cli.entity.Move;
 import com.grandmaster.game.Board;
 import com.grandmaster.game.Player;
 
 public class Cli {
 
+	private static Logger log = LogManager.getLogger(Cli.class);
+	
 	public static void eventLoop() throws IOException {
 		
 		Board board = new Board();
@@ -24,6 +30,13 @@ public class Cli {
 		
 		while (!command.equals("quit")) {
 			
+			try {
+				Move move = MoveParserCoordinateNotation.parseMove(command);
+				System.out.println(move);
+			}
+			catch (MoveParserException e) {
+				log.error(e.getMessage());
+			}
 			System.out.println(board);
 			command = reader.readLine();
 			
@@ -33,17 +46,10 @@ public class Cli {
 	
 	public static void main(String[] args) {
 		
-//		try {
-//			eventLoop();
-//		}
-//		catch (IOException e) {
-//			e.printStackTrace();
-//		}
-		
 		try {
-			MoveFactory.parseMove("Ng7");
-		} catch (MoveParserException e) {
-			// TODO Auto-generated catch block
+			eventLoop();
+		}
+		catch (IOException e) {
 			e.printStackTrace();
 		}
 		

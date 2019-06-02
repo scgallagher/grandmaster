@@ -24,4 +24,36 @@ public class PositionTest {
 		
 	}
 	
+	@Test
+	public void testGetRankTopEdge() throws Exception {
+		
+		Position position = new Position (0, 0);
+		assertEquals('8', position.getRank());
+		
+	}
+	
+	@Test
+	public void testGetRankBottomEdge() throws Exception {
+		
+		Position position = new Position (7, 0);
+		assertEquals('1', position.getRank());
+		
+	}
+	
+	@Test
+	public void testGetFileLeftEdge() throws Exception {
+		
+		Position position = new Position (0, 0);
+		assertEquals('a', position.getFile());
+		
+	}
+	
+	@Test
+	public void testGetFileRightEdge() throws Exception {
+		
+		Position position = new Position (0, 7);
+		assertEquals('h', position.getFile());
+		
+	}
+	
 }

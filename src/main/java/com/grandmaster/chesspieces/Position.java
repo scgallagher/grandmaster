@@ -1,43 +1,22 @@
 package com.grandmaster.chesspieces;
 
+import lombok.Data;
+
+@Data
 public class Position {
 
 	private final int row;
 	private final int column;
 	
-	public Position(int row, int column) {
+	public char getRank() {
 		
-		this.row = row;
-		this.column = column;
-		
-	}
-	
-	public int getRow() {
-		
-		return this.row;
+		return (char) ('8' - this.row);
 		
 	}
 	
-	public int getColumn() {
+	public char getFile() {
 		
-		return this.column;
-		
-	}
-	
-	@Override
-	public boolean equals(Object obj) {
-		
-		if (obj == this) {
-			return true;
-		}
-		
-		if (!(obj instanceof Position)) {
-			return false;
-		}
-		
-		Position pos = (Position) obj;
-		
-		return pos.getRow() == this.getRow() && pos.getColumn() == this.getColumn();
+		return (char) ('a' + this.getColumn());
 		
 	}
 	

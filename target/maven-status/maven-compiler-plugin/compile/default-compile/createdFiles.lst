@@ -1,0 +1,16 @@
+com\grandmaster\chesspieces\Knight.class
+com\grandmaster\cli\MoveParserCoordinateNotation.class
+com\grandmaster\cli\MoveParserException.class
+com\grandmaster\game\Board.class
+com\grandmaster\game\UnauthorizedMoveException.class
+com\grandmaster\chesspieces\Position.class
+com\grandmaster\cli\entity\Move.class
+com\grandmaster\chesspieces\Piece.class
+com\grandmaster\game\Player.class
+com\grandmaster\cli\Utilities.class
+com\grandmaster\chesspieces\Queen.class
+com\grandmaster\game\IllegalMoveException.class
+com\grandmaster\game\Utilities.class
+com\grandmaster\cli\MoveParserAlgebreicNotation.class
+com\grandmaster\chesspieces\Bishop.class
+com\grandmaster\chesspieces\King.class

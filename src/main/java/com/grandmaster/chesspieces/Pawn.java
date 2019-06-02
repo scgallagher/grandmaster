@@ -17,6 +17,20 @@ public class Pawn extends Piece {
 		
 	}
 	
+	public Pawn(boolean isWhite, String id, Position position, Board board) {
+		
+		super(isWhite, id, position.getRow(), position.getColumn());
+		this.firstMove = true;
+		this.board = board;
+		
+	}
+	
+	public boolean isFirstMove() {
+		
+		return this.firstMove;
+		
+	}
+	
 	@Override
 	public boolean isLegalMove(int newRow, int newColumn) {
 		

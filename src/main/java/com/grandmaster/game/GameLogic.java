@@ -24,6 +24,12 @@ public class GameLogic {
 		
 	}
 	
+	public static boolean isOutOfBounds(Position position) {
+		
+		return isOutOfBounds(position.getRow(), position.getColumn());
+		
+	}
+	
 	public static boolean isThreat(int row, int column, Board board, Piece defender, Piece comparator) {
 		
 		if (isOutOfBounds(row, column)) {
@@ -255,6 +261,49 @@ public class GameLogic {
 		}
 
 		return true;
+		
+	}
+	
+	public ArrayList<Position> getAvailableMoves(Piece piece, Board board) {
+		
+		if (piece instanceof Pawn) {
+			return getAvailableMovesPawn(piece, board);
+		}
+		else {
+			return null;
+		}
+		
+	}
+	
+	public ArrayList<Position> getAvailableMovesPawn(Piece piece, Board board) {
+		
+		Pawn pawn = (Pawn) piece;
+		ArrayList<Position> moves = new ArrayList<>();
+		
+		int direction = 1;
+		if (!pawn.isWhite()) {
+			direction = -1;
+		}
+		
+		moves.add(new Position(pawn.getRow() - 1 * direction, pawn.getColumn()));
+		if (pawn.isFirstMove()) {
+			moves.add(new Position(pawn.getRow() - 2 * direction, pawn.getColumn()));
+		}
+		
+		// Attack moves
+		Piece enemy = board.getPieceAt(pawn.getRow() - 1 * direction, pawn.getColumn() - 1);
+		if (enemy != null && !enemy.isAlly(piece)) {
+			moves.add(new Position(pawn.getRow() - 1 * direction, pawn.getColumn() - 1));
+		}
+		
+		enemy = board.getPieceAt(pawn.getRow() - 1 * direction, pawn.getColumn() + 1);
+		if (enemy != null && !enemy.isAlly(piece)) {
+			moves.add(new Position(pawn.getRow() - 1 * direction, pawn.getColumn() + 1));
+		}
+		
+		moves.removeIf(move -> isOutOfBounds(move));
+		
+		return moves;
 		
 	}
 	

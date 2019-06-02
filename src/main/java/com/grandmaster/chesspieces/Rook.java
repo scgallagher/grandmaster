@@ -10,6 +10,12 @@ public class Rook extends Piece {
 		
 	}
 	
+	public Rook(boolean isWhite, String id, Position position) {
+		
+		super(isWhite, id, position.getRow(), position.getColumn());
+
+	}
+	
 	@Override
 	public boolean isLegalMove(int newRow, int newColumn) {
 

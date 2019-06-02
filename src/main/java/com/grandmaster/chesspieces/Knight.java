@@ -9,6 +9,12 @@ public class Knight extends Piece {
 		super(isWhite, id, row, column);
 
 	}
+	
+	public Knight(boolean isWhite, String id, Position position) {
+		
+		super(isWhite, id, position.getRow(), position.getColumn());
+
+	}
 
 	@Override
 	public boolean isLegalMove(int newRow, int newColumn) {

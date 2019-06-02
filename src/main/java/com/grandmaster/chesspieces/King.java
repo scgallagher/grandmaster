@@ -12,6 +12,12 @@ public class King extends Piece {
 		
 	}
 	
+	public King(boolean isWhite, String id, Position position) {
+		
+		super(isWhite, id, position.getRow(), position.getColumn());
+
+	}
+	
 	@Override
 	public boolean isLegalMove(int newRow, int newColumn) {
 		
