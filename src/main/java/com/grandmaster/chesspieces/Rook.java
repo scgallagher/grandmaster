@@ -6,13 +6,13 @@ public class Rook extends Piece {
 
 	public Rook(boolean isWhite, String id, int row, int column) {
 		
-		super(isWhite, id, row, column);
+		super("Rook", isWhite, id, row, column);
 		
 	}
 	
 	public Rook(boolean isWhite, String id, Position position) {
 		
-		super(isWhite, id, position.getRow(), position.getColumn());
+		super("Rook", isWhite, id, position.getRow(), position.getColumn());
 
 	}
 	

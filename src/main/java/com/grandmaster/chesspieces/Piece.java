@@ -9,9 +9,11 @@ public abstract class Piece {
 	private int column;
 	private String id;
 	private boolean isWhite;
+	private String name;
 	
-	public Piece(boolean isWhite, String id, int row, int column) {
+	public Piece(String name, boolean isWhite, String id, int row, int column) {
 		
+		this.setName(name);
 		this.setIsWhite(isWhite);
 		this.setId(id);
 		this.setRow(row);
@@ -112,6 +114,14 @@ public abstract class Piece {
 		
 		return this.isWhite() == piece.isWhite();
 		
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
 	}
 	
 }

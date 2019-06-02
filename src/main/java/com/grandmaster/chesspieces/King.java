@@ -8,13 +8,13 @@ public class King extends Piece {
 
 	public King(boolean isWhite, String id, int row, int column) {
 		
-		super(isWhite, id, row, column);
+		super("King", isWhite, id, row, column);
 		
 	}
 	
 	public King(boolean isWhite, String id, Position position) {
 		
-		super(isWhite, id, position.getRow(), position.getColumn());
+		super("King", isWhite, id, position.getRow(), position.getColumn());
 
 	}
 	

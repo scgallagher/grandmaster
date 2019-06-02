@@ -2,16 +2,23 @@ package com.grandmaster.game;
 
 import java.util.ArrayList;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import com.grandmaster.chesspieces.Bishop;
 import com.grandmaster.chesspieces.King;
 import com.grandmaster.chesspieces.Knight;
 import com.grandmaster.chesspieces.Pawn;
 import com.grandmaster.chesspieces.Piece;
+import com.grandmaster.chesspieces.Position;
 import com.grandmaster.chesspieces.Queen;
 import com.grandmaster.chesspieces.Rook;
+import com.grandmaster.cli.Cli;
 
 public class Board {
 
+	private static Logger log = LogManager.getLogger(Board.class);
+	
 	private final int numRows = 8;
 	private final int numColumns = 8;
 	
@@ -170,7 +177,14 @@ public class Board {
 		
 	}
 	
-	public void move(Player player, int row, int column, int newRow, int newColumn) 
+	public void move(Player player, Position startPosition, Position endPosition) throws IllegalMoveException, UnauthorizedMoveException {
+		
+		String endPositionAlgebraicNotation = "" + endPosition.getFile() + endPosition.getRank();
+		this.move(player, startPosition.getRow(), startPosition.getColumn(), endPosition.getRow(), endPosition.getColumn(), endPositionAlgebraicNotation);
+		
+	}
+	
+	public void move(Player player, int row, int column, int newRow, int newColumn, String endPositionAlgebraicNotation) 
 			throws IllegalMoveException, UnauthorizedMoveException {
 		
 		Piece piece = grid[row][column];
@@ -188,6 +202,7 @@ public class Board {
 				piece.move(newRow, newColumn);
 				grid[newRow][newColumn] = piece;
 				grid[row][column] = null;
+				log.info("{} to {}", piece.getName(), endPositionAlgebraicNotation);
 				
 			}
 			else if (piece.isAlly(occupant)) {
@@ -203,6 +218,7 @@ public class Board {
 				player.capturePiece(occupant);
 				grid[newRow][newColumn] = piece;
 				grid[row][column] = null;
+				log.info("{} captures {}", piece.getName(), occupant.getName());
 				
 			}
 			

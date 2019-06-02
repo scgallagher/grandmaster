@@ -9,7 +9,9 @@ import org.apache.logging.log4j.Logger;
 
 import com.grandmaster.cli.entity.Move;
 import com.grandmaster.game.Board;
+import com.grandmaster.game.IllegalMoveException;
 import com.grandmaster.game.Player;
+import com.grandmaster.game.UnauthorizedMoveException;
 
 public class Cli {
 
@@ -32,9 +34,16 @@ public class Cli {
 			
 			try {
 				Move move = MoveParserCoordinateNotation.parseMove(command);
-				System.out.println(move);
+				log.debug(move);
+				board.move(white, move.getStartPosition(), move.getEndPosition());
 			}
 			catch (MoveParserException e) {
+				log.error(e.getMessage());
+			}
+			catch (UnauthorizedMoveException e) {
+				log.error(e.getMessage());
+			}
+			catch (IllegalMoveException e) {
 				log.error(e.getMessage());
 			}
 			System.out.println(board);

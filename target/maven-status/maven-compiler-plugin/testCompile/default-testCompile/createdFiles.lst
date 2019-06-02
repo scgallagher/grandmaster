@@ -1,0 +1,10 @@
+com\grandmaster\chesspieces\PositionTest.class
+com\grandmaster\chesspieces\KnightTest.class
+com\grandmaster\chesspieces\KingTest.class
+com\grandmaster\cli\UtilitiesTest.class
+com\grandmaster\chesspieces\PawnTest.class
+com\grandmaster\chesspieces\RookTest.class
+com\grandmaster\chesspieces\QueenTest.class
+com\grandmaster\game\GameLogicTest.class
+com\grandmaster\cli\MoveParserCoordinateNotationTest.class
+com\grandmaster\chesspieces\BishopTest.class

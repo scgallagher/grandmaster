@@ -11,7 +11,7 @@ public class Pawn extends Piece {
 	
 	public Pawn(boolean isWhite, String id, int row, int column, Board board) {
 		
-		super(isWhite, id, row, column);
+		super("Pawn", isWhite, id, row, column);
 		this.firstMove = true;
 		this.board = board;
 		
@@ -19,7 +19,7 @@ public class Pawn extends Piece {
 	
 	public Pawn(boolean isWhite, String id, Position position, Board board) {
 		
-		super(isWhite, id, position.getRow(), position.getColumn());
+		super("Pawn", isWhite, id, position.getRow(), position.getColumn());
 		this.firstMove = true;
 		this.board = board;
 		

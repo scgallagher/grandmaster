@@ -6,13 +6,13 @@ public class Bishop extends Piece {
 
 	public Bishop(boolean isWhite, String id, int row, int column) {
 		
-		super(isWhite, id, row, column);
+		super("Bishop", isWhite, id, row, column);
 
 	}
 	
 	public Bishop(boolean isWhite, String id, Position position) {
 		
-		super(isWhite, id, position.getRow(), position.getColumn());
+		super("Bishop", isWhite, id, position.getRow(), position.getColumn());
 
 	}
 

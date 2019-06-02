@@ -6,13 +6,13 @@ public class Knight extends Piece {
 
 	public Knight(boolean isWhite, String id, int row, int column) {
 		
-		super(isWhite, id, row, column);
+		super("Knight", isWhite, id, row, column);
 
 	}
 	
 	public Knight(boolean isWhite, String id, Position position) {
 		
-		super(isWhite, id, position.getRow(), position.getColumn());
+		super("Knight", isWhite, id, position.getRow(), position.getColumn());
 
 	}
 

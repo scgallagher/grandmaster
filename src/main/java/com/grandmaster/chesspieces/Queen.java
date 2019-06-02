@@ -6,13 +6,13 @@ public class Queen extends Piece {
 
 	public Queen(boolean isWhite, String id, int row, int column) {
 		
-		super(isWhite, id, row, column);
+		super("Queen", isWhite, id, row, column);
 		
 	}
 	
 	public Queen(boolean isWhite, String id, Position position) {
 		
-		super(isWhite, id, position.getRow(), position.getColumn());
+		super("Queen", isWhite, id, position.getRow(), position.getColumn());
 
 	}
 	
