@@ -196,7 +196,11 @@ public class Board {
 			}
 			
 			Piece occupant = grid[newRow][newColumn];
-			if (occupant == null) {
+			if(GameLogic.isMoveBlocked(piece, this, row, column, newRow, newColumn)) {
+				// Path is blocked by another piece
+				throw new IllegalMoveException("Path is blocked");
+			}
+			else if (occupant == null) {
 				
 				// Space is not occupied, safe to move here
 				piece.move(newRow, newColumn);

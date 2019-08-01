@@ -45,7 +45,7 @@ public class GameLogic {
 		
 	}
 	
-	public static boolean isPathBlocked(int row, int column, Board board, Piece defender, Piece comparator) {
+	public static boolean isPathBlockedByNonThreat(int row, int column, Board board, Piece defender, Piece comparator) {
 		
 		Piece piece = board.getPieceAt(row, column);
 		if (piece != null && 
@@ -81,7 +81,7 @@ public class GameLogic {
 		
 		while (--row >= 0) {
 			
-			if (isPathBlocked(row, column, board, defender, comparator))
+			if (isPathBlockedByNonThreat(row, column, board, defender, comparator))
 				break;
 			else if (GameLogic.isThreat(row, column, board, defender, comparator))
 				return true;
@@ -91,7 +91,7 @@ public class GameLogic {
 		row = defender.getRow();
 		while (++row <= 7) {
 			
-			if (isPathBlocked(row, column, board, defender, comparator))
+			if (isPathBlockedByNonThreat(row, column, board, defender, comparator))
 				break;
 			else if (GameLogic.isThreat(row, column, board, defender, comparator))
 				return true;
@@ -102,7 +102,7 @@ public class GameLogic {
 		column = defender.getColumn();
 		while (--column >= 0) {
 
-			if (isPathBlocked(row, column, board, defender, comparator))
+			if (isPathBlockedByNonThreat(row, column, board, defender, comparator))
 				break;
 			else if (GameLogic.isThreat(row, column, board, defender, comparator))
 				return true;
@@ -113,7 +113,7 @@ public class GameLogic {
 		column = defender.getColumn();
 		while (++column <= 7) {
 
-			if (isPathBlocked(row, column, board, defender, comparator))
+			if (isPathBlockedByNonThreat(row, column, board, defender, comparator))
 				break;
 			else if (GameLogic.isThreat(row, column, board, defender, comparator))
 				return true;
@@ -136,7 +136,7 @@ public class GameLogic {
 		int column = defender.getColumn();
 		while (--row >= 0 && --column >= 0) {
 			
-			if (isPathBlocked(row, column, board, defender, comparator))
+			if (isPathBlockedByNonThreat(row, column, board, defender, comparator))
 				break;
 			else if (GameLogic.isThreat(row, column, board, defender, comparator))
 				return true;
@@ -147,7 +147,7 @@ public class GameLogic {
 		column = defender.getColumn();
 		while (--row >= 0 && ++column <= 7) {
 			
-			if (isPathBlocked(row, column, board, defender, comparator))
+			if (isPathBlockedByNonThreat(row, column, board, defender, comparator))
 				break;
 			else if (GameLogic.isThreat(row, column, board, defender, comparator))
 				return true;
@@ -158,7 +158,7 @@ public class GameLogic {
 		column = defender.getColumn();
 		while (++row <= 7 && --column >= 0) {
 			
-			if (isPathBlocked(row, column, board, defender, comparator))
+			if (isPathBlockedByNonThreat(row, column, board, defender, comparator))
 				break;
 			else if (GameLogic.isThreat(row, column, board, defender, comparator))
 				return true;
@@ -169,7 +169,7 @@ public class GameLogic {
 		column = defender.getColumn();
 		while (++row <= 7 && ++column <= 7) {
 			
-			if (isPathBlocked(row, column, board, defender, comparator))
+			if (isPathBlockedByNonThreat(row, column, board, defender, comparator))
 				break;
 			else if (GameLogic.isThreat(row, column, board, defender, comparator))
 				return true;
@@ -304,6 +304,38 @@ public class GameLogic {
 		moves.removeIf(move -> isOutOfBounds(move));
 		
 		return moves;
+		
+	}
+	
+	public static boolean isMoveBlocked(Piece piece, Board board, int currentRow, int currentColumn, 
+			int destinationRow, int destinationColumn) {
+		
+		if (piece instanceof Bishop) {
+			return GameLogic.isBishopMoveBlocked(currentRow, currentColumn, destinationRow, destinationColumn, board);
+		}
+		else {
+			return false;
+		}
+		
+	}
+	
+	public static boolean isBishopMoveBlocked(int currentRow, int currentColumn, int destinationRow, int destinationColumn, Board board) {
+		
+		int horizontalMotionIncrement = destinationRow - currentRow > 0 ? 1 : -1;
+		int verticalMotionIncrement = destinationColumn - currentColumn > 0 ? 1 : -1;
+		
+		int row = currentRow + horizontalMotionIncrement;
+		int column = currentColumn + verticalMotionIncrement;
+		while (row != destinationRow && column != destinationColumn) {
+			Piece piece = board.getPieceAt(row, column);
+			if (piece != null) {
+				return true;
+			}
+			row += horizontalMotionIncrement;
+			column += verticalMotionIncrement;
+		}
+		
+		return false;
 		
 	}
 	

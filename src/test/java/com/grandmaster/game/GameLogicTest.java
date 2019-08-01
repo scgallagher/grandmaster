@@ -1,6 +1,8 @@
 package com.grandmaster.game;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 import java.util.ArrayList;
 
@@ -11,6 +13,7 @@ import com.grandmaster.chesspieces.King;
 import com.grandmaster.chesspieces.Knight;
 import com.grandmaster.chesspieces.Pawn;
 import com.grandmaster.chesspieces.Piece;
+import com.grandmaster.chesspieces.Position;
 import com.grandmaster.chesspieces.Queen;
 import com.grandmaster.chesspieces.Rook;
 
@@ -2031,6 +2034,182 @@ public class GameLogicTest {
 		
 		board.initialize(white, black, pieces);
 		assertEquals(true, GameLogic.isCheckmate(board, whiteKing));
+		
+	}
+	
+	@Test
+	public void isBishopMoveBlocked_MoveIsBlockedUpperRight() {
+	
+		Board board = new Board();
+		boolean isWhite = true;
+		Player white = new Player(isWhite);
+		Player black = new Player(!isWhite);
+		
+		int currentRow = 3, currentColumn = 3;
+		int destinationRow = 0, destinationColumn = 6;
+		
+		Bishop blackBishopOne = new Bishop(isWhite, "K_w", currentRow, currentColumn);
+		Bishop blackBishopTwo = new Bishop(!isWhite, "B_b", 1, 5);
+		ArrayList<Piece> pieces = new ArrayList<>();
+		pieces.add(blackBishopOne);
+		pieces.add(blackBishopTwo);
+		
+		board.initialize(white, black, pieces);
+		Boolean result = GameLogic.isBishopMoveBlocked(currentRow, currentColumn, destinationRow, destinationColumn, board);
+		assertTrue(result);
+		
+	}
+	
+	@Test
+	public void isBishopMoveBlocked_MoveIsBlockedUpperLeft() {
+	
+		Board board = new Board();
+		boolean isWhite = true;
+		Player white = new Player(isWhite);
+		Player black = new Player(!isWhite);
+		
+		int currentRow = 3, currentColumn = 3;
+		int destinationRow = 0, destinationColumn = 0;
+		
+		Bishop blackBishopOne = new Bishop(isWhite, "K_w", currentRow, currentColumn);
+		Bishop blackBishopTwo = new Bishop(!isWhite, "B_b", 1, 1);
+		ArrayList<Piece> pieces = new ArrayList<>();
+		pieces.add(blackBishopOne);
+		pieces.add(blackBishopTwo);
+		
+		board.initialize(white, black, pieces);
+		Boolean result = GameLogic.isBishopMoveBlocked(currentRow, currentColumn, destinationRow, destinationColumn, board);
+		assertTrue(result);
+		
+	}
+	
+	@Test
+	public void isBishopMoveBlocked_MoveIsBlockedLowerLeft() {
+	
+		Board board = new Board();
+		boolean isWhite = true;
+		Player white = new Player(isWhite);
+		Player black = new Player(!isWhite);
+		
+		int currentRow = 3, currentColumn = 3;
+		int destinationRow = 6, destinationColumn = 0;
+		
+		Bishop blackBishopOne = new Bishop(isWhite, "K_w", currentRow, currentColumn);
+		Bishop blackBishopTwo = new Bishop(!isWhite, "B_b", 5, 1);
+		ArrayList<Piece> pieces = new ArrayList<>();
+		pieces.add(blackBishopOne);
+		pieces.add(blackBishopTwo);
+		
+		board.initialize(white, black, pieces);
+		Boolean result = GameLogic.isBishopMoveBlocked(currentRow, currentColumn, destinationRow, destinationColumn, board);
+		assertTrue(result);
+		
+	}
+	
+	@Test
+	public void isBishopMoveBlocked_MoveIsBlockedLowerRight() {
+	
+		Board board = new Board();
+		boolean isWhite = true;
+		Player white = new Player(isWhite);
+		Player black = new Player(!isWhite);
+		
+		int currentRow = 3, currentColumn = 3;
+		int destinationRow = 6, destinationColumn = 6;
+		
+		Bishop blackBishopOne = new Bishop(isWhite, "K_w", currentRow, currentColumn);
+		Bishop blackBishopTwo = new Bishop(!isWhite, "B_b", 5, 5);
+		ArrayList<Piece> pieces = new ArrayList<>();
+		pieces.add(blackBishopOne);
+		pieces.add(blackBishopTwo);
+		
+		board.initialize(white, black, pieces);
+		Boolean result = GameLogic.isBishopMoveBlocked(currentRow, currentColumn, destinationRow, destinationColumn, board);
+		assertTrue(result);
+		
+	}
+	
+	@Test
+	public void isBishopMoveBlocked_MoveIsNotBlockedUpperRight() {
+	
+		Board board = new Board();
+		boolean isWhite = true;
+		Player white = new Player(isWhite);
+		Player black = new Player(!isWhite);
+		
+		int currentRow = 3, currentColumn = 3;
+		int destinationRow = 0, destinationColumn = 6;
+		
+		Bishop blackBishopOne = new Bishop(isWhite, "K_w", currentRow, currentColumn);
+		ArrayList<Piece> pieces = new ArrayList<>();
+		pieces.add(blackBishopOne);
+		
+		board.initialize(white, black, pieces);
+		Boolean result = GameLogic.isBishopMoveBlocked(currentRow, currentColumn, destinationRow, destinationColumn, board);
+		assertFalse(result);
+		
+	}
+	
+	@Test
+	public void isBishopMoveBlocked_MoveIsNotBlockedUpperLeft() {
+	
+		Board board = new Board();
+		boolean isWhite = true;
+		Player white = new Player(isWhite);
+		Player black = new Player(!isWhite);
+		
+		int currentRow = 3, currentColumn = 3;
+		int destinationRow = 0, destinationColumn = 0;
+		
+		Bishop blackBishopOne = new Bishop(isWhite, "K_w", currentRow, currentColumn);
+		ArrayList<Piece> pieces = new ArrayList<>();
+		pieces.add(blackBishopOne);
+		
+		board.initialize(white, black, pieces);
+		Boolean result = GameLogic.isBishopMoveBlocked(currentRow, currentColumn, destinationRow, destinationColumn, board);
+		assertFalse(result);
+		
+	}
+	
+	@Test
+	public void isBishopMoveBlocked_MoveIsNotBlockedLowerLeft() {
+	
+		Board board = new Board();
+		boolean isWhite = true;
+		Player white = new Player(isWhite);
+		Player black = new Player(!isWhite);
+		
+		int currentRow = 3, currentColumn = 3;
+		int destinationRow = 6, destinationColumn = 0;
+		
+		Bishop blackBishopOne = new Bishop(isWhite, "K_w", currentRow, currentColumn);
+		ArrayList<Piece> pieces = new ArrayList<>();
+		pieces.add(blackBishopOne);
+		
+		board.initialize(white, black, pieces);
+		Boolean result = GameLogic.isBishopMoveBlocked(currentRow, currentColumn, destinationRow, destinationColumn, board);
+		assertFalse(result);
+		
+	}
+	
+	@Test
+	public void isBishopMoveBlocked_MoveIsNotBlockedLowerRight() {
+	
+		Board board = new Board();
+		boolean isWhite = true;
+		Player white = new Player(isWhite);
+		Player black = new Player(!isWhite);
+		
+		int currentRow = 3, currentColumn = 3;
+		int destinationRow = 6, destinationColumn = 6;
+		
+		Bishop blackBishopOne = new Bishop(isWhite, "K_w", currentRow, currentColumn);
+		ArrayList<Piece> pieces = new ArrayList<>();
+		pieces.add(blackBishopOne);
+		
+		board.initialize(white, black, pieces);
+		Boolean result = GameLogic.isBishopMoveBlocked(currentRow, currentColumn, destinationRow, destinationColumn, board);
+		assertFalse(result);
 		
 	}
 	

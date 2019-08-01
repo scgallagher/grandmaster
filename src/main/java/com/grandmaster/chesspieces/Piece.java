@@ -32,7 +32,7 @@ public abstract class Piece {
 			
 		}
 		else {
-			throw new IllegalMoveException();
+			throw new IllegalMoveException("Illegal move");
 		}
 		
 	}
