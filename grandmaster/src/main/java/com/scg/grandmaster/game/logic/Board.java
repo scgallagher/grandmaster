@@ -10,7 +10,11 @@ public class Board {
 	private final Integer MAX_ROW = 8;
 	private final Integer MAX_COLUMN = 8;
 	
-	private Piece[][] boardGrid = new Piece[MAX_ROW][MAX_COLUMN];
+	private Piece[][] boardGrid;
+	
+	public Board() {
+		boardGrid = new Piece[MAX_ROW][MAX_COLUMN];
+	}
 	
 	public Piece getPieceAt(Integer row, Integer column) {
 		return boardGrid[row][column];
