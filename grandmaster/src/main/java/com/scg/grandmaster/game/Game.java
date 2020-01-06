@@ -7,7 +7,11 @@ import com.scg.grandmaster.game.entity.Color;
 import com.scg.grandmaster.game.entity.Piece;
 import com.scg.grandmaster.game.entity.PieceType;
 import com.scg.grandmaster.game.logic.Board;
+import com.scg.grandmaster.game.logic.MoveValidationService;
 
+import lombok.Getter;
+
+@Getter
 @Service
 public class Game {
 	
@@ -24,6 +28,9 @@ public class Game {
 
 	@Autowired
 	private Board board;
+	
+	@Autowired
+	private MoveValidationService moveValidationService;
 	
 	public void initialize() {
 		initializeForColor(Color.WHITE);
@@ -87,5 +94,14 @@ public class Game {
 			board.putPiece(pawn, frontLineRow, i);
 		}
 	}
+
+	public void movePiece(Integer sourceRow, Integer sourceColumn, Integer destinationRow, Integer destinationColumn) {
+		Piece piece = board.getPieceAt(sourceRow, sourceColumn);
+		moveValidationService.validateMove(sourceRow, sourceColumn, destinationRow, destinationColumn);
+		board.putPiece(piece, destinationRow, destinationColumn);
+		board.removePiece(sourceRow, sourceColumn);
+	}
+	
+	
 	
 }

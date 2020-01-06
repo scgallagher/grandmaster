@@ -1,7 +1,9 @@
 package com.scg.grandmaster.game;
 
 import static org.mockito.ArgumentMatchers.eq;
+import static org.mockito.Mockito.doThrow;
 import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -9,10 +11,15 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
 
+import com.scg.grandmaster.exception.IllegalMoveException;
 import com.scg.grandmaster.game.entity.Color;
 import com.scg.grandmaster.game.entity.Piece;
 import com.scg.grandmaster.game.entity.PieceType;
 import com.scg.grandmaster.game.logic.Board;
+import com.scg.grandmaster.game.logic.MoveValidationService;
+
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.mockito.ArgumentMatchers.any;
 
 @RunWith(MockitoJUnitRunner.class)
 public class GameTest {
@@ -22,6 +29,9 @@ public class GameTest {
 	
 	@Mock
 	Board board;
+	
+	@Mock
+	MoveValidationService moveValidationService;
 	
 	@Test
 	public void initailize_GameIsInitialized() {
@@ -110,6 +120,29 @@ public class GameTest {
 		verify(board).putPiece(eq(bishop), eq(7), eq(5));
 		verify(board).putPiece(eq(knight), eq(7), eq(6));
 		verify(board).putPiece(eq(rook), eq(7), eq(7));
+	}
+	
+	@Test
+	public void movePiece_PieceIsMovedSuccessfully() {
+		Integer sourceRow = 1;
+		Integer sourceColumn = 0;
+		Integer destinationRow = 2;
+		Integer destinationColumn = 0;
+		
+		game.movePiece(sourceRow, sourceColumn, destinationRow, destinationColumn);
+		
+		verify(board).getPieceAt(sourceRow, sourceColumn);
+		verify(board).putPiece(any(), eq(destinationRow), eq(destinationColumn));
+		verify(board).removePiece(sourceRow, sourceColumn);
+	}
+	
+	@Test
+	public void movePiece_InvalidMoveThrowsException() {
+		when(board.getPieceAt(any(), any())).thenReturn(null);
+		
+		doThrow(new IllegalMoveException("")).when(moveValidationService).validateMove(any(), any(), any(), any());
+		
+		assertThatThrownBy(() -> game.movePiece(1, 0, 3, 0)).isInstanceOf(IllegalMoveException.class);
 	}
 	
 }
