@@ -1,5 +1,7 @@
 package com.scg.grandmaster.game.logic;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,6 +14,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class MoveValidationService {
 	
+	private static final Logger logger = LoggerFactory.getLogger(MoveValidationService.class);
+	
 	@Autowired
 	private Board board;
 	
@@ -23,9 +27,13 @@ public class MoveValidationService {
 	}
 	
 	public void validateMove(Integer sourceRow, Integer sourceColumn, Integer destinationRow, Integer destinationColumn) {
+		logger.info("Validating move ({}, {}) to ({}, {})", sourceRow, sourceColumn, destinationRow, destinationColumn );
+		
 		if (isValueOutOfBounds(sourceRow) || isValueOutOfBounds(sourceColumn) 
 				|| isValueOutOfBounds(destinationRow) || isValueOutOfBounds(destinationColumn)) {
-			throw new IllegalMoveException("Coordinates cannot be negative");
+			String message = "Coordinates cannot be negative: (" + sourceRow + ", " + sourceColumn + ") to (" + destinationRow + ", " + destinationColumn + ")"; 
+			logger.error(message);
+			throw new IllegalMoveException(message);
 		}
 		Piece piece = board.getPieceAt(sourceRow, sourceColumn);
 		

@@ -1,5 +1,7 @@
 package com.scg.grandmaster.game.logic;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -9,6 +11,8 @@ import com.scg.grandmaster.game.entity.Piece;
 
 @Service
 public class PawnMoveValidationService {
+	
+	private static final Logger logger = LoggerFactory.getLogger(PawnMoveValidationService.class);
 
 	@Autowired
 	private Board board;
@@ -89,17 +93,23 @@ public class PawnMoveValidationService {
 	public void validateMove(Integer sourceRow, Integer sourceColumn, Integer destinationRow, Integer destinationColumn) {
 		if (isValidVerticalMove(sourceRow, sourceColumn, destinationRow, destinationColumn)) {
 			if (isPathBlocked(sourceRow, sourceColumn, destinationRow)) {
-				throw new IllegalMoveException("Pawn (" + sourceRow + ", " + sourceColumn + ") to (" + destinationRow + ", " + destinationColumn + ")");
+				String message = "Pawn (" + sourceRow + ", " + sourceColumn + ") to (" + destinationRow + ", " + destinationColumn + ")";
+				logger.error("Illegal Move: " + message);
+				throw new IllegalMoveException(message);
 			}
 			else {
-				// good move
+				logger.debug("Pawn: valid vertical move: ({}, {}) to ({}, {})", sourceRow, sourceColumn, destinationRow, destinationColumn);
 			}
 		}
 		else if(isValidCapture(sourceRow, sourceColumn, destinationRow, destinationColumn)) {
-			// good move
+			logger.debug("Pawn: valid capture: ({}, {}) to ({}, {})", sourceRow, sourceColumn, destinationRow, destinationColumn);
 		}
 		else {
-			throw new IllegalMoveException("Pawn (" + sourceRow + ", " + sourceColumn + ") to (" + destinationRow + ", " + destinationColumn + ")");
+			String message = "Pawn (" + sourceRow + ", " + sourceColumn + ") to (" + destinationRow + ", " + destinationColumn + ")";
+			logger.error("Illegal Move: " + message);
+			throw new IllegalMoveException(message);
 		}
+		
+		logger.info("Valid Move: Pawn ({}, {}) to ({}, {})", sourceRow, sourceColumn, destinationRow, destinationColumn);
 	}
 }
