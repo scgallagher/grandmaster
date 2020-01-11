@@ -15,15 +15,23 @@ public class MoveValidationService {
 	@Autowired
 	private Board board;
 	
+	@Autowired
+	private PawnMoveValidationService pawnMoveValidationService;
+	
+	Boolean isValueOutOfBounds(Integer value) {
+		return value < 0 || value > 7;
+	}
+	
 	public void validateMove(Integer sourceRow, Integer sourceColumn, Integer destinationRow, Integer destinationColumn) {
-		if (sourceRow < 0 || sourceColumn < 0 || destinationRow < 0 || destinationColumn < 0) {
-			throw new IllegalArgumentException("Coordinates cannot be negative");
+		if (isValueOutOfBounds(sourceRow) || isValueOutOfBounds(sourceColumn) 
+				|| isValueOutOfBounds(destinationRow) || isValueOutOfBounds(destinationColumn)) {
+			throw new IllegalMoveException("Coordinates cannot be negative");
 		}
 		Piece piece = board.getPieceAt(sourceRow, sourceColumn);
 		
 		switch(piece.getPieceType()) {
 			case PAWN:
-				validatePawnMove(sourceRow, sourceColumn, destinationRow, destinationColumn);
+				pawnMoveValidationService.validateMove(sourceRow, sourceColumn, destinationRow, destinationColumn);
 				break;
 			case ROOK:
 				validateRookMove(sourceRow, sourceColumn, destinationRow, destinationColumn);

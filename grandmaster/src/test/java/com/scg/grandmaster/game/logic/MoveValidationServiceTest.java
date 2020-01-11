@@ -1,9 +1,11 @@
 package com.scg.grandmaster.game.logic;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.doThrow;
+import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
@@ -28,6 +30,72 @@ public class MoveValidationServiceTest {
 	@Mock
 	Board board;
 	
+	@Mock
+	PawnMoveValidationService pawnMoveValidationService;
+	
+	@Test
+	public void isValueOutOfBounds_NegativeValueReturnsTrue() {
+		Boolean result = moveValidationService.isValueOutOfBounds(-1);
+		
+		assertThat(result).isEqualTo(Boolean.TRUE);
+	}
+	
+	@Test
+	public void isValueOutOfBounds_ValueExceedingUpperBoundReturnsTrue() {
+		Boolean result = moveValidationService.isValueOutOfBounds(8);
+		
+		assertThat(result).isEqualTo(Boolean.TRUE);
+	}
+	
+	@Test
+	public void isValueOutOfBounds_ValueWithinBoundsReturnsFalse() {
+		Boolean result = moveValidationService.isValueOutOfBounds(4);
+		
+		assertThat(result).isEqualTo(Boolean.FALSE);
+	}
+	
+	@Test
+	public void validateMove_SourceRowOutOfBoundsThrowsException() {
+		Integer outOfBoundsValue = -1;
+		
+		doReturn(Boolean.TRUE).when(moveValidationService).isValueOutOfBounds(outOfBoundsValue);
+		
+		assertThatThrownBy(() -> moveValidationService.validateMove(outOfBoundsValue, null, null, null)).isInstanceOf(IllegalMoveException.class);
+	}
+	
+	@Test
+	public void validateMove_SourceColumnOutOfBoundsThrowsException() {
+		Integer inBoundsValue = 0;
+		Integer outOfBoundsValue = -1;
+		
+		doReturn(Boolean.FALSE).when(moveValidationService).isValueOutOfBounds(inBoundsValue);
+		doReturn(Boolean.TRUE).when(moveValidationService).isValueOutOfBounds(outOfBoundsValue);
+		
+		assertThatThrownBy(() -> moveValidationService.validateMove(inBoundsValue, outOfBoundsValue, null, null)).isInstanceOf(IllegalMoveException.class);
+	}
+	
+	@Test
+	public void validateMove_DestinationRowOutOfBoundsThrowsException() {
+		Integer inBoundsValue = 0;
+		Integer outOfBoundsValue = -1;
+		
+		doReturn(Boolean.FALSE).when(moveValidationService).isValueOutOfBounds(inBoundsValue);
+		doReturn(Boolean.TRUE).when(moveValidationService).isValueOutOfBounds(outOfBoundsValue);
+		
+		assertThatThrownBy(() -> moveValidationService.validateMove(inBoundsValue, inBoundsValue, outOfBoundsValue, null)).isInstanceOf(IllegalMoveException.class);
+	}
+	
+	@Test
+	public void validateMove_DestinationColumnOutOfBoundsThrowsException() {
+		Integer inBoundsValue = 0;
+		Integer outOfBoundsValue = -1;
+		
+		doReturn(Boolean.FALSE).when(moveValidationService).isValueOutOfBounds(inBoundsValue);
+		doReturn(Boolean.TRUE).when(moveValidationService).isValueOutOfBounds(outOfBoundsValue);
+		
+		assertThatThrownBy(() -> moveValidationService.validateMove(inBoundsValue, inBoundsValue, inBoundsValue, outOfBoundsValue)).isInstanceOf(IllegalMoveException.class);
+	}
+	
 	@Test
 	public void validateMove_InvalidMoveForPawnThrowsException() {
 		Piece pawn = new Piece();
@@ -35,7 +103,7 @@ public class MoveValidationServiceTest {
 		
 		when(board.getPieceAt(any(), any())).thenReturn(pawn);
 		
-		doThrow(new IllegalMoveException("")).when(moveValidationService).validatePawnMove(any(), any(), any(), any());
+		doThrow(new IllegalMoveException("")).when(pawnMoveValidationService).validateMove(any(), any(), any(), any());
 		
 		assertThatThrownBy(() -> moveValidationService.validateMove(0, 0, 0, 0)).isInstanceOf(IllegalMoveException.class);
 	}
@@ -47,11 +115,11 @@ public class MoveValidationServiceTest {
 		
 		when(board.getPieceAt(any(), any())).thenReturn(pawn);
 		
-		doNothing().when(moveValidationService).validatePawnMove(any(), any(), any(), any());
+		doNothing().when(pawnMoveValidationService).validateMove(any(), any(), any(), any());
 		
 		moveValidationService.validateMove(0, 0, 0, 0);
 		
-		verify(moveValidationService).validatePawnMove(any(), any(), any(), any());
+		verify(pawnMoveValidationService).validateMove(any(), any(), any(), any());
 	}
 	
 	@Test
