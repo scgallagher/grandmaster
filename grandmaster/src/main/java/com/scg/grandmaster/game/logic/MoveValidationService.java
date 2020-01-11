@@ -16,6 +16,9 @@ public class MoveValidationService {
 	private Board board;
 	
 	public void validateMove(Integer sourceRow, Integer sourceColumn, Integer destinationRow, Integer destinationColumn) {
+		if (sourceRow < 0 || sourceColumn < 0 || destinationRow < 0 || destinationColumn < 0) {
+			throw new IllegalArgumentException("Coordinates cannot be negative");
+		}
 		Piece piece = board.getPieceAt(sourceRow, sourceColumn);
 		
 		switch(piece.getPieceType()) {
