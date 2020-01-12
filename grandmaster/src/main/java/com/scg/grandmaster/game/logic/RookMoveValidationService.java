@@ -61,10 +61,6 @@ public class RookMoveValidationService {
 		return sourceRow == destinationRow || sourceColumn == destinationColumn;
 	}
 	
-	Boolean isValidCapture(Integer sourceRow, Integer sourceColumn, Integer destinationRow, Integer destinationColumn) {
-		return false;
-	}
-	
 	public void validateMove(Integer sourceRow, Integer sourceColumn, Integer destinationRow, Integer destinationColumn) {
 		if (isValidVerticalOrHorizontalMove(sourceRow, sourceColumn, destinationRow, destinationColumn)) {
 			if (isPathBlocked(sourceRow, sourceColumn, destinationRow, destinationColumn)) {
