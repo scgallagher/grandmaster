@@ -25,7 +25,7 @@ private static final Logger logger = LoggerFactory.getLogger(BishopMoveValidatio
 				}
 			}
 		}
-		else if(destinationRow > sourceRow &&destinationColumn < sourceColumn) {
+		else if(destinationRow > sourceRow && destinationColumn < sourceColumn) {
 			// Down left path
 			for (int row = sourceRow + 1, column = sourceColumn - 1; row < destinationRow && column > destinationColumn; row++, column--) {
 				if (board.getPieceAt(row, column) != null) {

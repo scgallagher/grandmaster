@@ -106,6 +106,45 @@ public class RookMoveValidationServiceTest {
 	}
 	
 	@Test
+	public void isPathBlocked_DestinationIsOccupiedByAllyReturnsTrue() {
+		Integer destinationRow = 0;
+		Integer destinationColumn = 0;
+		
+		when(board.getPieceAt(destinationRow, destinationColumn)).thenReturn(new Piece());
+		
+		PowerMockito.when(CommonLogic.isAlly(any(), any())).thenReturn(Boolean.TRUE);
+		
+		Boolean result = rookMoveValidationService.isPathBlocked(0, 3, destinationRow, destinationColumn);
+		
+		assertThat(result).isEqualTo(Boolean.TRUE);
+	}
+	
+	@Test
+	public void isPathBlocked_DestinationIsOccupiedByOpponentReturnsFalse() {
+		Integer destinationRow = 0;
+		Integer destinationColumn = 0;
+		
+		when(board.getPieceAt(destinationRow, destinationColumn)).thenReturn(new Piece());
+		
+		PowerMockito.when(CommonLogic.isAlly(any(), any())).thenReturn(Boolean.FALSE);
+		
+		Boolean result = rookMoveValidationService.isPathBlocked(0, 3, destinationRow, destinationColumn);
+		
+		assertThat(result).isEqualTo(Boolean.FALSE);
+	}
+	
+	@Test
+	public void isPathBlocked_DestinationIsUnoccupiedReturnsFalse() {
+		when(board.getPieceAt(any(), any())).thenReturn(null);
+		
+		PowerMockito.when(CommonLogic.isAlly(any(), any())).thenReturn(Boolean.FALSE);
+		
+		Boolean result = rookMoveValidationService.isPathBlocked(0, 3, 0, 0);
+		
+		assertThat(result).isEqualTo(Boolean.FALSE);
+	}
+	
+	@Test
 	public void isValidMove_ValidVerticalMoveReturnsTrue() {
 		Boolean result = rookMoveValidationService.isValidMove(0, 0, 3, 0);
 		

@@ -19,42 +19,43 @@ public class RookMoveValidationService {
 	Boolean isPathBlocked(Integer sourceRow, Integer sourceColumn, Integer destinationRow, Integer destinationColumn) {
 		if (destinationRow - sourceRow > 0) {
 			// Up vertical path
-			for (int i = sourceRow + 1; i <= destinationRow; i++) {
-				Piece piece = board.getPieceAt(i, sourceColumn);
-				if (piece != null && CommonLogic.isAlly(board.getPieceAt(sourceRow, sourceColumn), piece)) {
+			for (int i = sourceRow + 1; i < destinationRow; i++) {
+				if (board.getPieceAt(i, sourceColumn) != null) {
 					return true;
 				}
 			}
 		}
 		else if (destinationRow - sourceRow < 0) {
 			// Down vertical path
-			for (int i = sourceRow - 1; i >= destinationRow; i--) {
-				Piece piece = board.getPieceAt(i, sourceColumn);
-				if (piece != null && CommonLogic.isAlly(board.getPieceAt(sourceRow, sourceColumn), piece)) {
+			for (int i = sourceRow - 1; i > destinationRow; i--) {
+				if (board.getPieceAt(i, sourceColumn) != null) {
 					return true;
 				}
 			}
 		}
 		else if (destinationColumn - sourceColumn > 0) {
 			// Right horizontal path
-			for (int i = sourceColumn + 1; i <= destinationColumn; i++) {
-				Piece piece = board.getPieceAt(sourceRow, i);
-				if (piece != null && CommonLogic.isAlly(board.getPieceAt(sourceRow, sourceColumn), piece)) {
+			for (int i = sourceColumn + 1; i < destinationColumn; i++) {
+				if (board.getPieceAt(sourceRow, i) != null) {
 					return true;
 				}
 			}
 		}
 		else if (destinationColumn - sourceColumn < 0) {
 			// Left horizontal path
-			for (int i = sourceColumn - 1; i >= destinationColumn; i--) {
-				Piece piece = board.getPieceAt(sourceRow, i);
-				if (piece != null && CommonLogic.isAlly(board.getPieceAt(sourceRow, sourceColumn), piece)) {
+			for (int i = sourceColumn - 1; i > destinationColumn; i--) {
+				if (board.getPieceAt(sourceRow, i) != null) {
 					return true;
 				}
 			}
 		}
 		
-		return false;
+		Piece occupant = board.getPieceAt(destinationRow, destinationColumn);
+		if (occupant != null && CommonLogic.isAlly(board.getPieceAt(sourceRow, destinationRow), occupant)) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 	
 	Boolean isValidMove(Integer sourceRow, Integer sourceColumn, Integer destinationRow, Integer destinationColumn) {
