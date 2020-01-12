@@ -96,9 +96,8 @@ public class Game {
 	}
 
 	public void movePiece(Integer sourceRow, Integer sourceColumn, Integer destinationRow, Integer destinationColumn) {
-		Piece piece = board.getPieceAt(sourceRow, sourceColumn);
 		moveValidationService.validateMove(sourceRow, sourceColumn, destinationRow, destinationColumn);
-		board.putPiece(piece, destinationRow, destinationColumn);
+		board.putPiece(board.getPieceAt(sourceRow, sourceColumn), destinationRow, destinationColumn);
 		board.removePiece(sourceRow, sourceColumn);
 	}
 	

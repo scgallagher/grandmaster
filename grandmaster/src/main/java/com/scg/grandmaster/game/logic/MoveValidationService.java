@@ -35,8 +35,8 @@ public class MoveValidationService {
 			logger.error(message);
 			throw new IllegalMoveException(message);
 		}
-		Piece piece = board.getPieceAt(sourceRow, sourceColumn);
 		
+		Piece piece = board.getPieceAt(sourceRow, sourceColumn);
 		switch(piece.getPieceType()) {
 			case PAWN:
 				pawnMoveValidationService.validateMove(sourceRow, sourceColumn, destinationRow, destinationColumn);

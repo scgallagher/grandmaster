@@ -138,8 +138,6 @@ public class GameTest {
 	
 	@Test
 	public void movePiece_InvalidMoveThrowsException() {
-		when(board.getPieceAt(any(), any())).thenReturn(null);
-		
 		doThrow(new IllegalMoveException("")).when(moveValidationService).validateMove(any(), any(), any(), any());
 		
 		assertThatThrownBy(() -> game.movePiece(1, 0, 3, 0)).isInstanceOf(IllegalMoveException.class);
