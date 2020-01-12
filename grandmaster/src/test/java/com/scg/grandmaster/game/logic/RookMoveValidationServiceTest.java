@@ -2,59 +2,40 @@ package com.scg.grandmaster.game.logic;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
-import static org.junit.Assert.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.when;
 
-
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.Spy;
-import org.mockito.junit.MockitoJUnitRunner;
+import org.powermock.api.mockito.PowerMockito;
+import org.powermock.core.classloader.annotations.PrepareForTest;
+import org.powermock.modules.junit4.PowerMockRunner;
 
 import com.scg.grandmaster.exception.IllegalMoveException;
-import com.scg.grandmaster.game.entity.Color;
 import com.scg.grandmaster.game.entity.Piece;
 
-@RunWith(MockitoJUnitRunner.class)
+@RunWith(PowerMockRunner.class)
+@PrepareForTest(CommonLogic.class)
 public class RookMoveValidationServiceTest {
-	
-	@Spy
+
 	@InjectMocks
 	RookMoveValidationService rookMoveValidationService;
 	
 	@Mock
 	Board board;
+	
+	RookMoveValidationService spiedRookMoveValidationService;
+	
+	@Before
+	public void setup() {
+		PowerMockito.mockStatic(CommonLogic.class);
+		spiedRookMoveValidationService = PowerMockito.spy(rookMoveValidationService);
+	}
 
-	@Test
-	public void areOpponenets_PiecesAreNotOpponentsReturnsFalse() {
-		Piece pieceOne = new Piece();
-		pieceOne.setColor(Color.WHITE);
-		
-		Piece pieceTwo = new Piece();
-		pieceTwo.setColor(Color.WHITE);
-		
-		Boolean result = rookMoveValidationService.areOpponents(pieceOne, pieceTwo);
-		
-		assertThat(result).isEqualTo(Boolean.FALSE);
-	}
-	
-	@Test
-	public void areOpponenets_PiecesAreOpponentsReturnsTrue() {
-		Piece pieceOne = new Piece();
-		pieceOne.setColor(Color.WHITE);
-		
-		Piece pieceTwo = new Piece();
-		pieceTwo.setColor(Color.BLACK);
-		
-		Boolean result = rookMoveValidationService.areOpponents(pieceOne, pieceTwo);
-		
-		assertThat(result).isEqualTo(Boolean.TRUE);
-	}
-	
 	@Test
 	public void isPathBlocked_DownVerticalPathIsBlockedReturnsTrue() {
 		Integer destinationRow = 3;
@@ -63,7 +44,7 @@ public class RookMoveValidationServiceTest {
 		
 		when(board.getPieceAt(obstructionRow, destinationColumn)).thenReturn(new Piece());
 		
-		doReturn(Boolean.FALSE).when(rookMoveValidationService).areOpponents(any(), any());
+		PowerMockito.when(CommonLogic.areOpponents(any(), any())).thenReturn(Boolean.FALSE);
 		
 		Boolean result = rookMoveValidationService.isPathBlocked(0, 0, destinationRow, destinationColumn);
 		
@@ -78,7 +59,7 @@ public class RookMoveValidationServiceTest {
 		
 		when(board.getPieceAt(obstructionRow, destinationColumn)).thenReturn(new Piece());
 		
-		doReturn(Boolean.FALSE).when(rookMoveValidationService).areOpponents(any(), any());
+		PowerMockito.when(CommonLogic.areOpponents(any(), any())).thenReturn(Boolean.FALSE);
 		
 		Boolean result = rookMoveValidationService.isPathBlocked(3, 0, destinationRow, destinationColumn);
 		
@@ -93,7 +74,7 @@ public class RookMoveValidationServiceTest {
 		
 		when(board.getPieceAt(destinationRow, obstructionColumn)).thenReturn(new Piece());
 		
-		doReturn(Boolean.FALSE).when(rookMoveValidationService).areOpponents(any(), any());
+		PowerMockito.when(CommonLogic.areOpponents(any(), any())).thenReturn(Boolean.FALSE);
 		
 		Boolean result = rookMoveValidationService.isPathBlocked(0, 0, destinationRow, destinationColumn);
 		
@@ -108,7 +89,7 @@ public class RookMoveValidationServiceTest {
 		
 		when(board.getPieceAt(destinationRow, obstructionColumn)).thenReturn(new Piece());
 		
-		doReturn(Boolean.FALSE).when(rookMoveValidationService).areOpponents(any(), any());
+		PowerMockito.when(CommonLogic.areOpponents(any(), any())).thenReturn(Boolean.FALSE);
 		
 		Boolean result = rookMoveValidationService.isPathBlocked(0, 3, destinationRow, destinationColumn);
 		
@@ -147,27 +128,27 @@ public class RookMoveValidationServiceTest {
 	
 	@Test
 	public void validateMove_ValidVerticalOrHorizontalMoveSuccess() {
-		doReturn(Boolean.TRUE).when(rookMoveValidationService).isValidVerticalOrHorizontalMove(any(), any(), any(), any());
+		doReturn(Boolean.TRUE).when(spiedRookMoveValidationService).isValidVerticalOrHorizontalMove(any(), any(), any(), any());
 		
-		doReturn(Boolean.FALSE).when(rookMoveValidationService).isPathBlocked(any(), any(), any(), any());
+		doReturn(Boolean.FALSE).when(spiedRookMoveValidationService).isPathBlocked(any(), any(), any(), any());
 		
-		rookMoveValidationService.validateMove(null, null, null, null);
+		spiedRookMoveValidationService.validateMove(null, null, null, null);
 	}
 	
 	@Test
 	public void validateMove_BlockedPathThrowsException() {
-		doReturn(Boolean.TRUE).when(rookMoveValidationService).isValidVerticalOrHorizontalMove(any(), any(), any(), any());
+		doReturn(Boolean.TRUE).when(spiedRookMoveValidationService).isValidVerticalOrHorizontalMove(any(), any(), any(), any());
 		
-		doReturn(Boolean.TRUE).when(rookMoveValidationService).isPathBlocked(any(), any(), any(), any());
+		doReturn(Boolean.TRUE).when(spiedRookMoveValidationService).isPathBlocked(any(), any(), any(), any());
 		
-		assertThatThrownBy(() -> rookMoveValidationService.validateMove(null, null, null, null)).isInstanceOf(IllegalMoveException.class);
+		assertThatThrownBy(() -> spiedRookMoveValidationService.validateMove(null, null, null, null)).isInstanceOf(IllegalMoveException.class);
 	}
 	
 	@Test
 	public void validateMove_DiagonalPathThrowsException() {
-		doReturn(Boolean.FALSE).when(rookMoveValidationService).isValidVerticalOrHorizontalMove(any(), any(), any(), any());
+		doReturn(Boolean.FALSE).when(spiedRookMoveValidationService).isValidVerticalOrHorizontalMove(any(), any(), any(), any());
 		
-		assertThatThrownBy(() -> rookMoveValidationService.validateMove(null, null, null, null)).isInstanceOf(IllegalMoveException.class);
+		assertThatThrownBy(() -> spiedRookMoveValidationService.validateMove(null, null, null, null)).isInstanceOf(IllegalMoveException.class);
 	}
 	
 }

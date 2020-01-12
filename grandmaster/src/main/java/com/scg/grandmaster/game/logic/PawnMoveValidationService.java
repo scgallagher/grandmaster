@@ -80,14 +80,10 @@ public class PawnMoveValidationService {
 		}
 	}
 	
-	Boolean areOpponents(Piece pieceOne, Piece pieceTwo) {
-		return pieceOne.getColor() != pieceTwo.getColor();
-	}
-	
 	Boolean isValidCapture(Integer sourceRow, Integer sourceColumn, Integer destinationRow,
 			Integer destinationColumn) {
 		return isValidDiagonalMove(sourceRow, sourceColumn, destinationRow, destinationColumn) &&
-				areOpponents(board.getPieceAt(sourceRow, sourceColumn), board.getPieceAt(destinationRow, destinationColumn));
+				CommonLogic.areOpponents(board.getPieceAt(sourceRow, sourceColumn), board.getPieceAt(destinationRow, destinationColumn));
 	}
 	
 	public void validateMove(Integer sourceRow, Integer sourceColumn, Integer destinationRow, Integer destinationColumn) {

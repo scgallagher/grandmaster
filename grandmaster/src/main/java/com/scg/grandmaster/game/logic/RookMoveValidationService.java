@@ -16,16 +16,12 @@ public class RookMoveValidationService {
 	@Autowired
 	private Board board;
 	
-	Boolean areOpponents(Piece pieceOne, Piece pieceTwo) {
-		return pieceOne.getColor() != pieceTwo.getColor();
-	}
-	
 	Boolean isPathBlocked(Integer sourceRow, Integer sourceColumn, Integer destinationRow, Integer destinationColumn) {
 		if (destinationRow - sourceRow > 0) {
 			// Up vertical path
 			for (int i = sourceRow + 1; i <= destinationRow; i++) {
 				Piece piece = board.getPieceAt(i, sourceColumn);
-				if (piece != null && !areOpponents(board.getPieceAt(sourceRow, sourceColumn), piece)) {
+				if (piece != null && !CommonLogic.areOpponents(board.getPieceAt(sourceRow, sourceColumn), piece)) {
 					return true;
 				}
 			}
@@ -34,7 +30,7 @@ public class RookMoveValidationService {
 			// Down vertical path
 			for (int i = sourceRow - 1; i >= destinationRow; i--) {
 				Piece piece = board.getPieceAt(i, sourceColumn);
-				if (piece != null && !areOpponents(board.getPieceAt(sourceRow, sourceColumn), piece)) {
+				if (piece != null && !CommonLogic.areOpponents(board.getPieceAt(sourceRow, sourceColumn), piece)) {
 					return true;
 				}
 			}
@@ -43,7 +39,7 @@ public class RookMoveValidationService {
 			// Right horizontal path
 			for (int i = sourceColumn + 1; i <= destinationColumn; i++) {
 				Piece piece = board.getPieceAt(sourceRow, i);
-				if (piece != null && !areOpponents(board.getPieceAt(sourceRow, sourceColumn), piece)) {
+				if (piece != null && !CommonLogic.areOpponents(board.getPieceAt(sourceRow, sourceColumn), piece)) {
 					return true;
 				}
 			}
@@ -52,7 +48,7 @@ public class RookMoveValidationService {
 			// Left horizontal path
 			for (int i = sourceColumn - 1; i >= destinationColumn; i--) {
 				Piece piece = board.getPieceAt(sourceRow, i);
-				if (piece != null && !areOpponents(board.getPieceAt(sourceRow, sourceColumn), piece)) {
+				if (piece != null && !CommonLogic.areOpponents(board.getPieceAt(sourceRow, sourceColumn), piece)) {
 					return true;
 				}
 			}
