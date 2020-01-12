@@ -39,6 +39,9 @@ public class MoveValidationServiceTest {
 	@Mock
 	KnightMoveValidationService knightMoveValidationService;
 	
+	@Mock
+	BishopMoveValidationService bishopMoveValidationService;
+	
 	@Test
 	public void isValueOutOfBounds_NegativeValueReturnsTrue() {
 		Boolean result = moveValidationService.isValueOutOfBounds(-1);
@@ -187,7 +190,7 @@ public class MoveValidationServiceTest {
 		
 		when(board.getPieceAt(any(), any())).thenReturn(bishop);
 		
-		doThrow(new IllegalMoveException("")).when(moveValidationService).validateBishopMove(any(), any(), any(), any());
+		doThrow(new IllegalMoveException("")).when(bishopMoveValidationService).validateMove(any(), any(), any(), any());
 		
 		assertThatThrownBy(() -> moveValidationService.validateMove(0, 0, 0, 0)).isInstanceOf(IllegalMoveException.class);
 	}
@@ -199,11 +202,11 @@ public class MoveValidationServiceTest {
 		
 		when(board.getPieceAt(any(), any())).thenReturn(bishop);
 		
-		doNothing().when(moveValidationService).validateBishopMove(any(), any(), any(), any());
+		doNothing().when(bishopMoveValidationService).validateMove(any(), any(), any(), any());
 		
 		moveValidationService.validateMove(0, 0, 0, 0);
 		
-		verify(moveValidationService).validateBishopMove(any(), any(), any(), any());
+		verify(bishopMoveValidationService).validateMove(any(), any(), any(), any());
 	}
 	
 	@Test
