@@ -86,26 +86,23 @@ public class PawnMoveValidationService {
 				CommonLogic.isOpponent(board.getPieceAt(sourceRow, sourceColumn), board.getPieceAt(destinationRow, destinationColumn));
 	}
 	
-	public void validateMove(Integer sourceRow, Integer sourceColumn, Integer destinationRow, Integer destinationColumn) {
+	Boolean isValidMove(Integer sourceRow, Integer sourceColumn, Integer destinationRow, Integer destinationColumn) {
 		if (isValidVerticalMove(sourceRow, sourceColumn, destinationRow, destinationColumn)) {
-			if (isPathBlocked(sourceRow, sourceColumn, destinationRow)) {
-				String message = "Pawn (" + sourceRow + ", " + sourceColumn + ") to (" + destinationRow + ", " + destinationColumn + ")";
-				logger.error("Illegal Move: " + message);
-				throw new IllegalMoveException(message);
-			}
-			else {
-				logger.debug("Pawn: valid vertical move: ({}, {}) to ({}, {})", sourceRow, sourceColumn, destinationRow, destinationColumn);
-			}
+			return isPathBlocked(sourceRow, sourceColumn, destinationRow);
 		}
-		else if(isValidCapture(sourceRow, sourceColumn, destinationRow, destinationColumn)) {
-			logger.debug("Pawn: valid capture: ({}, {}) to ({}, {})", sourceRow, sourceColumn, destinationRow, destinationColumn);
+		else {
+			return isValidCapture(sourceRow, sourceColumn, destinationRow, destinationColumn);
+		}
+	}
+	
+	public void validateMove(Integer sourceRow, Integer sourceColumn, Integer destinationRow, Integer destinationColumn) {
+		if (isValidMove(sourceRow, sourceColumn, destinationRow, destinationColumn)) {
+			logger.info("Valid Move: Pawn ({}, {}) to ({}, {})", sourceRow, sourceColumn, destinationRow, destinationColumn);
 		}
 		else {
 			String message = "Pawn (" + sourceRow + ", " + sourceColumn + ") to (" + destinationRow + ", " + destinationColumn + ")";
 			logger.error("Illegal Move: " + message);
 			throw new IllegalMoveException(message);
 		}
-		
-		logger.info("Valid Move: Pawn ({}, {}) to ({}, {})", sourceRow, sourceColumn, destinationRow, destinationColumn);
 	}
 }

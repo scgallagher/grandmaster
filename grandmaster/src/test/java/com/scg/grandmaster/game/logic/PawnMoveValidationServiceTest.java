@@ -2,6 +2,7 @@ package com.scg.grandmaster.game.logic;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.junit.Assert.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.when;
@@ -253,37 +254,59 @@ public class PawnMoveValidationServiceTest {
 	}
 	
 	@Test
-	public void validateMove_validVerticalMoveSuccess() {
-		doReturn(Boolean.TRUE).when(spiedPawnMoveValidationService).isValidVerticalMove(any(), any(), any(), any());
-		
-		doReturn(Boolean.FALSE).when(spiedPawnMoveValidationService).isPathBlocked(any(), any(), any());
-		
-		spiedPawnMoveValidationService.validateMove(null, null, null, null);
-	}
-	
-	@Test
-	public void validateMove_PathBlockedThrowsException() {
+	public void isValidMove_ValidVerticalMovePathIsNotBlockedReturnsTrue() {
 		doReturn(Boolean.TRUE).when(spiedPawnMoveValidationService).isValidVerticalMove(any(), any(), any(), any());
 		
 		doReturn(Boolean.TRUE).when(spiedPawnMoveValidationService).isPathBlocked(any(), any(), any());
 		
-		assertThatThrownBy(() -> spiedPawnMoveValidationService.validateMove(null, null, null, null)).isInstanceOf(IllegalMoveException.class);
+		Boolean result = spiedPawnMoveValidationService.isValidMove(null, null, null, null);
+		
+		assertThat(result).isEqualTo(Boolean.TRUE);
 	}
 	
 	@Test
-	public void validateMove_validDiagonalMoveSuccess() {
+	public void isValidMove_ValidVerticalMovePathIsBlockedReturnsFalse() {
+		doReturn(Boolean.TRUE).when(spiedPawnMoveValidationService).isValidVerticalMove(any(), any(), any(), any());
+		
+		doReturn(Boolean.FALSE).when(spiedPawnMoveValidationService).isPathBlocked(any(), any(), any());
+		
+		Boolean result = spiedPawnMoveValidationService.isValidMove(null, null, null, null);
+		
+		assertThat(result).isEqualTo(Boolean.FALSE);
+	}
+	
+	@Test
+	public void isValidMove_InvalidVerticalMoveValidCaptureReturnsTrue() {
 		doReturn(Boolean.FALSE).when(spiedPawnMoveValidationService).isValidVerticalMove(any(), any(), any(), any());
 		
 		doReturn(Boolean.TRUE).when(spiedPawnMoveValidationService).isValidCapture(any(), any(), any(), any());
+		
+		Boolean result = spiedPawnMoveValidationService.isValidMove(null, null, null, null);
+		
+		assertThat(result).isEqualTo(Boolean.TRUE);
+	}
+	
+	@Test
+	public void isValidMove_InvalidVerticalMoveInvalidCaptureReturnsFalse() {
+		doReturn(Boolean.FALSE).when(spiedPawnMoveValidationService).isValidVerticalMove(any(), any(), any(), any());
+		
+		doReturn(Boolean.FALSE).when(spiedPawnMoveValidationService).isValidCapture(any(), any(), any(), any());
+		
+		Boolean result = spiedPawnMoveValidationService.isValidMove(null, null, null, null);
+		
+		assertThat(result).isEqualTo(Boolean.FALSE);
+	}
+	
+	@Test
+	public void validateMove_IsValidMoveReturnsTrueSuccess() {
+		doReturn(Boolean.TRUE).when(spiedPawnMoveValidationService).isValidMove(any(), any(), any(), any());
 		
 		spiedPawnMoveValidationService.validateMove(null, null, null, null);
 	}
 	
 	@Test
-	public void validateMove_invalidMoveThrowsException() {
-		doReturn(Boolean.FALSE).when(spiedPawnMoveValidationService).isValidVerticalMove(any(), any(), any(), any());
-		
-		doReturn(Boolean.FALSE).when(spiedPawnMoveValidationService).isValidCapture(any(), any(), any(), any());
+	public void validateMove_IsValidMoveReturnsFalseThrowException() {
+		doReturn(Boolean.FALSE).when(spiedPawnMoveValidationService).isValidMove(any(), any(), any(), any());
 		
 		assertThatThrownBy(() -> spiedPawnMoveValidationService.validateMove(null, null, null, null)).isInstanceOf(IllegalMoveException.class);
 	}
