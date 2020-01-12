@@ -2,6 +2,7 @@ package com.scg.grandmaster.game.logic;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.junit.Assert.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.when;
@@ -147,60 +148,80 @@ public class BishopMoveValidationServiceTest {
 	}
 	
 	@Test
-	public void isValidMove_DownRightDiagonalReturnsTrue() {
-		Boolean result = bishopMoveValidationService.isValidMove(4, 4, 6, 6);
+	public void isValidDiagonalMove_DownRightDiagonalReturnsTrue() {
+		Boolean result = bishopMoveValidationService.isValidDiagonalMove(4, 4, 6, 6);
 		
 		assertThat(result).isEqualTo(Boolean.TRUE);
 	}
 	
 	@Test
-	public void isValidMove_DownLeftDiagonalReturnsTrue() {
-		Boolean result = bishopMoveValidationService.isValidMove(4, 4, 6, 2);
+	public void isValidDiagonalMove_DownLeftDiagonalReturnsTrue() {
+		Boolean result = bishopMoveValidationService.isValidDiagonalMove(4, 4, 6, 2);
 		
 		assertThat(result).isEqualTo(Boolean.TRUE);
 	}
 	
 	@Test
-	public void isValidMove_UpLeftDiagonalReturnsTrue() {
-		Boolean result = bishopMoveValidationService.isValidMove(4, 4, 2, 2);
+	public void isValidDiagonalMove_UpLeftDiagonalReturnsTrue() {
+		Boolean result = bishopMoveValidationService.isValidDiagonalMove(4, 4, 2, 2);
 		
 		assertThat(result).isEqualTo(Boolean.TRUE);
 	}
 	
 	@Test
-	public void isValidMove_UpRightDiagonalReturnsTrue() {
-		Boolean result = bishopMoveValidationService.isValidMove(4, 4, 2, 6);
+	public void isValidDiagonalMove_UpRightDiagonalReturnsTrue() {
+		Boolean result = bishopMoveValidationService.isValidDiagonalMove(4, 4, 2, 6);
 		
 		assertThat(result).isEqualTo(Boolean.TRUE);
 	}
 	
 	@Test
-	public void isValidMove_UpStraightReturnsFalse() {
-		Boolean result = bishopMoveValidationService.isValidMove(4, 4, 2, 4);
+	public void isValidDiagonalMove_UpStraightReturnsFalse() {
+		Boolean result = bishopMoveValidationService.isValidDiagonalMove(4, 4, 2, 4);
 		
 		assertThat(result).isEqualTo(Boolean.FALSE);
 	}
 	
 	@Test
-	public void validateMove_ValidVerticalOrHorizontalMoveSuccess() {
-		doReturn(Boolean.TRUE).when(spiedBishopMoveValidationService).isValidMove(any(), any(), any(), any());
+	public void isValidMove_ValidDiagonalMovePathIsNotBlockedReturnsTrue() {
+		doReturn(Boolean.TRUE).when(spiedBishopMoveValidationService).isValidDiagonalMove(any(), any(), any(), any());
 		
 		doReturn(Boolean.FALSE).when(spiedBishopMoveValidationService).isPathBlocked(any(), any(), any(), any());
+		
+		Boolean result = spiedBishopMoveValidationService.isValidMove(null, null, null, null);
+		
+		assertThat(result).isEqualTo(Boolean.TRUE);
+	}
+	
+	@Test
+	public void isValidMove_ValidDiagonalMovePathIsBlockedReturnsFalse() {
+		doReturn(Boolean.TRUE).when(spiedBishopMoveValidationService).isValidDiagonalMove(any(), any(), any(), any());
+		
+		doReturn(Boolean.TRUE).when(spiedBishopMoveValidationService).isPathBlocked(any(), any(), any(), any());
+		
+		Boolean result = spiedBishopMoveValidationService.isValidMove(null, null, null, null);
+		
+		assertThat(result).isEqualTo(Boolean.FALSE);
+	}
+	
+	@Test
+	public void isValidMove_InvalidDiagonalMoveReturnsFalse() {
+		doReturn(Boolean.FALSE).when(spiedBishopMoveValidationService).isValidDiagonalMove(any(), any(), any(), any());
+		
+		Boolean result = spiedBishopMoveValidationService.isValidMove(null, null, null, null);
+		
+		assertThat(result).isEqualTo(Boolean.FALSE);
+	}
+	
+	@Test
+	public void validateMove_ValidMoveSuccess() {
+		doReturn(Boolean.TRUE).when(spiedBishopMoveValidationService).isValidMove(any(), any(), any(), any());
 		
 		spiedBishopMoveValidationService.validateMove(null, null, null, null);
 	}
 	
 	@Test
-	public void validateMove_BlockedPathThrowsException() {
-		doReturn(Boolean.TRUE).when(spiedBishopMoveValidationService).isValidMove(any(), any(), any(), any());
-		
-		doReturn(Boolean.TRUE).when(spiedBishopMoveValidationService).isPathBlocked(any(), any(), any(), any());
-		
-		assertThatThrownBy(() -> spiedBishopMoveValidationService.validateMove(null, null, null, null)).isInstanceOf(IllegalMoveException.class);
-	}
-	
-	@Test
-	public void validateMove_DiagonalPathThrowsException() {
+	public void validateMove_InvalidMoveThrowsException() {
 		doReturn(Boolean.FALSE).when(spiedBishopMoveValidationService).isValidMove(any(), any(), any(), any());
 		
 		assertThatThrownBy(() -> spiedBishopMoveValidationService.validateMove(null, null, null, null)).isInstanceOf(IllegalMoveException.class);

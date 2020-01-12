@@ -59,21 +59,23 @@ private static final Logger logger = LoggerFactory.getLogger(BishopMoveValidatio
 		}
 	}
 
-	Boolean isValidMove(Integer sourceRow, Integer sourceColumn, Integer destinationRow, Integer destinationColumn) {
+	Boolean isValidDiagonalMove(Integer sourceRow, Integer sourceColumn, Integer destinationRow, Integer destinationColumn) {
 		Integer slope = (destinationColumn - sourceColumn) / (destinationRow - sourceRow);
 		return Math.abs(slope) == 1;
 	}
 	
+	Boolean isValidMove(Integer sourceRow, Integer sourceColumn, Integer destinationRow, Integer destinationColumn) {
+		if (isValidDiagonalMove(sourceRow, sourceColumn, destinationRow, destinationColumn)) {
+			return !isPathBlocked(sourceRow, sourceColumn, destinationRow, destinationColumn);
+		}
+		else {
+			return false;
+		}
+	}
+	
 	public void validateMove(Integer sourceRow, Integer sourceColumn, Integer destinationRow, Integer destinationColumn) {
 		if (isValidMove(sourceRow, sourceColumn, destinationRow, destinationColumn)) {
-			if (isPathBlocked(sourceRow, sourceColumn, destinationRow, destinationColumn)) {
-				String message = "Bishop (" + sourceRow + ", " + sourceColumn + ") to (" + destinationRow + ", " + destinationColumn + ")";
-				logger.error("Illegal Move: " + message);
-				throw new IllegalMoveException(message);
-			}
-			else {
-				logger.debug("Bishop: valid move: ({}, {}) to ({}, {})", sourceRow, sourceColumn, destinationRow, destinationColumn);
-			}
+			logger.debug("Bishop: valid move: ({}, {}) to ({}, {})", sourceRow, sourceColumn, destinationRow, destinationColumn);
 		}
 		else {
 			String message = "Bishop (" + sourceRow + ", " + sourceColumn + ") to (" + destinationRow + ", " + destinationColumn + ")";

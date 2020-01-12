@@ -257,7 +257,7 @@ public class PawnMoveValidationServiceTest {
 	public void isValidMove_ValidVerticalMovePathIsNotBlockedReturnsTrue() {
 		doReturn(Boolean.TRUE).when(spiedPawnMoveValidationService).isValidVerticalMove(any(), any(), any(), any());
 		
-		doReturn(Boolean.TRUE).when(spiedPawnMoveValidationService).isPathBlocked(any(), any(), any());
+		doReturn(Boolean.FALSE).when(spiedPawnMoveValidationService).isPathBlocked(any(), any(), any());
 		
 		Boolean result = spiedPawnMoveValidationService.isValidMove(null, null, null, null);
 		
@@ -268,7 +268,7 @@ public class PawnMoveValidationServiceTest {
 	public void isValidMove_ValidVerticalMovePathIsBlockedReturnsFalse() {
 		doReturn(Boolean.TRUE).when(spiedPawnMoveValidationService).isValidVerticalMove(any(), any(), any(), any());
 		
-		doReturn(Boolean.FALSE).when(spiedPawnMoveValidationService).isPathBlocked(any(), any(), any());
+		doReturn(Boolean.TRUE).when(spiedPawnMoveValidationService).isPathBlocked(any(), any(), any());
 		
 		Boolean result = spiedPawnMoveValidationService.isValidMove(null, null, null, null);
 		

@@ -88,7 +88,7 @@ public class PawnMoveValidationService {
 	
 	Boolean isValidMove(Integer sourceRow, Integer sourceColumn, Integer destinationRow, Integer destinationColumn) {
 		if (isValidVerticalMove(sourceRow, sourceColumn, destinationRow, destinationColumn)) {
-			return isPathBlocked(sourceRow, sourceColumn, destinationRow);
+			return !isPathBlocked(sourceRow, sourceColumn, destinationRow);
 		}
 		else {
 			return isValidCapture(sourceRow, sourceColumn, destinationRow, destinationColumn);
