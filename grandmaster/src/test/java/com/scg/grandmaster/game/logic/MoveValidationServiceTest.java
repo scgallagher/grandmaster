@@ -36,6 +36,9 @@ public class MoveValidationServiceTest {
 	@Mock
 	RookMoveValidationService rookMoveValidationService;
 	
+	@Mock
+	KnightMoveValidationService knightMoveValidationService;
+	
 	@Test
 	public void isValueOutOfBounds_NegativeValueReturnsTrue() {
 		Boolean result = moveValidationService.isValueOutOfBounds(-1);
@@ -158,7 +161,7 @@ public class MoveValidationServiceTest {
 		
 		when(board.getPieceAt(any(), any())).thenReturn(knight);
 		
-		doThrow(new IllegalMoveException("")).when(moveValidationService).validateKnightMove(any(), any(), any(), any());
+		doThrow(new IllegalMoveException("")).when(knightMoveValidationService).validateMove(any(), any(), any(), any());
 		
 		assertThatThrownBy(() -> moveValidationService.validateMove(0, 0, 0, 0)).isInstanceOf(IllegalMoveException.class);
 	}
@@ -170,11 +173,11 @@ public class MoveValidationServiceTest {
 		
 		when(board.getPieceAt(any(), any())).thenReturn(knight);
 		
-		doNothing().when(moveValidationService).validateKnightMove(any(), any(), any(), any());
+		doNothing().when(knightMoveValidationService).validateMove(any(), any(), any(), any());
 		
 		moveValidationService.validateMove(0, 0, 0, 0);
 		
-		verify(moveValidationService).validateKnightMove(any(), any(), any(), any());
+		verify(knightMoveValidationService).validateMove(any(), any(), any(), any());
 	}
 	
 	@Test

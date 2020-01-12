@@ -233,7 +233,7 @@ public class PawnMoveValidationServiceTest {
 		doReturn(Boolean.TRUE).when(spiedPawnMoveValidationService).isValidDiagonalMove(any(), any(), any(), any());
 		
 		when(board.getPieceAt(any(), any())).thenReturn(null);
-		PowerMockito.when(CommonLogic.areOpponents(any(), any())).thenReturn(Boolean.FALSE);
+		PowerMockito.when(CommonLogic.isAlly(any(), any())).thenReturn(Boolean.FALSE);
 		
 		Boolean result = spiedPawnMoveValidationService.isValidCapture(null, null, null, null);
 		
@@ -245,7 +245,7 @@ public class PawnMoveValidationServiceTest {
 		doReturn(Boolean.TRUE).when(spiedPawnMoveValidationService).isValidDiagonalMove(any(), any(), any(), any());
 		
 		when(board.getPieceAt(any(), any())).thenReturn(null);
-		PowerMockito.when(CommonLogic.areOpponents(any(), any())).thenReturn(Boolean.TRUE);
+		PowerMockito.when(CommonLogic.isOpponent(any(), any())).thenReturn(Boolean.TRUE);
 		
 		Boolean result = spiedPawnMoveValidationService.isValidCapture(null, null, null, null);
 		

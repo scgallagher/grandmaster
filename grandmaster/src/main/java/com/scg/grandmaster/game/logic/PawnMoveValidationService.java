@@ -83,7 +83,7 @@ public class PawnMoveValidationService {
 	Boolean isValidCapture(Integer sourceRow, Integer sourceColumn, Integer destinationRow,
 			Integer destinationColumn) {
 		return isValidDiagonalMove(sourceRow, sourceColumn, destinationRow, destinationColumn) &&
-				CommonLogic.areOpponents(board.getPieceAt(sourceRow, sourceColumn), board.getPieceAt(destinationRow, destinationColumn));
+				CommonLogic.isOpponent(board.getPieceAt(sourceRow, sourceColumn), board.getPieceAt(destinationRow, destinationColumn));
 	}
 	
 	public void validateMove(Integer sourceRow, Integer sourceColumn, Integer destinationRow, Integer destinationColumn) {

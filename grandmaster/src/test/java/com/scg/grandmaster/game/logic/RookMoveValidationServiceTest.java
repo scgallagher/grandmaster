@@ -44,7 +44,7 @@ public class RookMoveValidationServiceTest {
 		
 		when(board.getPieceAt(obstructionRow, destinationColumn)).thenReturn(new Piece());
 		
-		PowerMockito.when(CommonLogic.areOpponents(any(), any())).thenReturn(Boolean.FALSE);
+		PowerMockito.when(CommonLogic.isAlly(any(), any())).thenReturn(Boolean.TRUE);
 		
 		Boolean result = rookMoveValidationService.isPathBlocked(0, 0, destinationRow, destinationColumn);
 		
@@ -59,7 +59,7 @@ public class RookMoveValidationServiceTest {
 		
 		when(board.getPieceAt(obstructionRow, destinationColumn)).thenReturn(new Piece());
 		
-		PowerMockito.when(CommonLogic.areOpponents(any(), any())).thenReturn(Boolean.FALSE);
+		PowerMockito.when(CommonLogic.isAlly(any(), any())).thenReturn(Boolean.TRUE);
 		
 		Boolean result = rookMoveValidationService.isPathBlocked(3, 0, destinationRow, destinationColumn);
 		
@@ -74,7 +74,7 @@ public class RookMoveValidationServiceTest {
 		
 		when(board.getPieceAt(destinationRow, obstructionColumn)).thenReturn(new Piece());
 		
-		PowerMockito.when(CommonLogic.areOpponents(any(), any())).thenReturn(Boolean.FALSE);
+		PowerMockito.when(CommonLogic.isAlly(any(), any())).thenReturn(Boolean.TRUE);
 		
 		Boolean result = rookMoveValidationService.isPathBlocked(0, 0, destinationRow, destinationColumn);
 		
@@ -89,7 +89,7 @@ public class RookMoveValidationServiceTest {
 		
 		when(board.getPieceAt(destinationRow, obstructionColumn)).thenReturn(new Piece());
 		
-		PowerMockito.when(CommonLogic.areOpponents(any(), any())).thenReturn(Boolean.FALSE);
+		PowerMockito.when(CommonLogic.isAlly(any(), any())).thenReturn(Boolean.TRUE);
 		
 		Boolean result = rookMoveValidationService.isPathBlocked(0, 3, destinationRow, destinationColumn);
 		
