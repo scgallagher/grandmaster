@@ -106,29 +106,29 @@ public class RookMoveValidationServiceTest {
 	}
 	
 	@Test
-	public void isValidVerticalOrHorizontalMove_ValidVerticalMoveReturnsTrue() {
-		Boolean result = rookMoveValidationService.isValidVerticalOrHorizontalMove(0, 0, 3, 0);
+	public void isValidMove_ValidVerticalMoveReturnsTrue() {
+		Boolean result = rookMoveValidationService.isValidMove(0, 0, 3, 0);
 		
 		assertThat(result).isEqualTo(Boolean.TRUE);
 	}
 	
 	@Test
-	public void isValidVerticalOrHorizontalMove_ValidHorizontalMoveReturnsTrue() {
-		Boolean result = rookMoveValidationService.isValidVerticalOrHorizontalMove(0, 0, 0, 3);
+	public void isValidMove_ValidHorizontalMoveReturnsTrue() {
+		Boolean result = rookMoveValidationService.isValidMove(0, 0, 0, 3);
 		
 		assertThat(result).isEqualTo(Boolean.TRUE);
 	}
 	
 	@Test
-	public void isValidVerticalOrHorizontalMove_NotValidVerticalOrHorizontalMoveReturnsFalse() {
-		Boolean result = rookMoveValidationService.isValidVerticalOrHorizontalMove(0, 0, 3, 3);
+	public void isValidMove_NotValidVerticalOrHorizontalMoveReturnsFalse() {
+		Boolean result = rookMoveValidationService.isValidMove(0, 0, 3, 3);
 		
 		assertThat(result).isEqualTo(Boolean.FALSE);
 	}
 	
 	@Test
 	public void validateMove_ValidVerticalOrHorizontalMoveSuccess() {
-		doReturn(Boolean.TRUE).when(spiedRookMoveValidationService).isValidVerticalOrHorizontalMove(any(), any(), any(), any());
+		doReturn(Boolean.TRUE).when(spiedRookMoveValidationService).isValidMove(any(), any(), any(), any());
 		
 		doReturn(Boolean.FALSE).when(spiedRookMoveValidationService).isPathBlocked(any(), any(), any(), any());
 		
@@ -137,7 +137,7 @@ public class RookMoveValidationServiceTest {
 	
 	@Test
 	public void validateMove_BlockedPathThrowsException() {
-		doReturn(Boolean.TRUE).when(spiedRookMoveValidationService).isValidVerticalOrHorizontalMove(any(), any(), any(), any());
+		doReturn(Boolean.TRUE).when(spiedRookMoveValidationService).isValidMove(any(), any(), any(), any());
 		
 		doReturn(Boolean.TRUE).when(spiedRookMoveValidationService).isPathBlocked(any(), any(), any(), any());
 		
@@ -146,7 +146,7 @@ public class RookMoveValidationServiceTest {
 	
 	@Test
 	public void validateMove_DiagonalPathThrowsException() {
-		doReturn(Boolean.FALSE).when(spiedRookMoveValidationService).isValidVerticalOrHorizontalMove(any(), any(), any(), any());
+		doReturn(Boolean.FALSE).when(spiedRookMoveValidationService).isValidMove(any(), any(), any(), any());
 		
 		assertThatThrownBy(() -> spiedRookMoveValidationService.validateMove(null, null, null, null)).isInstanceOf(IllegalMoveException.class);
 	}

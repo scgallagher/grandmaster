@@ -57,12 +57,12 @@ public class RookMoveValidationService {
 		return false;
 	}
 	
-	Boolean isValidVerticalOrHorizontalMove(Integer sourceRow, Integer sourceColumn, Integer destinationRow, Integer destinationColumn) {
+	Boolean isValidMove(Integer sourceRow, Integer sourceColumn, Integer destinationRow, Integer destinationColumn) {
 		return sourceRow == destinationRow || sourceColumn == destinationColumn;
 	}
 	
 	public void validateMove(Integer sourceRow, Integer sourceColumn, Integer destinationRow, Integer destinationColumn) {
-		if (isValidVerticalOrHorizontalMove(sourceRow, sourceColumn, destinationRow, destinationColumn)) {
+		if (isValidMove(sourceRow, sourceColumn, destinationRow, destinationColumn)) {
 			if (isPathBlocked(sourceRow, sourceColumn, destinationRow, destinationColumn)) {
 				String message = "Rook (" + sourceRow + ", " + sourceColumn + ") to (" + destinationRow + ", " + destinationColumn + ")";
 				logger.error("Illegal Move: " + message);
