@@ -1,21 +1,12 @@
 package com.scg.grandmaster.game.logic;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.scg.grandmaster.exception.IllegalMoveException;
 import com.scg.grandmaster.game.entity.Color;
 import com.scg.grandmaster.game.entity.Piece;
 
 @Service
-public class PawnMoveValidationService {
-	
-	private static final Logger logger = LoggerFactory.getLogger(PawnMoveValidationService.class);
-
-	@Autowired
-	private Board board;
+public class PawnMoveValidationService extends MoveValidationServiceBase {
 	
 	Boolean isStartingPosition(Integer sourceRow) {
 		return sourceRow == 1 || sourceRow == 6;
@@ -40,7 +31,7 @@ public class PawnMoveValidationService {
 		}
 	}
 	
-	Boolean isValidVerticalMove(Integer sourceRow, Integer sourceColumn, Integer destinationRow, Integer destinationColumn) {
+	Boolean isValidVerticalPawnMove(Integer sourceRow, Integer sourceColumn, Integer destinationRow, Integer destinationColumn) {
 		/*
 		 *  Valid moves for white:
 		 *  (1, 0) to (2, 0)
@@ -63,7 +54,7 @@ public class PawnMoveValidationService {
 		return false;
 	}
 	
-	Boolean isValidDiagonalMove(Integer sourceRow, Integer sourceColumn, Integer destinationRow, Integer destinationColumn) {
+	Boolean isValidDiagonalMoveForPawnCapture(Integer sourceRow, Integer sourceColumn, Integer destinationRow, Integer destinationColumn) {
 		/*
 		 *  Possible diagonal moves white:
 		 *  (4, 4) to (5, 5)
@@ -72,37 +63,22 @@ public class PawnMoveValidationService {
 		 *  (4, 4) to (3, 3)
 		 *  (4, 4) to (3, 5)
 		 */
-		if (isBackwardMove(sourceRow, sourceColumn, destinationRow)) {
-			return false;
-		}
-		else {
-			return Math.abs(sourceRow - destinationRow) == 1 && Math.abs(sourceColumn - destinationColumn) == 1;
-		}
+		return Math.abs(sourceRow - destinationRow) == 1 && Math.abs(sourceColumn - destinationColumn) == 1;
 	}
 	
 	Boolean isValidCapture(Integer sourceRow, Integer sourceColumn, Integer destinationRow,
 			Integer destinationColumn) {
-		return isValidDiagonalMove(sourceRow, sourceColumn, destinationRow, destinationColumn) &&
-				CommonLogic.isOpponent(board.getPieceAt(sourceRow, sourceColumn), board.getPieceAt(destinationRow, destinationColumn));
+		return isValidDiagonalMoveForPawnCapture(sourceRow, sourceColumn, destinationRow, destinationColumn) &&
+				!isAlly(board.getPieceAt(sourceRow, sourceColumn), board.getPieceAt(destinationRow, destinationColumn));
 	}
 	
+	@Override
 	Boolean isValidMove(Integer sourceRow, Integer sourceColumn, Integer destinationRow, Integer destinationColumn) {
-		if (isValidVerticalMove(sourceRow, sourceColumn, destinationRow, destinationColumn)) {
+		if (isValidVerticalPawnMove(sourceRow, sourceColumn, destinationRow, destinationColumn)) {
 			return !isPathBlocked(sourceRow, sourceColumn, destinationRow);
 		}
 		else {
 			return isValidCapture(sourceRow, sourceColumn, destinationRow, destinationColumn);
-		}
-	}
-	
-	public void validateMove(Integer sourceRow, Integer sourceColumn, Integer destinationRow, Integer destinationColumn) {
-		if (isValidMove(sourceRow, sourceColumn, destinationRow, destinationColumn)) {
-			logger.info("Valid Move: Pawn ({}, {}) to ({}, {})", sourceRow, sourceColumn, destinationRow, destinationColumn);
-		}
-		else {
-			String message = "Pawn (" + sourceRow + ", " + sourceColumn + ") to (" + destinationRow + ", " + destinationColumn + ")";
-			logger.error("Illegal Move: " + message);
-			throw new IllegalMoveException(message);
 		}
 	}
 }

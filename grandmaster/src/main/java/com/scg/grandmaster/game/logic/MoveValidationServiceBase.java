@@ -12,10 +12,14 @@ public class MoveValidationServiceBase {
 	private static final Logger logger = LoggerFactory.getLogger(MoveValidationServiceBase.class);
 
 	@Autowired
-	private Board board;
+	Board board;
 	
 	public Boolean isAlly(Piece pieceOne, Piece pieceTwo) {
 		return pieceOne.getColor() == pieceTwo.getColor();
+	}
+	
+	public Boolean isOpponent(Piece pieceOne, Piece pieceTwo) {
+		return !isAlly(pieceOne, pieceTwo);
 	}
 	
 	Boolean isDestinationOccupiedByAlly(Integer sourceRow, Integer sourceColumn, Integer destinationRow, Integer destinationColumn) {
