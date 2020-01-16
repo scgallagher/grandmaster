@@ -22,41 +22,6 @@ public class BishopMoveValidationServiceTest {
 	Board board;
 	
 	@Test
-	public void isValidDiagonalMove_DownRightDiagonalReturnsTrue() {
-		Boolean result = bishopMoveValidationService.isValidDiagonalMove(4, 4, 6, 6);
-		
-		assertThat(result).isEqualTo(Boolean.TRUE);
-	}
-	
-	@Test
-	public void isValidDiagonalMove_DownLeftDiagonalReturnsTrue() {
-		Boolean result = bishopMoveValidationService.isValidDiagonalMove(4, 4, 6, 2);
-		
-		assertThat(result).isEqualTo(Boolean.TRUE);
-	}
-	
-	@Test
-	public void isValidDiagonalMove_UpLeftDiagonalReturnsTrue() {
-		Boolean result = bishopMoveValidationService.isValidDiagonalMove(4, 4, 2, 2);
-		
-		assertThat(result).isEqualTo(Boolean.TRUE);
-	}
-	
-	@Test
-	public void isValidDiagonalMove_UpRightDiagonalReturnsTrue() {
-		Boolean result = bishopMoveValidationService.isValidDiagonalMove(4, 4, 2, 6);
-		
-		assertThat(result).isEqualTo(Boolean.TRUE);
-	}
-	
-	@Test
-	public void isValidDiagonalMove_UpStraightReturnsFalse() {
-		Boolean result = bishopMoveValidationService.isValidDiagonalMove(4, 4, 2, 4);
-		
-		assertThat(result).isEqualTo(Boolean.FALSE);
-	}
-	
-	@Test
 	public void isValidMove_ValidDiagonalMovePathIsNotBlockedDestinationIsNotOccupiedReturnsTrue() {
 		doReturn(Boolean.TRUE).when(bishopMoveValidationService).isValidDiagonalMove(any(), any(), any(), any());
 		

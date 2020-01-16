@@ -22,27 +22,6 @@ public class RookMoveValidationServiceTest {
 	Board board;
 	
 	@Test
-	public void isValidHorizontalOrVerticalMove_ValidVerticalMoveReturnsTrue() {
-		Boolean result = rookMoveValidationService.isValidHorizontalOrVerticalMove(0, 0, 3, 0);
-		
-		assertThat(result).isEqualTo(Boolean.TRUE);
-	}
-	
-	@Test
-	public void isValidHorizontalOrVerticalMove_ValidHorizontalMoveReturnsTrue() {
-		Boolean result = rookMoveValidationService.isValidHorizontalOrVerticalMove(0, 0, 0, 3);
-		
-		assertThat(result).isEqualTo(Boolean.TRUE);
-	}
-	
-	@Test
-	public void isValidHorizontalOrVerticalMove_NotValidVerticalOrHorizontalMoveReturnsFalse() {
-		Boolean result = rookMoveValidationService.isValidHorizontalOrVerticalMove(0, 0, 3, 3);
-		
-		assertThat(result).isEqualTo(Boolean.FALSE);
-	}
-	
-	@Test
 	public void isValidMove_ValidMovePathIsNotBlockedDestinationIsNotOccupiedReturnsTrue() {
 		doReturn(Boolean.TRUE).when(rookMoveValidationService).isValidHorizontalOrVerticalMove(any(), any(), any(), any());
 		

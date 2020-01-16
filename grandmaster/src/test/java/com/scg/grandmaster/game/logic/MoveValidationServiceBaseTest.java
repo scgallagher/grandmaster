@@ -212,6 +212,62 @@ public class MoveValidationServiceBaseTest {
 	}
 	
 	@Test
+	public void isValidDiagonalMove_DownRightDiagonalReturnsTrue() {
+		Boolean result = moveValidationServiceBase.isValidDiagonalMove(4, 4, 6, 6);
+		
+		assertThat(result).isEqualTo(Boolean.TRUE);
+	}
+	
+	@Test
+	public void isValidDiagonalMove_DownLeftDiagonalReturnsTrue() {
+		Boolean result = moveValidationServiceBase.isValidDiagonalMove(4, 4, 6, 2);
+		
+		assertThat(result).isEqualTo(Boolean.TRUE);
+	}
+	
+	@Test
+	public void isValidDiagonalMove_UpLeftDiagonalReturnsTrue() {
+		Boolean result = moveValidationServiceBase.isValidDiagonalMove(4, 4, 2, 2);
+		
+		assertThat(result).isEqualTo(Boolean.TRUE);
+	}
+	
+	@Test
+	public void isValidDiagonalMove_UpRightDiagonalReturnsTrue() {
+		Boolean result = moveValidationServiceBase.isValidDiagonalMove(4, 4, 2, 6);
+		
+		assertThat(result).isEqualTo(Boolean.TRUE);
+	}
+	
+	@Test
+	public void isValidDiagonalMove_UpStraightReturnsFalse() {
+		Boolean result = moveValidationServiceBase.isValidDiagonalMove(4, 4, 2, 4);
+		
+		assertThat(result).isEqualTo(Boolean.FALSE);
+	}
+	
+	@Test
+	public void isValidHorizontalOrVerticalMove_ValidVerticalMoveReturnsTrue() {
+		Boolean result = moveValidationServiceBase.isValidHorizontalOrVerticalMove(0, 0, 3, 0);
+		
+		assertThat(result).isEqualTo(Boolean.TRUE);
+	}
+	
+	@Test
+	public void isValidHorizontalOrVerticalMove_ValidHorizontalMoveReturnsTrue() {
+		Boolean result = moveValidationServiceBase.isValidHorizontalOrVerticalMove(0, 0, 0, 3);
+		
+		assertThat(result).isEqualTo(Boolean.TRUE);
+	}
+	
+	@Test
+	public void isValidHorizontalOrVerticalMove_NotValidVerticalOrHorizontalMoveReturnsFalse() {
+		Boolean result = moveValidationServiceBase.isValidHorizontalOrVerticalMove(0, 0, 3, 3);
+		
+		assertThat(result).isEqualTo(Boolean.FALSE);
+	}
+	
+	@Test
 	public void validateMove_ValidMoveSuccess() {
 		doReturn(Boolean.TRUE).when(moveValidationServiceBase).isValidMove(any(), any(), any(), any());
 		

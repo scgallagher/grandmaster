@@ -110,6 +110,15 @@ public class MoveValidationServiceBase {
 		return false;
 	}
 	
+	Boolean isValidDiagonalMove(Integer sourceRow, Integer sourceColumn, Integer destinationRow, Integer destinationColumn) {
+		Integer slope = (destinationColumn - sourceColumn) / (destinationRow - sourceRow);
+		return Math.abs(slope) == 1;
+	}
+	
+	Boolean isValidHorizontalOrVerticalMove(Integer sourceRow, Integer sourceColumn, Integer destinationRow, Integer destinationColumn) {
+		return sourceRow == destinationRow || sourceColumn == destinationColumn;
+	}
+	
 	Boolean isValidMove(Integer sourceRow, Integer sourceColumn, Integer destinationRow, Integer destinationColumn) {
 		return false;
 	}
