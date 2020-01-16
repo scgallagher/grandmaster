@@ -1,32 +1,11 @@
 package com.scg.grandmaster.game.logic;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.scg.grandmaster.exception.IllegalMoveException;
-import com.scg.grandmaster.game.entity.Piece;
-
 @Service
-public class KnightMoveValidationService {
-
-	private static final Logger logger = LoggerFactory.getLogger(KnightMoveValidationService.class);
+public class KnightMoveValidationService extends MoveValidationServiceBase {
 	
-	@Autowired
-	private Board board;
-	
-	Boolean isPathBlocked(Integer sourceRow, Integer sourceColumn, Integer destinationRow, Integer destinationColumn) {
-		Piece occupant = board.getPieceAt(destinationRow, destinationColumn);
-		if (occupant == null) {
-			return false;
-		}
-		else {
-			return CommonLogic.isAlly(board.getPieceAt(sourceRow, sourceColumn), occupant);
-		}
-	}
-	
-	Boolean isValidMove(Integer sourceRow, Integer sourceColumn, Integer destinationRow, Integer destinationColumn) {
+	Boolean isValidMoveKnight(Integer sourceRow, Integer sourceColumn, Integer destinationRow, Integer destinationColumn) {
 		/*
 		 *  Valid moves
 		 *  Upright L:
@@ -44,22 +23,13 @@ public class KnightMoveValidationService {
 				(Math.abs(sourceRow - destinationRow) == 1 && Math.abs(sourceColumn - destinationColumn) == 2);
 	}
 	
-	public void validateMove(Integer sourceRow, Integer sourceColumn, Integer destinationRow, Integer destinationColumn) {
-		if (isValidMove(sourceRow, sourceColumn, destinationRow, destinationColumn)) {
-			if (isPathBlocked(sourceRow, sourceColumn, destinationRow, destinationColumn)) {
-				String message = "Knight (" + sourceRow + ", " + sourceColumn + ") to (" + destinationRow + ", " + destinationColumn + ")";
-				logger.error("Illegal Move: " + message);
-				throw new IllegalMoveException(message);
-			}
-			else {
-				logger.debug("Knight: valid move: ({}, {}) to ({}, {})", sourceRow, sourceColumn, destinationRow, destinationColumn);
-			}
+	@Override
+	Boolean isValidMove(Integer sourceRow, Integer sourceColumn, Integer destinationRow, Integer destinationColumn) {
+		if (isValidMoveKnight(sourceRow, sourceColumn, destinationRow, destinationColumn)) {
+			return !isDestinationOccupiedByAlly(sourceRow, sourceColumn, destinationRow, destinationColumn);
 		}
 		else {
-			String message = "Knight (" + sourceRow + ", " + sourceColumn + ") to (" + destinationRow + ", " + destinationColumn + ")";
-			logger.error("Illegal Move: " + message);
-			throw new IllegalMoveException(message);
+			return false;
 		}
 	}
-	
 }
