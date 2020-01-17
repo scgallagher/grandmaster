@@ -10,4 +10,6 @@ import lombok.NoArgsConstructor;
 public class Piece {
 	private Color color;
 	private PieceType pieceType;
+	private String name;
+	private String shortName;
 }

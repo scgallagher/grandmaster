@@ -28,4 +28,23 @@ public class Board {
 		boardGrid[row][column] = null;
 	}
 	
+	public String toString() {
+		StringBuffer sb = new StringBuffer();
+		
+		for (int i = 0; i < MAX_ROW; i++) {
+			sb.append("|");
+			for (int j = 0; j < MAX_COLUMN; j++) {
+				if (boardGrid[i][j] == null) {
+					sb.append("X  ");
+				}
+				else {
+					sb.append(boardGrid[i][j].getShortName());
+				}
+				sb.append("|");
+			}
+			sb.append("\n");
+		}
+		
+		return sb.toString();
+	}
 }

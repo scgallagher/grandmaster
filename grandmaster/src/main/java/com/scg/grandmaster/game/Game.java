@@ -50,49 +50,85 @@ public class Game {
 		Piece rook = new Piece();
 		rook.setPieceType(PieceType.ROOK);
 		rook.setColor(color);
+		setPieceName(rook);
 		board.putPiece(rook, rearLineRow, ROOK_COLUMN_LEFT);
 		
 		Piece knight = new Piece();
 		knight.setPieceType(PieceType.KNIGHT);
 		knight.setColor(color);
+		setPieceName(knight);
 		board.putPiece(knight, rearLineRow, KNIGHT_COLUMN_LEFT);
 		
 		Piece bishop = new Piece();
 		bishop.setPieceType(PieceType.BISHOP);
 		bishop.setColor(color);
+		setPieceName(bishop);
 		board.putPiece(bishop, rearLineRow, BISHOP_COLUMN_LEFT);
 		
 		Piece queen = new Piece();
 		queen.setPieceType(PieceType.QUEEN);
 		queen.setColor(color);
+		setPieceName(queen);
 		board.putPiece(queen, rearLineRow, QUEEN_COLUMN);
 		
 		Piece king = new Piece();
 		king.setPieceType(PieceType.KING);
 		king.setColor(color);
+		setPieceName(king);
 		board.putPiece(king, rearLineRow, KING_COLUMN);
 		
 		bishop = new Piece();
 		bishop.setPieceType(PieceType.BISHOP);
 		bishop.setColor(color);
+		setPieceName(bishop);
 		board.putPiece(bishop, rearLineRow, BISHOP_COLUMN_RIGHT);
 		
 		knight = new Piece();
 		knight.setPieceType(PieceType.KNIGHT);
 		knight.setColor(color);
+		setPieceName(knight);
 		board.putPiece(knight, rearLineRow, KNIGHT_COLUMN_RIGHT);
 		
 		rook = new Piece();
 		rook.setPieceType(PieceType.ROOK);
 		rook.setColor(color);
+		setPieceName(rook);
 		board.putPiece(rook, rearLineRow, ROOK_COLUMN_RIGHT);
 		
 		for (int i = 0; i < MAX_COLUMN; i++) {
 			Piece pawn = new Piece();
 			pawn.setPieceType(PieceType.PAWN);
 			pawn.setColor(color);
+			setPieceName(pawn);
 			board.putPiece(pawn, frontLineRow, i);
 		}
+	}
+	
+	public void setPieceName(Piece piece) {
+		String color = "w";
+		if (piece.getColor() == Color.BLACK) {
+			color = "b";
+		}
+		switch(piece.getPieceType()) {
+		case PAWN:
+			piece.setShortName("p_" + color);
+			break;
+		case ROOK:
+			piece.setShortName("R_" + color);
+			break;
+		case KNIGHT:
+			piece.setShortName("N_" + color);
+			break;
+		case BISHOP:
+			piece.setShortName("B_" + color);
+			break;
+		case QUEEN:
+			piece.setShortName("Q_" + color);
+			break;
+		case KING:
+			piece.setShortName("K_" + color);
+			break;
+	}
 	}
 
 	public void movePiece(Integer sourceRow, Integer sourceColumn, Integer destinationRow, Integer destinationColumn) {
@@ -101,6 +137,8 @@ public class Game {
 		board.removePiece(sourceRow, sourceColumn);
 	}
 	
-	
+	public void printBoard() {
+		System.out.println(board.toString());
+	}
 	
 }
