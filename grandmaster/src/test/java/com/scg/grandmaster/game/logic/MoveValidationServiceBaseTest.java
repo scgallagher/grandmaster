@@ -2,6 +2,7 @@ package com.scg.grandmaster.game.logic;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.junit.Assert.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.when;
@@ -14,6 +15,7 @@ import org.mockito.Spy;
 import org.mockito.junit.MockitoJUnitRunner;
 
 import com.scg.grandmaster.exception.IllegalMoveException;
+import com.scg.grandmaster.game.entity.Color;
 import com.scg.grandmaster.game.entity.Piece;
 
 @RunWith(MockitoJUnitRunner.class)
@@ -25,6 +27,78 @@ public class MoveValidationServiceBaseTest {
 	
 	@Mock
 	Board board;
+	
+	@Test
+	public void isAlly_AllyPiecesReturnsTrue() {
+		Piece piece = new Piece();
+		piece.setColor(Color.WHITE);
+		
+		Boolean result = moveValidationServiceBase.isAlly(piece, piece);
+		
+		assertThat(result).isEqualTo(Boolean.TRUE);
+	}
+	
+	@Test
+	public void isAlly_NonAllyPiecesReturnsFalse() {
+		Piece whitePiece = new Piece();
+		whitePiece.setColor(Color.WHITE);
+		
+		Piece blackPiece = new Piece();
+		blackPiece.setColor(Color.BLACK);
+		
+		Boolean result = moveValidationServiceBase.isAlly(whitePiece, blackPiece);
+		
+		assertThat(result).isEqualTo(Boolean.FALSE);
+	}
+	
+	@Test
+	public void isOpponent_OpponentPiecesReturnsTrue() {
+		doReturn(Boolean.FALSE).when(moveValidationServiceBase).isAlly(any(), any());
+		
+		Boolean result = moveValidationServiceBase.isOpponent(null, null);
+		
+		assertThat(result).isEqualTo(Boolean.TRUE);
+	}
+	
+	@Test
+	public void isOpponent_AllyPiecesReturnsFalse() {
+		doReturn(Boolean.TRUE).when(moveValidationServiceBase).isAlly(any(), any());
+		
+		Boolean result = moveValidationServiceBase.isOpponent(null, null);
+		
+		assertThat(result).isEqualTo(Boolean.FALSE);
+	}
+	
+	@Test
+	public void isCapture_DestinationIsUnoccupiedReturnsFalse() {
+		when(board.getPieceAt(any(), any())).thenReturn(null);
+		
+		Boolean result = moveValidationServiceBase.isCapture(null, null, null, null);
+		
+		assertThat(result).isEqualTo(Boolean.FALSE);
+	}
+	
+	@Test
+	public void isCapture_DestinationIsOccupiedByAllyReturnsFalse() {
+		when(board.getPieceAt(any(), any())).thenReturn(new Piece());
+		
+		doReturn(Boolean.TRUE).when(moveValidationServiceBase).isAlly(any(), any());
+		
+		Boolean result = moveValidationServiceBase.isCapture(null, null, null, null);
+		
+		assertThat(result).isEqualTo(Boolean.FALSE);
+	}
+	
+	@Test
+	public void isCapture_DestinationIsOccupiedByOpponentReturnsTrue() {
+		when(board.getPieceAt(any(), any())).thenReturn(new Piece());
+		
+		doReturn(Boolean.FALSE).when(moveValidationServiceBase).isAlly(any(), any());
+		
+		Boolean result = moveValidationServiceBase.isCapture(null, null, null, null);
+		
+		assertThat(result).isEqualTo(Boolean.TRUE);
+	}
 	
 	@Test
 	public void isDestinationOccupiedByAlly_DestinationIsNotOccupiedReturnsFalse() {
@@ -263,6 +337,13 @@ public class MoveValidationServiceBaseTest {
 	@Test
 	public void isValidHorizontalOrVerticalMove_NotValidVerticalOrHorizontalMoveReturnsFalse() {
 		Boolean result = moveValidationServiceBase.isValidHorizontalOrVerticalMove(0, 0, 3, 3);
+		
+		assertThat(result).isEqualTo(Boolean.FALSE);
+	}
+	
+	@Test
+	public void isValidMove_ReturnsFalse() {
+		Boolean result = moveValidationServiceBase.isValidMove(null, null, null, null);
 		
 		assertThat(result).isEqualTo(Boolean.FALSE);
 	}

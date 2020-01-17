@@ -31,6 +31,12 @@ public class MoveValidationService {
 	@Autowired
 	private BishopMoveValidationService bishopMoveValidationService;
 	
+	@Autowired
+	private QueenMoveValidationService queenMoveValidationService;
+	
+	@Autowired
+	private KingMoveValidationService kingMoveValidationService;
+	
 	Boolean isValueOutOfBounds(Integer value) {
 		return value < 0 || value > 7;
 	}
@@ -60,20 +66,11 @@ public class MoveValidationService {
 				bishopMoveValidationService.validateMove(sourceRow, sourceColumn, destinationRow, destinationColumn);
 				break;
 			case QUEEN:
-				validateQueenMove(sourceRow, sourceColumn, destinationRow, destinationColumn);
+				queenMoveValidationService.validateMove(sourceRow, sourceColumn, destinationRow, destinationColumn);
 				break;
 			case KING:
-				validateKingMove(sourceRow, sourceColumn, destinationRow, destinationColumn);
+				kingMoveValidationService.validateMove(sourceRow, sourceColumn, destinationRow, destinationColumn);
 				break;
 		}
 	}
-	
-	public void validateQueenMove(Integer sourceRow, Integer sourceColumn, Integer destinationRow, Integer destinationColumn) {
-		throw new IllegalMoveException("");
-	}
-	
-	public void validateKingMove(Integer sourceRow, Integer sourceColumn, Integer destinationRow, Integer destinationColumn) {
-		throw new IllegalMoveException("");
-	}
-
 }

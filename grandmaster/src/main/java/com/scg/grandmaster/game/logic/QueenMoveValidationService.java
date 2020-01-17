@@ -1,5 +1,8 @@
 package com.scg.grandmaster.game.logic;
 
+import org.springframework.stereotype.Service;
+
+@Service
 public class QueenMoveValidationService extends MoveValidationServiceBase {
 
 	@Override

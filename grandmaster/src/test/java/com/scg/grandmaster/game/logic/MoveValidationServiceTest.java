@@ -42,6 +42,12 @@ public class MoveValidationServiceTest {
 	@Mock
 	BishopMoveValidationService bishopMoveValidationService;
 	
+	@Mock
+	QueenMoveValidationService queenMoveValidationService;
+	
+	@Mock
+	KingMoveValidationService kingMoveValidationService;
+	
 	@Test
 	public void isValueOutOfBounds_NegativeValueReturnsTrue() {
 		Boolean result = moveValidationService.isValueOutOfBounds(-1);
@@ -216,7 +222,7 @@ public class MoveValidationServiceTest {
 		
 		when(board.getPieceAt(any(), any())).thenReturn(queen);
 		
-		doThrow(new IllegalMoveException("")).when(moveValidationService).validateQueenMove(any(), any(), any(), any());
+		doThrow(new IllegalMoveException("")).when(queenMoveValidationService).validateMove(any(), any(), any(), any());
 		
 		assertThatThrownBy(() -> moveValidationService.validateMove(0, 0, 0, 0)).isInstanceOf(IllegalMoveException.class);
 	}
@@ -228,11 +234,11 @@ public class MoveValidationServiceTest {
 		
 		when(board.getPieceAt(any(), any())).thenReturn(queen);
 		
-		doNothing().when(moveValidationService).validateQueenMove(any(), any(), any(), any());
+		doNothing().when(queenMoveValidationService).validateMove(any(), any(), any(), any());
 		
 		moveValidationService.validateMove(0, 0, 0, 0);
 		
-		verify(moveValidationService).validateQueenMove(any(), any(), any(), any());
+		verify(queenMoveValidationService).validateMove(any(), any(), any(), any());
 	}
 	
 	@Test
@@ -242,7 +248,7 @@ public class MoveValidationServiceTest {
 		
 		when(board.getPieceAt(any(), any())).thenReturn(king);
 		
-		doThrow(new IllegalMoveException("")).when(moveValidationService).validateKingMove(any(), any(), any(), any());
+		doThrow(new IllegalMoveException("")).when(kingMoveValidationService).validateMove(any(), any(), any(), any());
 		
 		assertThatThrownBy(() -> moveValidationService.validateMove(0, 0, 0, 0)).isInstanceOf(IllegalMoveException.class);
 	}
@@ -254,11 +260,11 @@ public class MoveValidationServiceTest {
 		
 		when(board.getPieceAt(any(), any())).thenReturn(king);
 		
-		doNothing().when(moveValidationService).validateKingMove(any(), any(), any(), any());
+		doNothing().when(kingMoveValidationService).validateMove(any(), any(), any(), any());
 		
 		moveValidationService.validateMove(0, 0, 0, 0);
 		
-		verify(moveValidationService).validateKingMove(any(), any(), any(), any());
+		verify(kingMoveValidationService).validateMove(any(), any(), any(), any());
 	}
 	
 }

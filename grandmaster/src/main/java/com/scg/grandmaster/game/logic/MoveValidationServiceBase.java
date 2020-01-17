@@ -22,6 +22,15 @@ public class MoveValidationServiceBase {
 		return !isAlly(pieceOne, pieceTwo);
 	}
 	
+	public Boolean isCapture(Integer sourceRow, Integer sourceColumn, Integer destinationRow, Integer destinationColumn) {
+		Piece occupant = board.getPieceAt(destinationRow, destinationColumn);
+		if (occupant != null && !this.isAlly(board.getPieceAt(sourceRow, sourceColumn), occupant)) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+	
 	Boolean isDestinationOccupiedByAlly(Integer sourceRow, Integer sourceColumn, Integer destinationRow, Integer destinationColumn) {
 		Piece occupant = board.getPieceAt(destinationRow, destinationColumn);
 		if (occupant != null && this.isAlly(board.getPieceAt(sourceRow, sourceColumn), occupant)) {
