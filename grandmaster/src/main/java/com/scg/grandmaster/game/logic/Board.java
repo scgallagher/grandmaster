@@ -28,10 +28,28 @@ public class Board {
 		boardGrid[row][column] = null;
 	}
 	
+	public String createColumnLabels() {
+		StringBuffer sb = new StringBuffer();
+		
+		sb.append(" |");
+		for (int i = 0; i < MAX_COLUMN; i++) {
+			sb.append(" ");
+			sb.append(i);
+			sb.append(" ");
+			sb.append("|");
+		}
+		sb.append("\n");
+		
+		return sb.toString();
+	}
+	
 	public String toString() {
 		StringBuffer sb = new StringBuffer();
 		
+		sb.append(createColumnLabels());
+		
 		for (int i = 0; i < MAX_ROW; i++) {
+			sb.append(i);
 			sb.append("|");
 			for (int j = 0; j < MAX_COLUMN; j++) {
 				if (boardGrid[i][j] == null) {
@@ -42,8 +60,11 @@ public class Board {
 				}
 				sb.append("|");
 			}
+			sb.append(i);
 			sb.append("\n");
 		}
+		
+		sb.append(createColumnLabels());
 		
 		return sb.toString();
 	}

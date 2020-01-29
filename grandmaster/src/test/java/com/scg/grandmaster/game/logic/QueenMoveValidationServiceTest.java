@@ -22,12 +22,8 @@ public class QueenMoveValidationServiceTest {
 	Board board;
 	
 	@Test
-	public void isValidMove_ValidDiagonalMovePathIsNotBlockedDestinationIsNotOccupiedReturnsTrue() {
-		doReturn(Boolean.TRUE).when(queenMoveValidationService).isValidDiagonalMove(any(), any(), any(), any());
-		
-		doReturn(Boolean.FALSE).when(queenMoveValidationService).isPathBlockedDiagonal(any(), any(), any(), any());
-		
-		doReturn(Boolean.FALSE).when(queenMoveValidationService).isPathBlockedVertical(any(), any(), any(), any());
+	public void isValidMove_ValidHorizontalMovePathIsNotBlockedDestinationIsNotOccupiedReturnsTrue() {
+		doReturn(Boolean.TRUE).when(queenMoveValidationService).isValidHorizontalMove(any(), any());
 		
 		doReturn(Boolean.FALSE).when(queenMoveValidationService).isPathBlockedHorizontal(any(), any(), any(), any());
 		
@@ -39,16 +35,14 @@ public class QueenMoveValidationServiceTest {
 	}
 	
 	@Test
-	public void isValidMove_ValidHorizontalOrVerticalMovePathIsNotBlockedDestinationIsNotOccupiedReturnsTrue() {
-		doReturn(Boolean.FALSE).when(queenMoveValidationService).isValidDiagonalMove(any(), any(), any(), any());
+	public void isValidMove_ValidHorizontalMovePathIsBlockedValidVerticalMoveDestinationIsNotOccupiedReturnsTrue() {
+		doReturn(Boolean.TRUE).when(queenMoveValidationService).isValidHorizontalMove(any(), any());
 		
-		doReturn(Boolean.TRUE).when(queenMoveValidationService).isValidHorizontalOrVerticalMove(any(), any(), any(), any());
+		doReturn(Boolean.TRUE).when(queenMoveValidationService).isPathBlockedHorizontal(any(), any(), any(), any());
 		
-		doReturn(Boolean.FALSE).when(queenMoveValidationService).isPathBlockedDiagonal(any(), any(), any(), any());
+		doReturn(Boolean.TRUE).when(queenMoveValidationService).isValidVerticalMove(any(), any());
 		
 		doReturn(Boolean.FALSE).when(queenMoveValidationService).isPathBlockedVertical(any(), any(), any(), any());
-		
-		doReturn(Boolean.FALSE).when(queenMoveValidationService).isPathBlockedHorizontal(any(), any(), any(), any());
 		
 		doReturn(Boolean.FALSE).when(queenMoveValidationService).isDestinationOccupiedByAlly(any(), any(), any(), any());
 		
@@ -56,16 +50,68 @@ public class QueenMoveValidationServiceTest {
 		
 		assertThat(result).isEqualTo(Boolean.TRUE);
 	}
+	
+	@Test
+	public void isValidMove_ValidVerticalMovePathIsNotBlockedDestinationIsNotOccupiedReturnsTrue() {
+		doReturn(Boolean.FALSE).when(queenMoveValidationService).isValidHorizontalMove(any(), any());
+		
+		doReturn(Boolean.TRUE).when(queenMoveValidationService).isValidVerticalMove(any(), any());
+		
+		doReturn(Boolean.FALSE).when(queenMoveValidationService).isPathBlockedVertical(any(), any(), any(), any());
+		
+		doReturn(Boolean.FALSE).when(queenMoveValidationService).isDestinationOccupiedByAlly(any(), any(), any(), any());
+		
+		Boolean result = queenMoveValidationService.isValidMove(null, null, null, null);
+		
+		assertThat(result).isEqualTo(Boolean.TRUE);
+	}
+	
+	@Test
+	public void isValidMove_ValidVerticalMovePathIsBlockedValidDiagonalMoveDestinationIsNotOccupiedReturnsTrue() {
+		doReturn(Boolean.FALSE).when(queenMoveValidationService).isValidHorizontalMove(any(), any());
+		
+		doReturn(Boolean.TRUE).when(queenMoveValidationService).isValidVerticalMove(any(), any());
+		
+		doReturn(Boolean.TRUE).when(queenMoveValidationService).isPathBlockedVertical(any(), any(), any(), any());
+		
+		doReturn(Boolean.TRUE).when(queenMoveValidationService).isValidDiagonalMove(any(), any(), any(), any());
+		
+		doReturn(Boolean.FALSE).when(queenMoveValidationService).isPathBlockedDiagonal(any(), any(), any(), any());
+		
+		doReturn(Boolean.FALSE).when(queenMoveValidationService).isDestinationOccupiedByAlly(any(), any(), any(), any());
+		
+		Boolean result = queenMoveValidationService.isValidMove(null, null, null, null);
+		
+		assertThat(result).isEqualTo(Boolean.TRUE);
+	}
+	
+	@Test
+	public void isValidMove_ValidDiagonalMovePathIsNotBlockedDestinationIsNotOccupiedReturnsTrue() {
+		doReturn(Boolean.FALSE).when(queenMoveValidationService).isValidHorizontalMove(any(), any());
+		
+		doReturn(Boolean.FALSE).when(queenMoveValidationService).isValidVerticalMove(any(), any());
+		
+		doReturn(Boolean.TRUE).when(queenMoveValidationService).isValidDiagonalMove(any(), any(), any(), any());
+		
+		doReturn(Boolean.FALSE).when(queenMoveValidationService).isPathBlockedDiagonal(any(), any(), any(), any());
+		
+		doReturn(Boolean.FALSE).when(queenMoveValidationService).isDestinationOccupiedByAlly(any(), any(), any(), any());
+		
+		Boolean result = queenMoveValidationService.isValidMove(null, null, null, null);
+		
+		assertThat(result).isEqualTo(Boolean.TRUE);
+	}
+	
 	
 	@Test
 	public void isValidMove_ValidDiagonalMovePathIsNotBlockedDestinationIsOccupiedReturnsFalse() {
+		doReturn(Boolean.FALSE).when(queenMoveValidationService).isValidHorizontalMove(any(), any());
+		
+		doReturn(Boolean.FALSE).when(queenMoveValidationService).isValidVerticalMove(any(), any());
+		
 		doReturn(Boolean.TRUE).when(queenMoveValidationService).isValidDiagonalMove(any(), any(), any(), any());
 		
 		doReturn(Boolean.FALSE).when(queenMoveValidationService).isPathBlockedDiagonal(any(), any(), any(), any());
-		
-		doReturn(Boolean.FALSE).when(queenMoveValidationService).isPathBlockedVertical(any(), any(), any(), any());
-		
-		doReturn(Boolean.FALSE).when(queenMoveValidationService).isPathBlockedHorizontal(any(), any(), any(), any());
 		
 		doReturn(Boolean.TRUE).when(queenMoveValidationService).isDestinationOccupiedByAlly(any(), any(), any(), any());
 		
@@ -75,35 +121,11 @@ public class QueenMoveValidationServiceTest {
 	}
 	
 	@Test
-	public void isValidMove_ValidDiagonalMovePathIsBlockedHorizontallyReturnsFalse() {
-		doReturn(Boolean.TRUE).when(queenMoveValidationService).isValidDiagonalMove(any(), any(), any(), any());
-		
-		doReturn(Boolean.FALSE).when(queenMoveValidationService).isPathBlockedDiagonal(any(), any(), any(), any());
-		
-		doReturn(Boolean.FALSE).when(queenMoveValidationService).isPathBlockedVertical(any(), any(), any(), any());
-		
-		doReturn(Boolean.TRUE).when(queenMoveValidationService).isPathBlockedHorizontal(any(), any(), any(), any());
-		
-		Boolean result = queenMoveValidationService.isValidMove(null, null, null, null);
-		
-		assertThat(result).isEqualTo(Boolean.FALSE);
-	}
-	
-	@Test
-	public void isValidMove_ValidDiagonalMovePathIsBlockedVeritcallyReturnsFalse() {
-		doReturn(Boolean.TRUE).when(queenMoveValidationService).isValidDiagonalMove(any(), any(), any(), any());
-		
-		doReturn(Boolean.FALSE).when(queenMoveValidationService).isPathBlockedDiagonal(any(), any(), any(), any());
-		
-		doReturn(Boolean.TRUE).when(queenMoveValidationService).isPathBlockedVertical(any(), any(), any(), any());
-		
-		Boolean result = queenMoveValidationService.isValidMove(null, null, null, null);
-		
-		assertThat(result).isEqualTo(Boolean.FALSE);
-	}
-	
-	@Test
 	public void isValidMove_ValidDiagonalMovePathIsBlockedDiagonallyReturnsFalse() {
+		doReturn(Boolean.FALSE).when(queenMoveValidationService).isValidHorizontalMove(any(), any());
+		
+		doReturn(Boolean.FALSE).when(queenMoveValidationService).isValidVerticalMove(any(), any());
+		
 		doReturn(Boolean.TRUE).when(queenMoveValidationService).isValidDiagonalMove(any(), any(), any(), any());
 		
 		doReturn(Boolean.TRUE).when(queenMoveValidationService).isPathBlockedDiagonal(any(), any(), any(), any());
@@ -115,9 +137,11 @@ public class QueenMoveValidationServiceTest {
 	
 	@Test
 	public void isValidMove_InvalidDiagonalMoveReturnsFalse() {
-		doReturn(Boolean.FALSE).when(queenMoveValidationService).isValidDiagonalMove(any(), any(), any(), any());
+		doReturn(Boolean.FALSE).when(queenMoveValidationService).isValidHorizontalMove(any(), any());
 		
-		doReturn(Boolean.FALSE).when(queenMoveValidationService).isValidHorizontalOrVerticalMove(any(), any(), any(), any());
+		doReturn(Boolean.FALSE).when(queenMoveValidationService).isValidVerticalMove(any(), any());
+		
+		doReturn(Boolean.FALSE).when(queenMoveValidationService).isValidDiagonalMove(any(), any(), any(), any());
 		
 		Boolean result = queenMoveValidationService.isValidMove(null, null, null, null);
 		

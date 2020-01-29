@@ -152,6 +152,13 @@ public class GameTest {
 	}
 	
 	@Test
+	public void movePiece_MoveObjectPieceIsMovedSuccessfully() {
+		game.movePiece(new Move());
+		
+		verify(game).movePiece(any(), any(), any(), any());
+	}
+	
+	@Test
 	public void movePiece_PieceIsMovedSuccessfully() {
 		Integer sourceRow = 1;
 		Integer sourceColumn = 0;

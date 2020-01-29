@@ -124,8 +124,13 @@ public class MoveValidationServiceBase {
 		return Math.abs(slope) == 1;
 	}
 	
-	Boolean isValidHorizontalOrVerticalMove(Integer sourceRow, Integer sourceColumn, Integer destinationRow, Integer destinationColumn) {
-		return sourceRow == destinationRow || sourceColumn == destinationColumn;
+	
+	Boolean isValidHorizontalMove(Integer sourceColumn, Integer destinationColumn) {
+		return sourceColumn == destinationColumn;
+	}
+	
+	Boolean isValidVerticalMove(Integer sourceRow, Integer destinationRow) {
+		return sourceRow == destinationRow;
 	}
 	
 	Boolean isValidMove(Integer sourceRow, Integer sourceColumn, Integer destinationRow, Integer destinationColumn) {

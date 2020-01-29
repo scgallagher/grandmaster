@@ -2,7 +2,6 @@ package com.scg.grandmaster.game.logic;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
-import static org.junit.Assert.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.when;
@@ -321,22 +320,29 @@ public class MoveValidationServiceBaseTest {
 	}
 	
 	@Test
-	public void isValidHorizontalOrVerticalMove_ValidVerticalMoveReturnsTrue() {
-		Boolean result = moveValidationServiceBase.isValidHorizontalOrVerticalMove(0, 0, 3, 0);
+	public void isValidHorizontalMove_ValidHorizontalMoveReturnsTrue() {
+		Boolean result = moveValidationServiceBase.isValidHorizontalMove(0, 0);
 		
 		assertThat(result).isEqualTo(Boolean.TRUE);
 	}
 	
 	@Test
-	public void isValidHorizontalOrVerticalMove_ValidHorizontalMoveReturnsTrue() {
-		Boolean result = moveValidationServiceBase.isValidHorizontalOrVerticalMove(0, 0, 0, 3);
+	public void isValidHorizontalMove_InvalidHorizontalMoveReturnsFalse() {
+		Boolean result = moveValidationServiceBase.isValidHorizontalMove(0, 1);
+		
+		assertThat(result).isEqualTo(Boolean.FALSE);
+	}
+	
+	@Test
+	public void isValidVerticalMove_ValidVerticalMoveReturnsTrue() {
+		Boolean result = moveValidationServiceBase.isValidVerticalMove(0, 0);
 		
 		assertThat(result).isEqualTo(Boolean.TRUE);
 	}
 	
 	@Test
-	public void isValidHorizontalOrVerticalMove_NotValidVerticalOrHorizontalMoveReturnsFalse() {
-		Boolean result = moveValidationServiceBase.isValidHorizontalOrVerticalMove(0, 0, 3, 3);
+	public void isValidVerticalMove_InvalidVerticalMoveReturnsFalse() {
+		Boolean result = moveValidationServiceBase.isValidVerticalMove(0, 1);
 		
 		assertThat(result).isEqualTo(Boolean.FALSE);
 	}
