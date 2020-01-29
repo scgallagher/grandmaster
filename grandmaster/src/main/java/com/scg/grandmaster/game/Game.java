@@ -37,7 +37,7 @@ public class Game {
 		initializeForColor(Color.BLACK);
 	}
 
-	private void initializeForColor(Color color) {
+	public void initializeForColor(Color color) {
 		
 		Integer rearLineRow = 0;
 		Integer frontLineRow = 1;
@@ -129,6 +129,10 @@ public class Game {
 			piece.setShortName("K_" + color);
 			break;
 	}
+	}
+	
+	public void movePiece(Move move) {
+		movePiece(move.getSourceRow(), move.getSourceColumn(), move.getDestinationRow(), move.getDestinationColumn());
 	}
 
 	public void movePiece(Integer sourceRow, Integer sourceColumn, Integer destinationRow, Integer destinationColumn) {
