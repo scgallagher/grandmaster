@@ -1,5 +1,6 @@
 package com.scg.grandmaster.game;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.eq;
@@ -20,6 +21,7 @@ import com.scg.grandmaster.game.entity.Piece;
 import com.scg.grandmaster.game.entity.PieceType;
 import com.scg.grandmaster.game.logic.Board;
 import com.scg.grandmaster.game.logic.MoveValidationService;
+import com.scg.grandmaster.to.GameState;
 
 @RunWith(MockitoJUnitRunner.class)
 public class GameTest {
@@ -177,6 +179,13 @@ public class GameTest {
 		doThrow(new IllegalMoveException("")).when(moveValidationService).validateMove(any(), any(), any(), any());
 		
 		assertThatThrownBy(() -> game.movePiece(1, 0, 3, 0)).isInstanceOf(IllegalMoveException.class);
+	}
+	
+	@Test
+	public void getState_ReturnsGameState() {
+		GameState result = game.getState();
+		
+		assertThat(result).isNotNull();
 	}
 	
 }

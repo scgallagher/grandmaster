@@ -8,7 +8,7 @@ import com.scg.grandmaster.game.entity.Piece;
 import com.scg.grandmaster.game.entity.PieceType;
 import com.scg.grandmaster.game.logic.Board;
 import com.scg.grandmaster.game.logic.MoveValidationService;
-import com.scg.grandmaster.controller.GlobalExceptionHandler.IllegalMoveException;
+import com.scg.grandmaster.to.GameState;
 
 import lombok.Getter;
 
@@ -142,8 +142,10 @@ public class Game {
 		board.removePiece(sourceRow, sourceColumn);
 	}
 	
-	public void printBoard() {
-		System.out.println(board.toString());
+	public GameState getState() {
+		GameState gameState = new GameState();
+		gameState.setBoard(board.get());
+		return gameState;
 	}
 	
 }

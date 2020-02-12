@@ -30,4 +30,10 @@ public class BoardTest {
 	public void removePiece_PieceIsRemoved() {
 		board.removePiece(0, 0);
 	}
+	
+	@Test
+	public void get_ReturnsBoard() {
+		Piece[][] boardArray = board.get();
+		assertThat(boardArray).isNotNull();
+	}
 }
