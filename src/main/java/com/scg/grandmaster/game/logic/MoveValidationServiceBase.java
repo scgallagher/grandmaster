@@ -4,7 +4,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.scg.grandmaster.exception.IllegalMoveException;
+import com.scg.grandmaster.controller.GlobalExceptionHandler.IllegalMoveException;
 import com.scg.grandmaster.game.entity.Piece;
 
 public class MoveValidationServiceBase {

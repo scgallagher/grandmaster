@@ -5,7 +5,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.scg.grandmaster.exception.IllegalMoveException;
+import com.scg.grandmaster.controller.GlobalExceptionHandler.IllegalMoveException;
 import com.scg.grandmaster.game.entity.Piece;
 
 import lombok.NoArgsConstructor;
@@ -52,6 +52,9 @@ public class MoveValidationService {
 		}
 		
 		Piece piece = board.getPieceAt(sourceRow, sourceColumn);
+		if (piece == null) {
+			throw new IllegalMoveException("There is no piece at this location");
+		}
 		switch(piece.getPieceType()) {
 			case PAWN:
 				pawnMoveValidationService.validateMove(sourceRow, sourceColumn, destinationRow, destinationColumn);

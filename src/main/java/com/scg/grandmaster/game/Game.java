@@ -8,6 +8,7 @@ import com.scg.grandmaster.game.entity.Piece;
 import com.scg.grandmaster.game.entity.PieceType;
 import com.scg.grandmaster.game.logic.Board;
 import com.scg.grandmaster.game.logic.MoveValidationService;
+import com.scg.grandmaster.controller.GlobalExceptionHandler.IllegalMoveException;
 
 import lombok.Getter;
 

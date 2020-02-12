@@ -16,7 +16,7 @@ import org.mockito.Mock;
 import org.mockito.Spy;
 import org.mockito.junit.MockitoJUnitRunner;
 
-import com.scg.grandmaster.exception.IllegalMoveException;
+import com.scg.grandmaster.controller.GlobalExceptionHandler.IllegalMoveException;
 import com.scg.grandmaster.game.entity.Piece;
 import com.scg.grandmaster.game.entity.PieceType;
 
