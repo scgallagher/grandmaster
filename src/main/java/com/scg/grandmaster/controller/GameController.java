@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.scg.grandmaster.game.Game;
 import com.scg.grandmaster.game.Move;
 
+import io.swagger.annotations.ApiOperation;
+
 @RestController
 public class GameController {
 	
@@ -20,6 +22,7 @@ public class GameController {
 	@Autowired
 	Game game;
 	
+	@ApiOperation(value = "Initialize the game", notes = "Initialize the game", response = Void.class)
 	@GetMapping(value = "initialize")
 	public ResponseEntity<Void> initialize() {
 		log.info("Initializing game");
@@ -27,6 +30,7 @@ public class GameController {
 		return ResponseEntity.ok().build();
 	}
 	
+	@ApiOperation(value = "Make a move", notes = "Make a move", response = Void.class)
 	@PostMapping(value = "move")
 	public ResponseEntity<Void> move(@RequestBody Move move) {
 		log.info("Received move request: {}", move);

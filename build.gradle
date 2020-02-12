@@ -31,6 +31,8 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'
 	annotationProcessor 'org.projectlombok:lombok'
+	compile group: 'io.springfox', name: 'springfox-swagger2', version: '2.9.2'
+	compile group: 'io.springfox', name: 'springfox-swagger-ui', version: '2.9.2'
 	testCompile group: 'org.springframework.boot', name: 'spring-boot-starter-test', version: '2.2.2.RELEASE'
 	testCompile group: 'org.powermock', name: 'powermock-module-junit4', version: '2.0.4'
 	testCompile group: 'org.powermock', name: 'powermock-api-mockito2', version: '2.0.4'
