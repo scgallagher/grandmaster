@@ -3,3 +3,10 @@ server:
 logging:
   level:
     root: info
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/grandmaster
+    username: postgres
+    password: postgres
+    
+    
