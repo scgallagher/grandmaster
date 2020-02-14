@@ -15,7 +15,7 @@ import org.springframework.http.ResponseEntity;
 
 import com.scg.grandmaster.game.Game;
 import com.scg.grandmaster.game.Move;
-import com.scg.grandmaster.to.GameState;
+import com.scg.grandmaster.to.GameStateTo;
 
 @RunWith(MockitoJUnitRunner.class)
 public class GameControllerTest {
@@ -46,9 +46,9 @@ public class GameControllerTest {
 	
 	@Test
 	public void state_Success() {
-		when(game.getState()).thenReturn(new GameState());
+		when(game.getState()).thenReturn(new GameStateTo());
 		
-		ResponseEntity<GameState> result = gameController.state();
+		ResponseEntity<GameStateTo> result = gameController.state();
 		
 		assertThat(result.getStatusCode()).isEqualTo(HttpStatus.OK);
 	}

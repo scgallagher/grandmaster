@@ -8,7 +8,7 @@ import com.scg.grandmaster.game.entity.Piece;
 import com.scg.grandmaster.game.entity.PieceType;
 import com.scg.grandmaster.game.logic.Board;
 import com.scg.grandmaster.game.logic.MoveValidationService;
-import com.scg.grandmaster.to.GameState;
+import com.scg.grandmaster.to.GameStateTo;
 
 import lombok.Getter;
 
@@ -142,8 +142,8 @@ public class Game {
 		board.removePiece(sourceRow, sourceColumn);
 	}
 	
-	public GameState getState() {
-		GameState gameState = new GameState();
+	public GameStateTo getState() {
+		GameStateTo gameState = new GameStateTo();
 		gameState.setBoard(board.get());
 		return gameState;
 	}

@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.scg.grandmaster.game.Game;
 import com.scg.grandmaster.game.Move;
-import com.scg.grandmaster.to.GameState;
+import com.scg.grandmaster.to.GameStateTo;
 
 import io.swagger.annotations.ApiOperation;
 
@@ -41,9 +41,9 @@ public class GameController {
 		return ResponseEntity.ok().build();
 	}
 	
-	@ApiOperation(value = "Get the current game state", notes = "Get the current game state", response = GameState.class)
+	@ApiOperation(value = "Get the current game state", notes = "Get the current game state", response = GameStateTo.class)
 	@GetMapping("/state")
-	public ResponseEntity<GameState> state() {
+	public ResponseEntity<GameStateTo> state() {
 		log.info("Received request to retreive game state");
 		return ResponseEntity.ok(game.getState());
 	}

@@ -5,6 +5,6 @@ import com.scg.grandmaster.game.entity.Piece;
 import lombok.Data;
 
 @Data
-public class GameState {
+public class GameStateTo {
 	private Piece[][] board;
 }

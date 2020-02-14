@@ -21,7 +21,7 @@ import com.scg.grandmaster.game.entity.Piece;
 import com.scg.grandmaster.game.entity.PieceType;
 import com.scg.grandmaster.game.logic.Board;
 import com.scg.grandmaster.game.logic.MoveValidationService;
-import com.scg.grandmaster.to.GameState;
+import com.scg.grandmaster.to.GameStateTo;
 
 @RunWith(MockitoJUnitRunner.class)
 public class GameTest {
@@ -183,7 +183,7 @@ public class GameTest {
 	
 	@Test
 	public void getState_ReturnsGameState() {
-		GameState result = game.getState();
+		GameStateTo result = game.getState();
 		
 		assertThat(result).isNotNull();
 	}
