@@ -8,10 +8,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.scg.grandmaster.entity.GameState;
 import com.scg.grandmaster.game.Game;
 import com.scg.grandmaster.game.Move;
+import com.scg.grandmaster.service.GameStateService;
 import com.scg.grandmaster.to.GameStateTo;
 
 import io.swagger.annotations.ApiOperation;
@@ -24,6 +27,9 @@ public class GameController {
 
 	@Autowired
 	Game game;
+	
+	@Autowired
+	GameStateService gameStateService;
 	
 	@ApiOperation(value = "Initialize the game", notes = "Initialize the game", response = Void.class)
 	@GetMapping("/initialize")
@@ -41,11 +47,11 @@ public class GameController {
 		return ResponseEntity.ok().build();
 	}
 	
-	@ApiOperation(value = "Get the current game state", notes = "Get the current game state", response = GameStateTo.class)
+	@ApiOperation(value = "Get the current game state", notes = "Get the current game state", response = GameState.class)
 	@GetMapping("/state")
-	public ResponseEntity<GameStateTo> state() {
+	public ResponseEntity<GameState> getState(@RequestParam("id") Integer id) {
 		log.info("Received request to retreive game state");
-		return ResponseEntity.ok(game.getState());
+		return ResponseEntity.ok(gameStateService.getGameStateById(id));
 	}
 	
 }
