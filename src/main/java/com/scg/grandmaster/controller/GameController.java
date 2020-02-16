@@ -1,5 +1,7 @@
 package com.scg.grandmaster.controller;
 
+import java.net.URI;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.util.UriComponents;
+import org.springframework.web.util.UriComponentsBuilder;
 
 import com.scg.grandmaster.entity.GameState;
 import com.scg.grandmaster.game.Game;
@@ -35,8 +39,10 @@ public class GameController {
 	@GetMapping("/initialize")
 	public ResponseEntity<Void> initialize() {
 		log.info("Initializing game");
-		game.initialize();
-		return ResponseEntity.ok().build();
+		//game.initialize();
+		Integer createdId = gameStateService.initializeGameState();
+		UriComponents uriComponents = UriComponentsBuilder.newInstance().scheme("http").host("").path("/state").queryParam("id", createdId).build();
+		return ResponseEntity.created(uriComponents.toUri()).build();
 	}
 	
 	@ApiOperation(value = "Make a move", notes = "Make a move", response = Void.class)

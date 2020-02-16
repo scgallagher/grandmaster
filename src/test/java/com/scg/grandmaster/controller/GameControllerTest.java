@@ -13,8 +13,10 @@ import org.mockito.junit.MockitoJUnitRunner;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
+import com.scg.grandmaster.entity.GameState;
 import com.scg.grandmaster.game.Game;
 import com.scg.grandmaster.game.Move;
+import com.scg.grandmaster.service.GameStateService;
 import com.scg.grandmaster.to.GameStateTo;
 
 @RunWith(MockitoJUnitRunner.class)
@@ -23,16 +25,19 @@ public class GameControllerTest {
 	@Mock
 	private Game game;
 	
+	@Mock
+	private GameStateService gameStateService;
+	
 	@InjectMocks
 	private GameController gameController;
 	
 	@Test
 	public void initialize_Success() {
-		doNothing().when(game).initialize();
+		when(gameStateService.initializeGameState()).thenReturn(0);
 		
 		ResponseEntity<Void> result = gameController.initialize();
 		
-		assertThat(result.getStatusCode()).isEqualTo(HttpStatus.OK);
+		assertThat(result.getStatusCode()).isEqualTo(HttpStatus.CREATED);
 	}
 	
 	@Test
@@ -46,9 +51,9 @@ public class GameControllerTest {
 	
 	@Test
 	public void state_Success() {
-		when(game.getState()).thenReturn(new GameStateTo());
+		when(gameStateService.getGameStateById(any())).thenReturn(new GameState());
 		
-		ResponseEntity<GameStateTo> result = gameController.state();
+		ResponseEntity<GameState> result = gameController.getState(null);
 		
 		assertThat(result.getStatusCode()).isEqualTo(HttpStatus.OK);
 	}
