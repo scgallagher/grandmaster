@@ -1,4 +1,5 @@
-CREATE TABLE game_state (
+CREATE TABLE game_state_det (
 	id SERIAL NOT NULL PRIMARY KEY,
 	state VARCHAR NOT NULL
 );
+

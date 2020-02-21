@@ -2,6 +2,7 @@ plugins {
 	id 'org.springframework.boot' version '2.0.6.RELEASE'
 	id 'io.spring.dependency-management' version '1.0.8.RELEASE'
 	id 'java'
+	id 'org.flywaydb.flyway' version '6.2.4'
 }
 
 apply plugin: 'java'
@@ -20,6 +21,12 @@ configurations {
 	compileOnly {
 		extendsFrom annotationProcessor
 	}
+}
+
+flyway {
+	url = 'jdbc:postgresql://localhost:5432/grandmaster'
+	user = 'postgres'
+	password = 'postgres'
 }
 
 repositories {
