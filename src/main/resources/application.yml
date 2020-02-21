@@ -7,8 +7,8 @@ spring:
   datasource:
     driver-class-name: org.postgresql.Driver
     url: jdbc:postgresql://localhost:5432/grandmaster
-    username: postgres
-    password: postgres
+    username: gm_client
+    password: grandmaster
   jpa:
     database-platform: org.hibernate.dialect.PostgreSQLDialect
     show-sql: false
@@ -18,6 +18,8 @@ spring:
     baseline-on-migrate: false
     locations: classpath:db/migration
     url: jdbc:postgresql://localhost:5432/grandmaster
-    user: postgres
-    password: postgres
+    user: gm_client
+    password: grandmaster
+    schemas:
+    - "grandmaster"
     

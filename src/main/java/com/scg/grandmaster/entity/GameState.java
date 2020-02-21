@@ -15,7 +15,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity(name = "GameState")
-@Table(name = "game_state")
+@Table(name = "game_state", schema = "grandmaster")
 public class GameState {
 
 	@Id

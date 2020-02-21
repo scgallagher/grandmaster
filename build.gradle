@@ -25,8 +25,9 @@ configurations {
 
 flyway {
 	url = 'jdbc:postgresql://localhost:5432/grandmaster'
-	user = 'postgres'
-	password = 'postgres'
+	user = 'gm_client'
+	password = 'grandmaster'
+	schemas = ['grandmaster']
 }
 
 repositories {
