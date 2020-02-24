@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.rest.webmvc.ResourceNotFoundException;
 import org.springframework.stereotype.Service;
 
-import com.scg.grandmaster.controller.GameController;
 import com.scg.grandmaster.entity.GameState;
 import com.scg.grandmaster.repository.GameStateRepository;
 
@@ -28,7 +27,7 @@ public class GameStateService {
 	
 	public Integer initializeGameState() {
 		GameState gameState = new GameState();
-		gameState.setState("placeholder");
+		gameState.setState("");
 		
 		gameStateRepository.save(gameState);
 		

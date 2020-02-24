@@ -1,5 +1,7 @@
 package com.scg.grandmaster.entity;
 
+import java.time.LocalDateTime;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -25,5 +27,8 @@ public class GameState {
 	
 	@Column(name = "state")
 	private String state;
+	
+	@Column(name = "created_at")
+	private LocalDateTime createdAt;
 	
 }
