@@ -25,10 +25,10 @@ public class GameState {
 	@Column(name = "id")
 	private Integer id;
 	
-	@Column(name = "state")
+	@Column(name = "state", nullable = false)
 	private String state;
 	
-	@Column(name = "created_at")
+	@Column(name = "created_at", nullable = false, columnDefinition = "timestamp default now()")
 	private LocalDateTime createdAt;
 	
 }
