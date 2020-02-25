@@ -10,6 +10,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -34,7 +35,7 @@ public class GameState {
 	@Column(name = "state", nullable = false)
 	private String state;
 	
-	@Column(name = "created_at", nullable = false, columnDefinition = "timestamp default now()")
+	@Column(name = "created_at", columnDefinition = "timestamp default now()")
 	private LocalDateTime createdAt;
 	
 	@JsonIgnore

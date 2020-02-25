@@ -1,5 +1,6 @@
 package com.scg.grandmaster.entity;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -25,11 +26,11 @@ public class PieceState {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "id", nullable = false)
+	@Column(name = "id")
 	private Integer id;
 	
-	@Column(name = "game_state_id", nullable = false)
-	private Integer gameStateId;
+//	@Column(name = "game_state_id")
+//	private Integer gameStateId;
 
 	@Column(name = "color", nullable = false)
 	private String color;
@@ -50,8 +51,8 @@ public class PieceState {
 	private Integer column;
 	
 	@JsonIgnore
-	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "game_state_id", insertable = false, updatable = false)
+	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
+	@JoinColumn(name = "game_state_id", nullable = false, insertable = true, updatable = true)
 	private GameState gameState;
 	
 }

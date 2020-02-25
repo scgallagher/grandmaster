@@ -1,6 +1,8 @@
 package com.scg.grandmaster.service;
 
+import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 import java.util.Optional;
 
 import org.slf4j.Logger;
@@ -33,13 +35,26 @@ public class GameStateService {
 		GameState gameState = new GameState();
 		gameState.setState("");
 		
-		PieceState pieceState = new PieceState();
-		pieceState.setColor(Color.WHITE.name());
-		pieceState.setPieceType(PieceType.BISHOP.toString());
-		pieceState.setShortName("B_w");
-		pieceState.setRow(0);
-		pieceState.setColumn(1);
-		gameState.setPieceStateList(Collections.singletonList(pieceState));
+		PieceState pieceStateOne = new PieceState();
+		pieceStateOne.setColor(Color.WHITE.name());
+		pieceStateOne.setPieceType(PieceType.BISHOP.toString());
+		pieceStateOne.setShortName("B_w");
+		pieceStateOne.setRow(0);
+		pieceStateOne.setColumn(1);
+		pieceStateOne.setGameState(gameState);
+		
+		PieceState pieceStateTwo = new PieceState();
+		pieceStateTwo.setColor(Color.WHITE.name());
+		pieceStateTwo.setPieceType(PieceType.KNIGHT.toString());
+		pieceStateTwo.setShortName("B_w");
+		pieceStateTwo.setRow(0);
+		pieceStateTwo.setColumn(2);
+		pieceStateTwo.setGameState(gameState);
+		
+		List<PieceState> pieceStates = new ArrayList<>();
+		pieceStates.add(pieceStateOne);
+		pieceStates.add(pieceStateTwo);
+		gameState.setPieceStateList(pieceStates);
 		
 		gameStateRepository.save(gameState);
 		
