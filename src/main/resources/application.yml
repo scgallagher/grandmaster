@@ -10,9 +10,12 @@ spring:
     username: gm_client
     password: grandmaster
   jpa:
-    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    database-platform: org.hibernate.dialect.PostgreSQL9Dialect
     show-sql: false
     hibernate:      ddl-auto: create
+    properties:      hibernate:
+        temp:
+          use_jdbc_metadata_defaults: false
   flyway:
     enabled: true
     baseline-on-migrate: false
