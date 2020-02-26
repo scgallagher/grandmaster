@@ -1,7 +1,5 @@
 package com.scg.grandmaster.controller;
 
-import java.net.URI;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +17,6 @@ import com.scg.grandmaster.entity.GameState;
 import com.scg.grandmaster.game.Game;
 import com.scg.grandmaster.game.Move;
 import com.scg.grandmaster.service.GameStateService;
-import com.scg.grandmaster.to.GameStateTo;
 
 import io.swagger.annotations.ApiOperation;
 
@@ -39,7 +36,6 @@ public class GameController {
 	@GetMapping("/initialize")
 	public ResponseEntity<Void> initialize() {
 		log.info("Initializing game");
-		//game.initialize();
 		Integer createdId = gameStateService.initializeGameState();
 		UriComponents uriComponents = UriComponentsBuilder.newInstance().scheme("http").host("").path("/state").queryParam("id", createdId).build();
 		return ResponseEntity.created(uriComponents.toUri()).build();

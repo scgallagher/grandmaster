@@ -1,8 +1,12 @@
 package com.scg.grandmaster.game;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.scg.grandmaster.entity.PieceState;
 import com.scg.grandmaster.game.entity.Color;
 import com.scg.grandmaster.game.entity.Piece;
 import com.scg.grandmaster.game.entity.PieceType;
@@ -12,10 +16,10 @@ import com.scg.grandmaster.to.GameStateTo;
 
 import lombok.Getter;
 
-@Getter
 @Service
 public class Game {
 	
+	private final Integer MAX_ROW = 8;
 	private final Integer MAX_COLUMN = 8;
 	
 	private final Integer ROOK_COLUMN_LEFT = 0;
@@ -146,6 +150,25 @@ public class Game {
 		GameStateTo gameState = new GameStateTo();
 		gameState.setBoard(board.get());
 		return gameState;
+	}
+	
+	public List<PieceState> getPieceStates() {
+		List<PieceState> pieceStates = new ArrayList<>();
+		for (int row = 0; row < MAX_ROW; row++) {
+			for (int column = 0; column < MAX_COLUMN; column++) {
+				Piece piece = board.getPieceAt(row, column);
+				if (piece != null) {
+					PieceState pieceState = new PieceState();
+					pieceState.setRow(row);
+					pieceState.setColumn(column);
+					pieceState.setColor(piece.getColor().toString());
+					pieceState.setPieceType(piece.getPieceType().toString());
+					pieceState.setShortName(piece.getShortName());
+					pieceStates.add(pieceState);
+				}
+			}
+		}
+		return pieceStates;
 	}
 	
 }

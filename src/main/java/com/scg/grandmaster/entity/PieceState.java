@@ -28,9 +28,6 @@ public class PieceState {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")
 	private Integer id;
-	
-//	@Column(name = "game_state_id")
-//	private Integer gameStateId;
 
 	@Column(name = "color", nullable = false)
 	private String color;

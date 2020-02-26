@@ -1,7 +1,5 @@
 package com.scg.grandmaster.service;
 
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -13,8 +11,7 @@ import org.springframework.stereotype.Service;
 
 import com.scg.grandmaster.entity.GameState;
 import com.scg.grandmaster.entity.PieceState;
-import com.scg.grandmaster.game.entity.Color;
-import com.scg.grandmaster.game.entity.PieceType;
+import com.scg.grandmaster.game.Game;
 import com.scg.grandmaster.repository.GameStateRepository;
 
 @Service
@@ -25,6 +22,9 @@ public class GameStateService {
 	@Autowired
 	private GameStateRepository gameStateRepository;
 	
+	@Autowired
+	private Game game;
+	
 	public GameState getGameStateById(Integer id) {
 		Optional<GameState> response = gameStateRepository.findById(id);
 		
@@ -32,28 +32,11 @@ public class GameStateService {
 	}
 	
 	public Integer initializeGameState() {
+		game.initialize();
+		
+		List<PieceState> pieceStates = game.getPieceStates();
 		GameState gameState = new GameState();
-		gameState.setState("");
-		
-		PieceState pieceStateOne = new PieceState();
-		pieceStateOne.setColor(Color.WHITE.name());
-		pieceStateOne.setPieceType(PieceType.BISHOP.toString());
-		pieceStateOne.setShortName("B_w");
-		pieceStateOne.setRow(0);
-		pieceStateOne.setColumn(1);
-		pieceStateOne.setGameState(gameState);
-		
-		PieceState pieceStateTwo = new PieceState();
-		pieceStateTwo.setColor(Color.WHITE.name());
-		pieceStateTwo.setPieceType(PieceType.KNIGHT.toString());
-		pieceStateTwo.setShortName("B_w");
-		pieceStateTwo.setRow(0);
-		pieceStateTwo.setColumn(2);
-		pieceStateTwo.setGameState(gameState);
-		
-		List<PieceState> pieceStates = new ArrayList<>();
-		pieceStates.add(pieceStateOne);
-		pieceStates.add(pieceStateTwo);
+		pieceStates.stream().forEach(pieceState -> pieceState.setGameState(gameState));
 		gameState.setPieceStateList(pieceStates);
 		
 		gameStateRepository.save(gameState);

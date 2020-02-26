@@ -32,9 +32,6 @@ public class GameState {
 	@Column(name = "id")
 	private Integer id;
 	
-	@Column(name = "state", nullable = false)
-	private String state;
-	
 	@Column(name = "created_at", columnDefinition = "timestamp default now()")
 	private LocalDateTime createdAt;
 	
