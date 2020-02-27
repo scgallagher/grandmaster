@@ -12,8 +12,8 @@ import org.mockito.Mock;
 import org.mockito.Spy;
 import org.mockito.junit.MockitoJUnitRunner;
 
-import com.scg.grandmaster.game.entity.Color;
-import com.scg.grandmaster.game.entity.Piece;
+import com.scg.grandmaster.game.domain.Color;
+import com.scg.grandmaster.game.domain.Piece;
 
 @RunWith(MockitoJUnitRunner.class)
 public class PawnMoveValidationServiceTest {

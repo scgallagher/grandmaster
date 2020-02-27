@@ -2,8 +2,8 @@ package com.scg.grandmaster.game.logic;
 
 import org.springframework.stereotype.Service;
 
-import com.scg.grandmaster.game.entity.Color;
-import com.scg.grandmaster.game.entity.Piece;
+import com.scg.grandmaster.game.domain.Color;
+import com.scg.grandmaster.game.domain.Piece;
 
 @Service
 public class PawnMoveValidationService extends MoveValidationServiceBase {

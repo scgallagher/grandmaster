@@ -1,6 +1,6 @@
 package com.scg.grandmaster.to;
 
-import com.scg.grandmaster.game.entity.Piece;
+import com.scg.grandmaster.game.domain.Piece;
 
 import lombok.Data;
 

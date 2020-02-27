@@ -2,17 +2,15 @@ package com.scg.grandmaster.game.logic;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import com.scg.grandmaster.controller.GlobalExceptionHandler.IllegalMoveException;
-import com.scg.grandmaster.game.entity.Piece;
+import com.scg.grandmaster.game.domain.Piece;
 
 public class MoveValidationServiceBase {
 	
 	private static final Logger logger = LoggerFactory.getLogger(MoveValidationServiceBase.class);
 
-	@Autowired
-	Board board;
+	protected Board board;
 	
 	public Boolean isAlly(Piece pieceOne, Piece pieceTwo) {
 		return pieceOne.getColor() == pieceTwo.getColor();
@@ -137,7 +135,8 @@ public class MoveValidationServiceBase {
 		return false;
 	}
 	
-	public void validateMove(Integer sourceRow, Integer sourceColumn, Integer destinationRow, Integer destinationColumn) {
+	public void validateMove(Board board, Integer sourceRow, Integer sourceColumn, Integer destinationRow, Integer destinationColumn) {
+		this.board = board;
 		if (isValidMove(sourceRow, sourceColumn, destinationRow, destinationColumn)) {
 			logger.debug("Valid move: ({}, {}) to ({}, {})", sourceRow, sourceColumn, destinationRow, destinationColumn);
 		}

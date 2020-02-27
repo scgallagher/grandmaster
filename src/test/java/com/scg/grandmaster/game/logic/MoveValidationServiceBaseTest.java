@@ -14,8 +14,8 @@ import org.mockito.Spy;
 import org.mockito.junit.MockitoJUnitRunner;
 
 import com.scg.grandmaster.controller.GlobalExceptionHandler.IllegalMoveException;
-import com.scg.grandmaster.game.entity.Color;
-import com.scg.grandmaster.game.entity.Piece;
+import com.scg.grandmaster.game.domain.Color;
+import com.scg.grandmaster.game.domain.Piece;
 
 @RunWith(MockitoJUnitRunner.class)
 public class MoveValidationServiceBaseTest {
@@ -358,14 +358,14 @@ public class MoveValidationServiceBaseTest {
 	public void validateMove_ValidMoveSuccess() {
 		doReturn(Boolean.TRUE).when(moveValidationServiceBase).isValidMove(any(), any(), any(), any());
 		
-		moveValidationServiceBase.validateMove(null, null, null, null);
+		moveValidationServiceBase.validateMove(null, null, null, null, null);
 	}
 	
 	@Test
 	public void validateMove_InvalidMoveThrowsException() {
 		doReturn(Boolean.FALSE).when(moveValidationServiceBase).isValidMove(any(), any(), any(), any());
 		
-		assertThatThrownBy(() -> moveValidationServiceBase.validateMove(null, null, null, null)).isInstanceOf(IllegalMoveException.class);
+		assertThatThrownBy(() -> moveValidationServiceBase.validateMove(null, null, null, null, null)).isInstanceOf(IllegalMoveException.class);
 	}
 	
 }

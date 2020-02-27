@@ -7,9 +7,9 @@ import org.springframework.stereotype.Service;
 
 import com.scg.grandmaster.controller.GlobalExceptionHandler.IllegalMoveException;
 import com.scg.grandmaster.entity.GameState;
-import com.scg.grandmaster.game.entity.Color;
-import com.scg.grandmaster.game.entity.Piece;
-import com.scg.grandmaster.game.entity.PieceType;
+import com.scg.grandmaster.game.domain.Color;
+import com.scg.grandmaster.game.domain.Piece;
+import com.scg.grandmaster.game.domain.PieceType;
 
 import lombok.NoArgsConstructor;
 
@@ -58,22 +58,22 @@ public class MoveValidationService {
 		}
 		switch(piece.getPieceType()) {
 			case PAWN:
-				pawnMoveValidationService.validateMove(sourceRow, sourceColumn, destinationRow, destinationColumn);
+				pawnMoveValidationService.validateMove(board, sourceRow, sourceColumn, destinationRow, destinationColumn);
 				break;
 			case ROOK:
-				rookMoveValidationService.validateMove(sourceRow, sourceColumn, destinationRow, destinationColumn);
+				rookMoveValidationService.validateMove(board, sourceRow, sourceColumn, destinationRow, destinationColumn);
 				break;
 			case KNIGHT:
-				knightMoveValidationService.validateMove(sourceRow, sourceColumn, destinationRow, destinationColumn);
+				knightMoveValidationService.validateMove(board, sourceRow, sourceColumn, destinationRow, destinationColumn);
 				break;
 			case BISHOP:
-				bishopMoveValidationService.validateMove(sourceRow, sourceColumn, destinationRow, destinationColumn);
+				bishopMoveValidationService.validateMove(board, sourceRow, sourceColumn, destinationRow, destinationColumn);
 				break;
 			case QUEEN:
-				queenMoveValidationService.validateMove(sourceRow, sourceColumn, destinationRow, destinationColumn);
+				queenMoveValidationService.validateMove(board, sourceRow, sourceColumn, destinationRow, destinationColumn);
 				break;
 			case KING:
-				kingMoveValidationService.validateMove(sourceRow, sourceColumn, destinationRow, destinationColumn);
+				kingMoveValidationService.validateMove(board, sourceRow, sourceColumn, destinationRow, destinationColumn);
 				break;
 		}
 	}

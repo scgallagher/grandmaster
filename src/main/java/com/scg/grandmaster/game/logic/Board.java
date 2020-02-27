@@ -2,7 +2,7 @@ package com.scg.grandmaster.game.logic;
 
 import org.springframework.stereotype.Service;
 
-import com.scg.grandmaster.game.entity.Piece;
+import com.scg.grandmaster.game.domain.Piece;
 
 @Service
 public class Board {

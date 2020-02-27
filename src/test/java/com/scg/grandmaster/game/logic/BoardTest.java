@@ -5,7 +5,7 @@ import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.junit.MockitoJUnitRunner;
 
-import com.scg.grandmaster.game.entity.Piece;
+import com.scg.grandmaster.game.domain.Piece;
 
 import static org.assertj.core.api.Assertions.assertThat;
 

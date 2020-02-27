@@ -12,8 +12,8 @@ import org.springframework.stereotype.Service;
 
 import com.scg.grandmaster.entity.GameState;
 import com.scg.grandmaster.entity.PieceState;
-import com.scg.grandmaster.game.entity.Color;
-import com.scg.grandmaster.game.entity.PieceType;
+import com.scg.grandmaster.game.domain.Color;
+import com.scg.grandmaster.game.domain.PieceType;
 import com.scg.grandmaster.repository.GameStateRepository;
 
 @Service

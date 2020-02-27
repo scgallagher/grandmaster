@@ -17,8 +17,8 @@ import org.mockito.Spy;
 import org.mockito.junit.MockitoJUnitRunner;
 
 import com.scg.grandmaster.controller.GlobalExceptionHandler.IllegalMoveException;
-import com.scg.grandmaster.game.entity.Piece;
-import com.scg.grandmaster.game.entity.PieceType;
+import com.scg.grandmaster.game.domain.Piece;
+import com.scg.grandmaster.game.domain.PieceType;
 
 @RunWith(MockitoJUnitRunner.class)
 public class MoveValidationServiceTest {
@@ -122,7 +122,7 @@ public class MoveValidationServiceTest {
 		
 		doReturn(pawn).when(board).getPieceAt(any(), any());
 		
-		doThrow(new IllegalMoveException("")).when(pawnMoveValidationService).validateMove(any(), any(), any(), any());
+		doThrow(new IllegalMoveException("")).when(pawnMoveValidationService).validateMove(any(), any(), any(), any(), any());
 		
 		assertThatThrownBy(() -> moveValidationService.validateMove(null, 0, 0, 0, 0)).isInstanceOf(IllegalMoveException.class);
 	}
@@ -138,11 +138,11 @@ public class MoveValidationServiceTest {
 		
 		doReturn(pawn).when(board).getPieceAt(any(), any());
 		
-		doNothing().when(pawnMoveValidationService).validateMove(any(), any(), any(), any());
+		doNothing().when(pawnMoveValidationService).validateMove(any(), any(), any(), any(), any());
 		
 		moveValidationService.validateMove(null, 0, 0, 0, 0);
 		
-		verify(pawnMoveValidationService).validateMove(any(), any(), any(), any());
+		verify(pawnMoveValidationService).validateMove(any(), any(), any(), any(), any());
 	}
 	
 	@Test
@@ -156,7 +156,7 @@ public class MoveValidationServiceTest {
 		
 		doReturn(rook).when(board).getPieceAt(any(), any());
 		
-		doThrow(new IllegalMoveException("")).when(rookMoveValidationService).validateMove(any(), any(), any(), any());
+		doThrow(new IllegalMoveException("")).when(rookMoveValidationService).validateMove(any(), any(), any(), any(), any());
 		
 		assertThatThrownBy(() -> moveValidationService.validateMove(null, 0, 0, 0, 0)).isInstanceOf(IllegalMoveException.class);
 	}
@@ -172,11 +172,11 @@ public class MoveValidationServiceTest {
 		
 		doReturn(rook).when(board).getPieceAt(any(), any());
 		
-		doNothing().when(rookMoveValidationService).validateMove(any(), any(), any(), any());
+		doNothing().when(rookMoveValidationService).validateMove(any(), any(), any(), any(), any());
 		
 		moveValidationService.validateMove(null, 0, 0, 0, 0);
 		
-		verify(rookMoveValidationService).validateMove(any(), any(), any(), any());
+		verify(rookMoveValidationService).validateMove(any(), any(), any(), any(), any());
 	}
 	
 	@Test
@@ -190,7 +190,7 @@ public class MoveValidationServiceTest {
 		
 		doReturn(knight).when(board).getPieceAt(any(), any());
 		
-		doThrow(new IllegalMoveException("")).when(knightMoveValidationService).validateMove(any(), any(), any(), any());
+		doThrow(new IllegalMoveException("")).when(knightMoveValidationService).validateMove(any(), any(), any(), any(), any());
 		
 		assertThatThrownBy(() -> moveValidationService.validateMove(null, 0, 0, 0, 0)).isInstanceOf(IllegalMoveException.class);
 	}
@@ -206,11 +206,11 @@ public class MoveValidationServiceTest {
 		
 		doReturn(knight).when(board).getPieceAt(any(), any());
 		
-		doNothing().when(knightMoveValidationService).validateMove(any(), any(), any(), any());
+		doNothing().when(knightMoveValidationService).validateMove(any(), any(), any(), any(), any());
 		
 		moveValidationService.validateMove(null, 0, 0, 0, 0);
 		
-		verify(knightMoveValidationService).validateMove(any(), any(), any(), any());
+		verify(knightMoveValidationService).validateMove(any(), any(), any(), any(), any());
 	}
 	
 	@Test
@@ -224,7 +224,7 @@ public class MoveValidationServiceTest {
 		
 		doReturn(bishop).when(board).getPieceAt(any(), any());
 		
-		doThrow(new IllegalMoveException("")).when(bishopMoveValidationService).validateMove(any(), any(), any(), any());
+		doThrow(new IllegalMoveException("")).when(bishopMoveValidationService).validateMove(any(), any(), any(), any(), any());
 		
 		assertThatThrownBy(() -> moveValidationService.validateMove(null, 0, 0, 0, 0)).isInstanceOf(IllegalMoveException.class);
 	}
@@ -240,11 +240,11 @@ public class MoveValidationServiceTest {
 		
 		doReturn(bishop).when(board).getPieceAt(any(), any());
 		
-		doNothing().when(bishopMoveValidationService).validateMove(any(), any(), any(), any());
+		doNothing().when(bishopMoveValidationService).validateMove(any(), any(), any(), any(), any());
 		
 		moveValidationService.validateMove(null, 0, 0, 0, 0);
 		
-		verify(bishopMoveValidationService).validateMove(any(), any(), any(), any());
+		verify(bishopMoveValidationService).validateMove(any(), any(), any(), any(), any());
 	}
 	
 	@Test
@@ -258,7 +258,7 @@ public class MoveValidationServiceTest {
 		
 		doReturn(queen).when(board).getPieceAt(any(), any());
 		
-		doThrow(new IllegalMoveException("")).when(queenMoveValidationService).validateMove(any(), any(), any(), any());
+		doThrow(new IllegalMoveException("")).when(queenMoveValidationService).validateMove(any(), any(), any(), any(), any());
 		
 		assertThatThrownBy(() -> moveValidationService.validateMove(null, 0, 0, 0, 0)).isInstanceOf(IllegalMoveException.class);
 	}
@@ -274,11 +274,11 @@ public class MoveValidationServiceTest {
 		
 		doReturn(queen).when(board).getPieceAt(any(), any());
 		
-		doNothing().when(queenMoveValidationService).validateMove(any(), any(), any(), any());
+		doNothing().when(queenMoveValidationService).validateMove(any(), any(), any(), any(), any());
 		
 		moveValidationService.validateMove(null, 0, 0, 0, 0);
 		
-		verify(queenMoveValidationService).validateMove(any(), any(), any(), any());
+		verify(queenMoveValidationService).validateMove(any(), any(), any(), any(), any());
 	}
 	
 	@Test
@@ -292,7 +292,7 @@ public class MoveValidationServiceTest {
 		
 		doReturn(king).when(board).getPieceAt(any(), any());
 		
-		doThrow(new IllegalMoveException("")).when(kingMoveValidationService).validateMove(any(), any(), any(), any());
+		doThrow(new IllegalMoveException("")).when(kingMoveValidationService).validateMove(any(), any(), any(), any(), any());
 		
 		assertThatThrownBy(() -> moveValidationService.validateMove(null, 0, 0, 0, 0)).isInstanceOf(IllegalMoveException.class);
 	}
@@ -308,11 +308,11 @@ public class MoveValidationServiceTest {
 		
 		doReturn(king).when(board).getPieceAt(any(), any());
 		
-		doNothing().when(kingMoveValidationService).validateMove(any(), any(), any(), any());
+		doNothing().when(kingMoveValidationService).validateMove(any(), any(), any(), any(), any());
 		
 		moveValidationService.validateMove(null, 0, 0, 0, 0);
 		
-		verify(kingMoveValidationService).validateMove(any(), any(), any(), any());
+		verify(kingMoveValidationService).validateMove(any(), any(), any(), any(), any());
 	}
 	
 }

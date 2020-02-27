@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.scg.grandmaster.entity.GameState;
-import com.scg.grandmaster.game.Move;
+import com.scg.grandmaster.game.domain.Move;
 import com.scg.grandmaster.game.logic.Board;
 import com.scg.grandmaster.game.logic.MoveValidationService;
 

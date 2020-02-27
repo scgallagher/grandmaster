@@ -1,4 +1,4 @@
-package com.scg.grandmaster.game;
+package com.scg.grandmaster.game.domain;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
