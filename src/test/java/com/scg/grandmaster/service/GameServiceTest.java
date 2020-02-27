@@ -1,4 +1,4 @@
-package com.scg.grandmaster.game;
+package com.scg.grandmaster.service;
 
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.verify;
@@ -11,8 +11,10 @@ import org.mockito.Spy;
 import org.mockito.junit.MockitoJUnitRunner;
 
 import com.scg.grandmaster.entity.GameState;
+import com.scg.grandmaster.game.Move;
 import com.scg.grandmaster.game.logic.Board;
 import com.scg.grandmaster.game.logic.MoveValidationService;
+import com.scg.grandmaster.service.GameService;
 
 @RunWith(MockitoJUnitRunner.class)
 public class GameServiceTest {
