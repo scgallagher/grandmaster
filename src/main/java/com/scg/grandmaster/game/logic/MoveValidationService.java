@@ -6,7 +6,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.scg.grandmaster.controller.GlobalExceptionHandler.IllegalMoveException;
+import com.scg.grandmaster.entity.GameState;
+import com.scg.grandmaster.game.entity.Color;
 import com.scg.grandmaster.game.entity.Piece;
+import com.scg.grandmaster.game.entity.PieceType;
 
 import lombok.NoArgsConstructor;
 
@@ -15,9 +18,6 @@ import lombok.NoArgsConstructor;
 public class MoveValidationService {
 	
 	private static final Logger logger = LoggerFactory.getLogger(MoveValidationService.class);
-	
-	@Autowired
-	private Board board;
 	
 	@Autowired
 	private PawnMoveValidationService pawnMoveValidationService;
@@ -41,7 +41,7 @@ public class MoveValidationService {
 		return value < 0 || value > 7;
 	}
 	
-	public void validateMove(Integer sourceRow, Integer sourceColumn, Integer destinationRow, Integer destinationColumn) {
+	public void validateMove(GameState gameState, Integer sourceRow, Integer sourceColumn, Integer destinationRow, Integer destinationColumn) {
 		logger.info("Validating move ({}, {}) to ({}, {})", sourceRow, sourceColumn, destinationRow, destinationColumn );
 		
 		if (isValueOutOfBounds(sourceRow) || isValueOutOfBounds(sourceColumn) 
@@ -51,6 +51,7 @@ public class MoveValidationService {
 			throw new IllegalMoveException(message);
 		}
 		
+		Board board = createBoardFromGameState(gameState);
 		Piece piece = board.getPieceAt(sourceRow, sourceColumn);
 		if (piece == null) {
 			throw new IllegalMoveException("There is no piece at this location");
@@ -75,5 +76,17 @@ public class MoveValidationService {
 				kingMoveValidationService.validateMove(sourceRow, sourceColumn, destinationRow, destinationColumn);
 				break;
 		}
+	}
+	
+	public Board createBoardFromGameState(GameState gameState) {
+		Board board = new Board();
+		gameState.getPieceStateList().stream().forEach(pieceState -> {
+			Piece piece = new Piece();
+			piece.setColor(Color.valueOf(pieceState.getColor()));
+			piece.setPieceType(PieceType.valueOf(pieceState.getPieceType()));
+			piece.setShortName(pieceState.getShortName());
+			board.putPiece(piece, pieceState.getRow(), pieceState.getColumn());
+		});
+		return board;
 	}
 }
