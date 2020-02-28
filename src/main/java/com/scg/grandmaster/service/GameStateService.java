@@ -41,7 +41,7 @@ public class GameStateService {
 		return response.orElseThrow(ResourceNotFoundException::new);
 	}
 	
-	public Integer initializeGameState() {
+	public GameState initializeGameState() {
 		List<PieceState> pieceStates = initializePieceStates();
 		GameState gameState = new GameState();
 		pieceStates.stream().forEach(pieceState -> pieceState.setGameState(gameState));
@@ -49,9 +49,8 @@ public class GameStateService {
 		
 		gameStateRepository.save(gameState);
 		
-		Integer createdId = gameState.getId();
-		log.info("Created game state with Id: {}", createdId);
-		return createdId;
+		log.info("Created game state with Id: {}", gameState.getId());
+		return gameState;
 	}
 	
 	public List<PieceState> initializePieceStates() {
@@ -177,6 +176,18 @@ public class GameStateService {
 			piece.setShortName("K_" + color);
 			break;
 	}
+	}
+	
+	public void updateGameState(GameState gameState, Integer sourceRow, Integer sourceColumn, Integer destinationRow, Integer destinationColumn) {
+		List<PieceState> pieceStates = gameState.getPieceStateList();
+		pieceStates.removeIf(pieceState -> pieceState.getRow() == destinationRow && pieceState.getColumn() == destinationColumn);
+		gameState.getPieceStateList().forEach(pieceState -> {
+			if (pieceState.getRow() == sourceRow && pieceState.getColumn() == sourceColumn) {
+				pieceState.setRow(destinationRow);
+				pieceState.setColumn(destinationColumn);
+			}
+		});
+		gameStateRepository.save(gameState);
 	}
 	
 }

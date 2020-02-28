@@ -13,8 +13,6 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -34,7 +32,6 @@ public class GameState {
 	@Column(name = "created_at", columnDefinition = "timestamp default now()")
 	private LocalDateTime createdAt;
 	
-	@JsonIgnore
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "gameState", fetch = FetchType.EAGER)
 	private List<PieceState> pieceStateList;
 	

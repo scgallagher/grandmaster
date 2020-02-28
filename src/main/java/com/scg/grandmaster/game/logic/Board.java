@@ -1,10 +1,7 @@
 package com.scg.grandmaster.game.logic;
 
-import org.springframework.stereotype.Service;
-
 import com.scg.grandmaster.game.domain.Piece;
 
-@Service
 public class Board {
 
 	private final Integer MAX_ROW = 8;

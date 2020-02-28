@@ -8,8 +8,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.util.UriComponents;
-import org.springframework.web.util.UriComponentsBuilder;
 
 import com.scg.grandmaster.entity.GameState;
 import com.scg.grandmaster.service.GameStateService;
@@ -27,11 +25,10 @@ public class GameStateController {
 	
 	@ApiOperation(value = "Initialize the game", notes = "Initialize the game", response = Void.class)
 	@GetMapping("/initialize")
-	public ResponseEntity<Void> initialize() {
+	public ResponseEntity<GameState> initialize() {
 		log.info("Initializing game");
-		Integer createdId = gameStateService.initializeGameState();
-		UriComponents uriComponents = UriComponentsBuilder.newInstance().scheme("http").host("").path("/state").queryParam("id", createdId).build();
-		return ResponseEntity.created(uriComponents.toUri()).build();
+		GameState gameState = gameStateService.initializeGameState();
+		return ResponseEntity.ok(gameState);
 	}
 	
 	@ApiOperation(value = "Get the current game state", notes = "Get the current game state", response = GameState.class)

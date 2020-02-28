@@ -26,11 +26,11 @@ public class GameStateControllerTest {
 	
 	@Test
 	public void initialize_Success() {
-		when(gameStateService.initializeGameState()).thenReturn(0);
+		when(gameStateService.initializeGameState()).thenReturn(null);
 		
-		ResponseEntity<Void> result = gameController.initialize();
+		ResponseEntity<GameState> result = gameController.initialize();
 		
-		assertThat(result.getStatusCode()).isEqualTo(HttpStatus.CREATED);
+		assertThat(result.getStatusCode()).isEqualTo(HttpStatus.OK);
 	}
 	
 	@Test

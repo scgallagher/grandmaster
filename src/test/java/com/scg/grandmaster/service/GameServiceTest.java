@@ -1,7 +1,9 @@
 package com.scg.grandmaster.service;
 
 import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -12,7 +14,6 @@ import org.mockito.junit.MockitoJUnitRunner;
 
 import com.scg.grandmaster.entity.GameState;
 import com.scg.grandmaster.game.domain.Move;
-import com.scg.grandmaster.game.logic.Board;
 import com.scg.grandmaster.game.logic.MoveValidationService;
 import com.scg.grandmaster.service.GameService;
 
@@ -24,14 +25,16 @@ public class GameServiceTest {
 	GameService gameService;
 	
 	@Mock
-	Board board;
+	GameStateService gameStateService;
 	
 	@Mock
 	MoveValidationService moveValidationService;
 	
 	@Test
 	public void movePiece_MoveObjectPieceIsMovedSuccessfully() {
-		gameService.movePiece(new GameState(), new Move());
+		when(gameStateService.getGameStateById(any())).thenReturn(null);
+		
+		gameService.movePiece(new Move());
 		
 		verify(gameService).movePiece(any(), any(), any(), any(), any());
 	}
@@ -44,8 +47,10 @@ public class GameServiceTest {
 		Integer destinationRow = 2;
 		Integer destinationColumn = 0;
 		
-		gameService.movePiece(gameState, sourceRow, sourceColumn, destinationRow, destinationColumn);
+		doNothing().when(moveValidationService).validateMove(any(), any(), any(), any(), any());
 		
-		verify(moveValidationService).validateMove(gameState, sourceRow, sourceColumn, destinationRow, destinationColumn);
+		doNothing().when(gameStateService).updateGameState(any(), any(), any(), any(), any());
+		
+		gameService.movePiece(gameState, sourceRow, sourceColumn, destinationRow, destinationColumn);
 	}
 }

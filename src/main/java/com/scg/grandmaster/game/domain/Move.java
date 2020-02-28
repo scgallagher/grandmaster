@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Move {
+	private Integer gameStateId;
 	private Integer sourceRow;
 	private Integer sourceColumn;
 	private Integer destinationRow;
