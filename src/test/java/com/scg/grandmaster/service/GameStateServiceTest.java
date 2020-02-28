@@ -1,10 +1,15 @@
 package com.scg.grandmaster.service;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.Assert.*;
+import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.doReturn;
+import static org.mockito.Mockito.when;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -14,6 +19,7 @@ import org.mockito.Spy;
 import org.mockito.junit.MockitoJUnitRunner;
 import static org.mockito.ArgumentMatchers.any;
 
+import com.scg.grandmaster.entity.GameState;
 import com.scg.grandmaster.entity.PieceState;
 import com.scg.grandmaster.game.domain.Color;
 import com.scg.grandmaster.game.domain.PieceType;
@@ -260,6 +266,64 @@ public class GameStateServiceTest {
 		assertThat(result).contains(bishopTwo);
 		assertThat(result).contains(knightTwo);
 		assertThat(result).contains(rookTwo);
+	}
+	
+	@Test
+	public void updateGameState_GameStateUpdated() {
+		Integer sourceRow = 1;
+		Integer sourceColumn = 0;
+		Integer destinationRow = 2;
+		Integer destinationColumn = 0;
+		
+		PieceState sourcePiece = new PieceState();
+		sourcePiece.setRow(sourceRow);
+		sourcePiece.setColumn(sourceColumn);
+		
+		List<PieceState> pieceStates = new ArrayList<>();
+		pieceStates.add(sourcePiece);
+		GameState gameState = new GameState();
+		gameState.setPieceStateList(pieceStates);
+		
+		when(gameStateRepository.save(any())).thenReturn(null);
+		
+		GameState result = gameStateService.updateGameState(gameState, sourceRow, sourceColumn, destinationRow, destinationColumn);
+		
+		assertThat(result.getPieceStateList()
+				.stream()
+				.filter(pieceState -> pieceState.getRow() == destinationRow && pieceState.getColumn() == destinationColumn)
+				.collect(Collectors.toList()))
+		.isNotEmpty();
+	}
+	
+	@Test
+	public void updateGameState_CapturedPieceIsRemoved() {
+		Integer sourceRow = 1;
+		Integer sourceColumn = 0;
+		Integer destinationRow = 2;
+		Integer destinationColumn = 0;
+		
+		PieceState sourcePiece = new PieceState();
+		sourcePiece.setRow(sourceRow);
+		sourcePiece.setColumn(sourceColumn);
+		
+		PieceState destinationPiece = new PieceState();
+		destinationPiece.setRow(destinationRow);
+		destinationPiece.setColumn(destinationColumn);
+		
+		List<PieceState> pieceStates = new ArrayList<>();
+		pieceStates.add(sourcePiece);
+		pieceStates.add(destinationPiece);
+		GameState gameState = new GameState();
+		gameState.setPieceStateList(pieceStates);
+		
+		GameState result = gameStateService.updateGameState(gameState, sourceRow, sourceColumn, destinationRow, destinationColumn);
+		
+		List<PieceState> resultPieceStates = result.getPieceStateList();
+		assertThat(resultPieceStates
+				.stream()
+				.filter(pieceState -> pieceState.getRow() == destinationRow && pieceState.getColumn() == destinationColumn))
+		.isNotNull();
+		assertThat(result.getPieceStateList().size()).isEqualTo(1);
 	}
 	
 }
