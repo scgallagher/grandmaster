@@ -49,7 +49,7 @@ public class GameServiceTest {
 		
 		doNothing().when(moveValidationService).validateMove(any(), any(), any(), any(), any());
 		
-		doNothing().when(gameStateService).updateGameState(any(), any(), any(), any(), any());
+		when(gameStateService.updateGameState(any(), any(), any(), any(), any())).thenReturn(null);
 		
 		gameService.movePiece(gameState, sourceRow, sourceColumn, destinationRow, destinationColumn);
 	}

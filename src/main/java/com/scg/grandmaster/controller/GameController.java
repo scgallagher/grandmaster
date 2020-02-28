@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.scg.grandmaster.entity.GameState;
 import com.scg.grandmaster.game.domain.Move;
 import com.scg.grandmaster.service.GameService;
 
@@ -25,10 +26,10 @@ public class GameController {
 	
 	@ApiOperation(value = "Make a move", notes = "Make a move", response = Void.class)
 	@PostMapping("/move")
-	public ResponseEntity<Void> move(@RequestBody Move move) {
+	public ResponseEntity<GameState> move(@RequestBody Move move) {
 		log.info("Received move request: {}", move);
-		gameService.movePiece(move);
-		return ResponseEntity.ok().build();
+		GameState gameState = gameService.movePiece(move);
+		return ResponseEntity.ok(gameState);
 	}
 	
 	

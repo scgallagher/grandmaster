@@ -178,7 +178,7 @@ public class GameStateService {
 	}
 	}
 	
-	public void updateGameState(GameState gameState, Integer sourceRow, Integer sourceColumn, Integer destinationRow, Integer destinationColumn) {
+	public GameState updateGameState(GameState gameState, Integer sourceRow, Integer sourceColumn, Integer destinationRow, Integer destinationColumn) {
 		List<PieceState> pieceStates = gameState.getPieceStateList();
 		pieceStates.removeIf(pieceState -> pieceState.getRow() == destinationRow && pieceState.getColumn() == destinationColumn);
 		gameState.getPieceStateList().forEach(pieceState -> {
@@ -188,6 +188,7 @@ public class GameStateService {
 			}
 		});
 		gameStateRepository.save(gameState);
+		return gameState;
 	}
 	
 }
